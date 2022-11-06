@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xml:lang="ja-jp" lang="ja-jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="ポインター一義化によりパフォーマンスを向上する"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9AD30AA8-98FF-4D12-AC12-7AB9888AF2CF.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-EB69FF12-A40E-487A-95D4-6B87C0ED5394"/>
+<meta name="DC.Language" content="ja-JP"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>ポインター一義化によりパフォーマンスを向上する</title>
+<script src="resources/prism/prism.js"><!----></script>
+<link href="resources/prism/prism.css" rel="stylesheet"/>
+</head>
+<body id="GUID-EB69FF12-A40E-487A-95D4-6B87C0ED5394">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+
+
+<h1 class="topictitle1">ポインター一義化によりパフォーマンスを向上する</h1>
+<div><p>2 つのポインターが同じメモリーの場所を指す場合、両方のエイリアスが作成されます。エイリアスされる可能性のあるポインターを使用してメモリーへ格納すると、一部の最適化を妨げることがあります。例えば、ベクトル化の安全が確保されないループ反復間の依存性が作成される場合があります。エイリアシングだけが潜在的な依存性の原因ではありません。実際、<span class="filepath">Multiply.c</span> にはほかの依存性が存在します。ただし、この場合、エイリアシングにより生じる依存性を排除することで、ほかのループの依存性を解決できます。</p>
+<p>コンパイラーは、ループのベクトル化されたバージョンとベクトル化されていないバージョンの両方を生成し、ランタイム時にテストして最適なコードパスを選択することがあります。ポインターがエイリアスしない場合、それをコンパイラーに知らせると、ランタイム時のチェックは回避され、ベクトル化された単一のコードパスが生成されます。<span class="filepath">Multiply.c</span> では、コンパイラーは関数 <samp class="codeph">matvec(FTYPE a[][COLWIDTH], FTYPE b[], FTYPE x[])</samp> のポインター <samp class="codeph">b</samp> が <samp class="codeph">a</samp> または <samp class="codeph">x</samp> にエイリアスされるかどうかを判断するためにランタイムチェックを生成します。<span class="filepath">Multiply.c</span> が NOALIAS マクロでコンパイルされると、引数 <samp class="codeph">b</samp> の restrict 修飾子は、ポインターがほかのポインターにエイリアスされないこと、特に配列 <samp class="codeph">b</samp> が <samp class="codeph">a</samp> または <samp class="codeph">x</samp> とオーバーラップしないことをコンパイラーに知らせます。</p>
+<div class="Note"><h3 class="NoteTipHead">注</h3> <p><samp class="codeph">restrict</samp> 修飾子は、<span class="filepath">.c</span> または <span class="filepath">.cpp</span> ファイルでは <span class="option">/Qrestrict</span> コンパイラー・オプション、<span class="filepath">.c</span> ファイルでは <span class="option">/Qstd=c99</span> コンパイラー・オプションを使用して指定する必要があります。</p>
+</div>
+<p>NOFUNCCALL プリプロセッサー定義を削除して、<samp class="codeph">matvec()</samp> の呼び出しを再度挿入します。<samp class="codeph">NOALIAS</samp> プリプロセッサー定義をコンパイラー・オプションに追加します。</p>
+<p>プロジェクトをリビルドし、実行ファイルを実行して、出力結果で表示される実行時間を記録してください。<span class="filepath">Multiply.optrpt</span> に以下のメッセージが出力されます。</p>
+<pre class="msgblock">
+ループの開始 Multiply.c(37,5)
+Multiply.c(37,5): リマーク #15542: ループはベクトル化されませんでした: 内部ループがすでにベクトル化されています。
+
+ループの開始 Multiply.c(49,9)
+ベクトル化のピールループ
+ループの終了
+
+ループの開始 Multiply.c(49,9)
+Multiply.c(49,9): リマーク #15300: ループがベクトル化されました。
+ループの終了
+
+ループの開始 Multiply.c(49,9)
+代替アライメントでベクトル化されたループ
+ループの終了
+
+ループの開始 Multiply.c(49,9)
+ベクトル化の剰余ループ
+ループの終了
+ループの終了</pre>
+<p><div class="Note"><h3 class="NoteTipHead">注</h3> 行番号および列番号は異なる場合があります。
+      </div>
+</p>
+<p>配列がオーバーラップしないことをコンパイラーに知らせたため、コンパイラーは表現認識によりループの依存性を解決し、ループをベクトル化します。</p>
+<p><a href="GUID-242A8980-1567-4E58-9368-8296023C18FB.html#GUID-242A8980-1567-4E58-9368-8296023C18FB"><img class="border(0)" style="border-style: none" src="GUID-7F3B04BE-CA31-4F1C-B7C4-88C93723B324-low.jpg" alt="次へ: データのアライメントによりパフォーマンスを向上する"/></a></p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>親トピック:</strong> <a href="GUID-9AD30AA8-98FF-4D12-AC12-7AB9888AF2CF.html">チュートリアル: Windows* 版</a></div>
+</div>
+<div/>
+</body>
+</html>

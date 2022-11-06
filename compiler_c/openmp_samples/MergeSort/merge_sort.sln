@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MergeSort", "msvs\merge_sort.vcxproj", "{60C17D3F-B486-4C0D-90F0-4BEE4F2F66A2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Intel-Debug|Win32 = Intel-Debug|Win32
+		Intel-Debug|x64 = Intel-Debug|x64
+		Intel-Release|Win32 = Intel-Release|Win32
+		Intel-Release|x64 = Intel-Release|x64
+		VSC-Debug|Win32 = VSC-Debug|Win32
+		VSC-Debug|x64 = VSC-Debug|x64
+		VSC-Release|Win32 = VSC-Release|Win32
+		VSC-Release|x64 = VSC-Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60C17D3F-B486-4C0D-90F0-4BEE4F2F66A2}.Intel-Debug|Win32.ActiveCfg = Intel-Debug|Win32
+		{60C17D3F-B486-4C0D-90F0-4BEE4F2F66A2}.Intel-Debug|Win32.Build.0 = Intel-Debug|Win32
+		{60C17D3F-B486-4C0D-90F0-4BEE4F2F66A2}.Intel-Debug|x64.ActiveCfg = Intel-Debug|x64
+		{60C17D3F-B486-4C0D-90F0-4BEE4F2F66A2}.Intel-Debug|x64.Build.0 = Intel-Debug|x64
+		{60C17D3F-B486-4C0D-90F0-4BEE4F2F66A2}.Intel-Release|Win32.ActiveCfg = Intel-Release|Win32
+		{60C17D3F-B486-4C0D-90F0-4BEE4F2F66A2}.Intel-Release|Win32.Build.0 = Intel-Release|Win32
+		{60C17D3F-B486-4C0D-90F0-4BEE4F2F66A2}.Intel-Release|x64.ActiveCfg = Intel-Release|x64
+		{60C17D3F-B486-4C0D-90F0-4BEE4F2F66A2}.Intel-Release|x64.Build.0 = Intel-Release|x64
+		{60C17D3F-B486-4C0D-90F0-4BEE4F2F66A2}.VSC-Debug|Win32.ActiveCfg = VSC-Debug|Win32
+		{60C17D3F-B486-4C0D-90F0-4BEE4F2F66A2}.VSC-Debug|Win32.Build.0 = VSC-Debug|Win32
+		{60C17D3F-B486-4C0D-90F0-4BEE4F2F66A2}.VSC-Debug|x64.ActiveCfg = VSC-Debug|x64
+		{60C17D3F-B486-4C0D-90F0-4BEE4F2F66A2}.VSC-Debug|x64.Build.0 = VSC-Debug|x64
+		{60C17D3F-B486-4C0D-90F0-4BEE4F2F66A2}.VSC-Release|Win32.ActiveCfg = VSC-Release|Win32
+		{60C17D3F-B486-4C0D-90F0-4BEE4F2F66A2}.VSC-Release|Win32.Build.0 = VSC-Release|Win32
+		{60C17D3F-B486-4C0D-90F0-4BEE4F2F66A2}.VSC-Release|x64.ActiveCfg = VSC-Release|x64
+		{60C17D3F-B486-4C0D-90F0-4BEE4F2F66A2}.VSC-Release|x64.Build.0 = VSC-Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

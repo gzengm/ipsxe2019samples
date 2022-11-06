@@ -1,0 +1,13 @@
+Intel® Fortran Compiler - QuickWin Samples
+
+License Information Follows
+---------------------------
+* Calendar\*.*
+* Poker\*.*
+* QWPaint\*.*
+* Scigraph\*.*
+build.bat, readme.hmtl
+
+Copyright 2017 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/

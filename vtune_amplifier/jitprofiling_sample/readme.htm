@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Intel® VTune™ Amplifier JIT Profile Sample"/>
+<meta name="prodname" content="VTune™ Amplifier"/>
+<meta name="version" content="2018"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="readme"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="resources/intel_gsp_styles.css"/>
+<title>Intel® VTune™ Amplifier JIT Profile Sample</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1"/>
+<!-- BEGIN SCRIPTS FOR EXPAND/COLLAPSE FUNCTIONALITY -->
+<script src="resources/jquery-1.11.1.min.js"><!----></script>
+<script src="resources/hide-show.js"><!----></script>
+<!-- END SCRIPTS FOR EXPAND/COLLAPSE FUNCTIONALITY -->
+<!-- Prism script to support syntax highlighting-->
+<script src="resources/prism/prism.js"><!----></script>
+
+<!-- prism.css stylesheet to support syntax highlighting-->
+<link href="resources/prism/prism.css" rel="stylesheet"/>
+</head>
+<body class="titlepage" id="readme"><a name="readme"><!-- --></a>
+
+
+<div id="banner">
+<div id="bannerblock">
+<img src="resources/intel_logo.png" class="intellogo" alt="Intel logo"/>
+<!--No product image to be included-->
+<h1 class="title">Intel® VTune™ Amplifier JIT Profile Sample</h1>
+</div>
+</div>
+<div id="contentblock">
+<div id="mainmenu"><h3>Contents</h3><p><a class="mainmenulinks" href="#GUID-E43934DC-FDC6-48F8-8441-FFF022A80824"/></p>
+<p><a class="mainmenulinks" href="#GUID-48FE6126-B265-43D1-8608-05FEBE6EF68D">System Requirements</a></p>
+<p><a class="mainmenulinks" href="#GUID-5B15EB90-9BDE-4743-B943-C7CDB606DB28">Build Instructions</a></p>
+<p><a class="mainmenulinks" href="#GUID-F289ABF9-7B6B-4DB9-BBD2-E13F93FE41DA"> Legal Information</a></p>
+</div>
+<div id="GUID-E43934DC-FDC6-48F8-8441-FFF022A80824"><p>The 
+		  <strong>JITprofile</strong> sample allows you to explore the capabilities of the JIT Profiling APIs in Intel® VTune™ Amplifier. 
+		</p>
+<p>The JIT (Just-In-Time) Profiling API provides functionality to report information about just-in-time generated code that can be used by performance tools. You need to insert JIT Profiling API calls in the code generator to report information before JIT-compiled code goes to execution. This information is collected at runtime and used by tools like the VTune Amplifier to display performance metrics associated with JIT-compiled code. 
+		</p>
+</div>
+<div id="GUID-48FE6126-B265-43D1-8608-05FEBE6EF68D">
+<h2><a name="GUID-48FE6126-B265-43D1-8608-05FEBE6EF68D"><!-- --></a>System Requirements</h2>
+<p><a name="GUID-52389598-4FFB-4CF1-88CF-80CA6EE952A9"><!-- --></a>
+<ul id="GUID-52389598-4FFB-4CF1-88CF-80CA6EE952A9"><li id="LI_6100045CB125433493183923469D12C9"><a name="LI_6100045CB125433493183923469D12C9"><!-- --></a>
+<p>Hardware: 
+			 </p>
+<a name="GUID-6ABB4425-A166-43E5-82FF-6B0E02EAF4A9"><!-- --></a>
+<ul id="GUID-6ABB4425-A166-43E5-82FF-6B0E02EAF4A9"><li id="LI_5E03DFAD1CE7480EBC61D87A0FD9F034"><a name="LI_5E03DFAD1CE7480EBC61D87A0FD9F034"><!-- --></a>
+<p>Any Intel® processor like 2nd Generation Intel® Core™ i3, i5, or i7 processors and Intel® Xeon® E3 or E5 processor family 
+				  </p>
+</li>
+</ul>
+</li>
+<li id="LI_00F1BADFFF5B4544BE2787352A507EEC"><a name="LI_00F1BADFFF5B4544BE2787352A507EEC"><!-- --></a>
+<p>Software: 
+			 </p>
+<a name="GUID-E1C1B670-01F3-4F3D-ADC6-1DEFCC5D1624"><!-- --></a>
+<ul id="GUID-E1C1B670-01F3-4F3D-ADC6-1DEFCC5D1624"><li id="LI_8436D9D6F2394B8382D718B284927CBA"><a name="LI_8436D9D6F2394B8382D718B284927CBA"><!-- --></a>
+<p>Microsoft Visual Studio 2012* (or higher) 
+				  </p>
+</li>
+<li id="LI_0A2D67FE9460418CB198EEA1F83F0FD8"><a name="LI_0A2D67FE9460418CB198EEA1F83F0FD8"><!-- --></a>
+<p>Intel® Parallel Studio XE 2017 (or higher) Composer Edition for C++ Windows* 
+				  </p>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+</div>
+<div id="GUID-5B15EB90-9BDE-4743-B943-C7CDB606DB28">
+<h2><a name="GUID-5B15EB90-9BDE-4743-B943-C7CDB606DB28"><!-- --></a>Build Instructions</h2>
+<p><a name="GUID-F7337E78-0009-40D0-ABBB-BAA1608235D2"><!-- --></a>
+<ol id="GUID-F7337E78-0009-40D0-ABBB-BAA1608235D2"><li id="LI_783D03DC6C9D4214BD32D7C027CF9346"><a name="LI_783D03DC6C9D4214BD32D7C027CF9346"><!-- --></a>
+<p>Open the Visual Studio* IDE and choose 
+				<strong>File &gt; Open &gt; Project/Solution 
+				</strong>from the menu. 
+			 </p>
+</li>
+<li id="LI_EB93880FB0054ACB93BB7974BF014D82"><a name="LI_EB93880FB0054ACB93BB7974BF014D82"><!-- --></a>
+<p>In the 
+				<strong>Open Project</strong> dialog box, choose the 
+				<samp class="codeph">jitprofiling.sln</samp> file. 
+			 </p>
+</li>
+<li id="LI_69907C772FB743A2A1B849B9D24EDA27"><a name="LI_69907C772FB743A2A1B849B9D24EDA27"><!-- --></a>
+<p>Right-click the project in the Solution Explorer and choose 
+				<strong>Properties</strong> to display the<strong> Property Pages</strong> dialog box. 
+			 </p>
+</li>
+<li id="LI_4464776F0AA746B2AB4EB31329BA71B4"><a name="LI_4464776F0AA746B2AB4EB31329BA71B4"><!-- --></a>
+<p>Choose 
+				<strong>Release or Active (Release) 
+				</strong>in the 
+				<strong>Configuration</strong> drop-down list. 
+			 </p>
+</li>
+<li id="LI_6B7A92A5EA1545A3BDDBC665C9EF7CB5"><a name="LI_6B7A92A5EA1545A3BDDBC665C9EF7CB5"><!-- --></a>
+<p>Click 
+				<strong>OK</strong> to save the property settings and close the dialog box. 
+			 </p>
+</li>
+<li id="LI_B176D49D30654A46BEB253CCA081FEB4"><a name="LI_B176D49D30654A46BEB253CCA081FEB4"><!-- --></a>
+<p>Press 
+				<strong>F7</strong> or choose<strong> Build &gt; Build Solution</strong> from the menu to build the project. 
+			 </p>
+</li>
+</ol>
+</p>
+<p>If you encounter the 
+		  <samp class="codeph">Error C1083 Cannot open include file: 'jitprofiling.h': No such file or directory</samp> error, use the steps below to reference the header file: 
+		<a name="GUID-C5939734-F7A0-4C0F-BB48-DFF258A2A8DB"><!-- --></a>
+<ol id="GUID-C5939734-F7A0-4C0F-BB48-DFF258A2A8DB"><li id="LI_AD49EB95982E408291090EBBE74570ED"><a name="LI_AD49EB95982E408291090EBBE74570ED"><!-- --></a>
+<p>Set the path for the 
+				<samp class="codeph">%VTUNE_AMPLIFIER_[version]_DIR%</samp> environment variable on your system. 
+			 </p>
+</li>
+<li id="LI_AB00CCF439F44C46B65DE4CAB4A86D23"><a name="LI_AB00CCF439F44C46B65DE4CAB4A86D23"><!-- --></a>
+<p>Right-click the project in the Solution Explorer and choose 
+				<strong>Properties</strong> to display the<strong> Property Pages</strong> dialog box. 
+			 </p>
+</li>
+<li id="LI_66BBE44088894AA2BA1F5B297CAD4A45"><a name="LI_66BBE44088894AA2BA1F5B297CAD4A45"><!-- --></a>
+<p>Navigate to 
+				<strong>Configuration Properties &gt; C/C++ &gt; General</strong> and add the environment variable to the 
+				<strong>Additional Include Directories</strong> field. 
+			 </p>
+</li>
+<li id="LI_794D42F741494C36AF90519AA0A5AD84"><a name="LI_794D42F741494C36AF90519AA0A5AD84"><!-- --></a>
+<p>Navigate to 
+				<strong>Configuration Properties &gt; Linker &gt; General</strong> and add the environment variable to the 
+				<strong>Additional Library Directories</strong> field. 
+			 </p>
+</li>
+<li id="LI_A80383E94B514A08A8924542CBA6A6E5"><a name="LI_A80383E94B514A08A8924542CBA6A6E5"><!-- --></a>
+<p>Click 
+				<strong>OK</strong> to save the property settings and close the dialog box. 
+			 </p>
+</li>
+<li id="LI_557B5AEA3B9F436681815E49B5236579"><a name="LI_557B5AEA3B9F436681815E49B5236579"><!-- --></a>
+<p>Press 
+				<strong>F7</strong> or choose<strong> Build &gt; Build Solution</strong> from the menu to rebuild the project. 
+			 </p>
+</li>
+</ol>
+</p>
+<div class="Note"><span class="notetitle">Note:</span> <p> If you encounter the 
+			 <samp class="codeph">Unable to generate SAFESEH image</samp> issue, set the 
+			 <samp class="codeph">/SAFESEH:NO</samp> option in the linker settings. Depending on the version of Intel VTune Amplifier you have installed, you may have to adapt the include directories path. For more information, see 
+			 <a href="GUID-22F3314D-FB4D-420A-9F3E-46655DCC731C" target="_blank">https://msdn.microsoft.com/en-us/library/9a89h429.aspx</a>. 
+		  </p>
+</div>
+</div>
+<div id="GUID-F289ABF9-7B6B-4DB9-BBD2-E13F93FE41DA">
+<h2><a name="GUID-F289ABF9-7B6B-4DB9-BBD2-E13F93FE41DA"><!-- --></a> Legal Information</h2>
+<p>Intel, the Intel logo, VTune and Xeon Phi are trademarks of Intel Corporation in the U.S. and/or other countries. 
+		</p>
+<p>*Other names and brands may be claimed as the property of others. 
+		</p>
+<p>Microsoft, Windows, and the Windows logo are trademarks, or registered trademarks of Microsoft Corporation in the United States and/or other countries. 
+		</p>
+<p>OpenCL and the OpenCL logo are trademarks of Apple Inc. used by permission from Khronos. 
+		</p>
+<p>© 2017 Intel Corporation 
+		</p>
+</div>
+</div>
+
+</body>
+</html>

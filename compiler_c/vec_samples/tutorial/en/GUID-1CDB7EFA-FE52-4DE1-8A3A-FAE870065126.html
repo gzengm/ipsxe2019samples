@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Improving Performance with Interprocedural Optimization"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5802FE1F-A872-4B07-9816-EA3D42046146.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-1CDB7EFA-FE52-4DE1-8A3A-FAE870065126"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Improving Performance with Interprocedural Optimization</title>
+<script src="resources/prism/prism.js"><!----></script>
+<link href="resources/prism/prism.css" rel="stylesheet"/>
+</head>
+<body id="GUID-1CDB7EFA-FE52-4DE1-8A3A-FAE870065126">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+
+
+<h1 class="topictitle1">Improving Performance with Interprocedural Optimization</h1>
+<div><p>The compiler may be able to perform additional optimizations if it is able to optimize across source line boundaries. These may include, but are not limited to, function inlining. This is enabled with the 
+  <span class="option">-ipo</span> option. 
+  </p>
+<p>Recompile the program using the 
+  <span class="option">-ipo</span> option to enable interprocedural optimization. 
+  </p>
+<p><samp class="codeph">icc -std=c99 -qopt-report=2 -qopt-report-phase=vec -D NOALIAS -D ALIGNED -ipo Multiply.c Driver.c -o MatVector</samp></p>
+<p>Note that the vectorization messages now appear at the point of inlining in 
+    <span><span class="filepath">Driver.c</span> (line 150)</span> and this is found in the file 
+    <samp class="codeph">ipo_out.optrpt</samp>. 
+  </p>
+<pre class="msgblock">LOOP BEGIN at Driver.c(152,16)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at Multiply.c(37,5) inlined into Driver.c(150,9)
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at Multiply.c(49,9) inlined into Driver.c(150,9)
+         remark #15300: LOOP WAS VECTORIZED
+      LOOP END
+
+      LOOP BEGIN at Multiply.c(49,9) inlined into Driver.c(150,9)
+      &lt;Remainder loop for vectorization&gt;
+         remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at Driver.c(74,5) inlined into Driver.c(159,5)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END </pre>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3> Your line and column numbers may be different. 
+    </div>
+</p>
+<p>Now, run the executable and record the execution time. 
+  </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-5802FE1F-A872-4B07-9816-EA3D42046146.html">Tutorial: Linux* and macOS* Version</a></div>
+</div>
+<div/>
+</body>
+</html>

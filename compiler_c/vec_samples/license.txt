@@ -1,0 +1,10 @@
+Vectorization Sample
+
+License Information Follows
+---------------------------
+* src\Multiply.h, src\Multiply.c, src\Driver.c
+* readme.html, Makefile, build.bat
+
+Copyright Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/  

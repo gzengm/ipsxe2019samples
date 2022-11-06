@@ -1,0 +1,10 @@
+VB-Calls-Fortran Mixed Language sample
+
+License Information Follows
+---------------------------
+* arrays.f90
+* ReadMe.txt, readme.html, Build.bat, VB.NET-SafeArrays.sln, Array.vb, modArray.vb, AssemblyInfo.vb
+
+Copyright 2019 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/  

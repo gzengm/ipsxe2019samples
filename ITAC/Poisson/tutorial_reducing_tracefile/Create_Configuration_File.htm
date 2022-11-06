@@ -1,0 +1,58 @@
+
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+ <meta name="generator" content="Adobe RoboHelp 2015">
+<title>Create Configuration File</title>
+<link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+ <link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+</head>
+
+<script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+<script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+<body>
+
+ <div style="width: 100%; position: relative;" id="header">
+	<p style="font-style: italic;">Tutorial: 
+	 Reducing Trace File Size for Intel® Trace Analyzer and Collector</p>
+</div>
+
+<h1>Create Configuration 
+ File</h1>
+<p><img src="Tutorial_files/itac_icon.png" alt="" border="0">&#160;Create 
+ a new text file in a text editor and save it with the <samp class="codeph">.conf</samp> 
+ extension. Add the necessary filtering options into the configuration 
+ file to make the Intel® Trace Collector trace only the data you want to 
+ appear in the resulting trace file. To make Intel Trace Collector read 
+ the file, set its full path in the <samp class="codeph">VT_CONFIG</samp> 
+ environment variable. See instructions for each filtering setting below.</p>
+<p>Use the following filter settings:</p>
+<ul>
+	<li><p><a href="STATE.htm">STATE</a> defines the functions that will 
+	 appear in the collected trace file. <samp class="codeph">STATE</samp> 
+	 filters functions by their full names, for example: <samp class="codeph">MPI:MPI_Send</samp>.</p></li>
+	<li><p><a href="ACTIVITY.htm">ACTIVITY</a> is a shortcut for <samp 
+	 class="codeph">STATE</samp>. It filters functions by their class names, 
+	 for example: <samp class="codeph">MPI</samp>.</p></li>
+	<li><p><a href="SYMBOL.htm">SYMBOL</a> is a shortcut for <samp class="codeph">STATE</samp>. 
+	 It filters functions by their names, excluding class name, for example: 
+	 <samp class="codeph">MPI_Send</samp>.</p></li>
+	<li><p><a href="PROCESS.htm">PROCESS</a> enables trace collection for 
+	 a particular number of processes.</p></li>
+	<li><p><a href="Set_Up_Time_Frames.htm">TIME-WINDOWS</a> collects events 
+	 within the specified period of time.</p></li>
+	<li><p><a href="Collect_Compressed_Trace_Data.htm">COMPRESS-RAW-DATA</a> 
+	 saves raw data in the compressed format.</p></li>
+</ul>
+<p>To get detailed information about filtering process, filtering options, 
+ and configuration syntax, refer to the <i>Intel® Trace Collector User 
+ and Reference Guide</i>.</p>
+<h2>Key Terms</h2>
+<p class="seealsoitem"><a href="Key_Terms.htm#config_file">Configuration 
+ File</a></p>
+</body>
+</html>

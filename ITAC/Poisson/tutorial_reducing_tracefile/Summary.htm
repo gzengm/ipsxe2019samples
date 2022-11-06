@@ -1,0 +1,104 @@
+
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+ <meta name="generator" content="Adobe RoboHelp 2015">
+<title>Summary</title>
+<link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+ <link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+</head>
+<script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+<script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+<body>
+
+ <div style="width: 100%; position: relative;" id="header">
+	<p style="font-style: italic;">Tutorial: 
+	 Reducing Trace File Size for Intel® Trace Analyzer and Collector</p>
+</div>
+
+<h1>Summary</h1>
+
+<p><img src="Tutorial_files/itac_icon.png" alt="" border="0">&#160;You have completed the <i>Reducing Trace File Size</i> tutorial. The following is the summary of the important things to remember when using the Intel® Trace Collector capabilities for reducing the size of your trace file.</p>
+<table width="100%">
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+<tr>
+<th class="cellrowborder">
+<p>Option</p>
+</th>
+<th class="cellrowborder">
+<p>Tutorial Recap</p>
+</th>
+<th class="cellrowborder">
+<p>Key Tutorial Take-aways</p>
+</th>
+</tr>
+<tr>
+<td class="cellrowborder">
+<p><b>1. Configuration options</b></p>
+</td>
+<td class="cellrowborder">
+<ul>
+<li>
+<p>Set the <samp class="codeph">STATE</samp> option to collect data on the <samp class="codeph">MPI_Allreduce</samp> and <samp class="codeph">MPI_Sendrecv</samp> function calls.</p>
+</li>
+<li>
+<p>Set <samp class="codeph">SYMBOL</samp> to collect data on <samp class="codeph">Allreduce</samp> function calls.</p>
+</li>
+<li>
+<p>Set <samp class="codeph">ACTIVITY</samp> to collect data on all MPI calls.</p>
+</li>
+<li>
+<p>Set <samp class="codeph">PROCESS</samp> to collect data for four processes: from Process 0 to Process 3</p>
+</li>
+<li>
+<p>Set time frames.</p>
+</li>
+<li>
+<p>Set raw data compression.</p>
+</li>
+</ul>
+</td>
+<td class="cellrowborder">
+<p>You can define several filters in one and the same configuration file.</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder">
+<p><b>2. Runtime options</b></p>
+</td>
+<td class="cellrowborder">
+<ul>
+<li>
+<p>Ran the application with the <samp class="codeph">-trace-collectives</samp> option to get information only on Collective operations.</p>
+</li>
+<li>
+<p>Used the runtime option <samp class="codeph">-trace-pt2pt</samp> to get data on Point-to-Point operations in the application.</p>
+</li>
+</ul>
+</td>
+<td class="cellrowborder">
+<p><samp class="codeph">-trace-collectives</samp> and <samp class="codeph">-trace-pt2pt</samp> options are only supported at runtime with the Hydra process manager.</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder">
+<p><b>3. Instrument your code to collect data on specific functions</b></p>
+</td>
+<td class="cellrowborder">
+<p>Included the <samp class="codeph">MPI_Pcontrol</samp> function call into the source code to collect trace data on the <samp class="codeph">exchange</samp> function.</p>
+</td>
+<td class="cellrowborder">
+<p>Total execution time will be written into the trace file, but the trace file will contain only the MPI functions called in the part of code indicated by <samp class="codeph">MPI_Pcontrol</samp>.</p>
+</td>
+</tr>
+</table>
+<p><b>Next step:</b> Apply one of the described methods to reduce the size of your own trace file.</p>
+
+</body>
+</html>

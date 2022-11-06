@@ -1,0 +1,12 @@
+Tutorial: Using Coarray Fortran
+
+License Information Follows
+---------------------------
+* hello_image.f90
+* mcpi_sequential.f90
+* mcpi_coarray_final.f90
+* readme.html, Makefile, build.bat
+
+Copyright 2019 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/

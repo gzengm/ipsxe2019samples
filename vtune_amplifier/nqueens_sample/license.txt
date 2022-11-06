@@ -1,0 +1,15 @@
+nQueens Sample
+
+License Information Follows
+---------------------------
+* nqueens_fortran\*.* readme.htm
+* resources\*.*
+* tutorials\*.*
+* parallel_nqueens_csharp\*.*
+* serial_nqueens_csharp\*.*
+
+Copyright 2017 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/  
+
+

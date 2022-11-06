@@ -1,0 +1,10 @@
+Roofline Demo Sample
+
+License Information Follows
+---------------------------
+* src\roofline.cpp
+* readme.html, Makefile, Build.bat
+
+Copyright 2017-2018 Intel(R) Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/  

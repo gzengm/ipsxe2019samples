@@ -1,0 +1,10 @@
+Intel(R) Integrated Performance Primitives (Intel(R) IPP) blur rotate Sample
+
+License Information Follows
+---------------------------
+* src\*.* 
+* readme.html, Makefile_*
+
+Copyright 2016-2018 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/  

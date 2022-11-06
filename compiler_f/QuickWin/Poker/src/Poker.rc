@@ -1,0 +1,378 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_STATS DIALOG  50, 10, 147, 167
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Poker Player Statistics"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "&OK",IDCANCEL,14,140,50,14
+    LTEXT           "Hands Played:",-1,12,14,48,8
+    LTEXT           "Hands Scoring:",-1,12,28,51,8
+    LTEXT           "Average Hand Payoff:",-1,12,42,73,8
+    LTEXT           "Current Credits:",-1,12,76,52,8
+    LTEXT           "Credits Deposited:",-1,12,91,61,8
+    LTEXT           "Credits Withdrawn:",-1,12,105,63,8
+    LTEXT           "Credits Won:",-1,12,119,43,8
+    PUSHBUTTON      "&Reset",IDC_RESET,84,140,50,14
+    LTEXT           "Average Bet:",-1,12,56,44,8
+    LTEXT           "1",HAND_PLAYED,92,14,47,9
+    LTEXT           "1",HAND_SCORED,92,28,47,9
+    LTEXT           "1",HAND_AVERAGE,92,42,46,9
+    LTEXT           "1",HAND_BET,92,56,46,9
+    LTEXT           "1",CREDITS_CURRENT,92,77,47,9
+    LTEXT           "1",CREDITS_DEPOSITED,92,91,48,9
+    LTEXT           "1",CREDITS_WITHDRAWN,92,105,48,9
+    LTEXT           "1",CREDITS_TOTAL,92,119,48,9
+END
+
+IDD_ABOUT DIALOGEX 40, 30, 167, 101
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "About Poker..."
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "&OK",IDCANCEL,44,75,50,14
+    LTEXT           "Intel(R) Visual Fortran",IDC_STATIC,44,12,102,8
+    LTEXT           "Video Poker",IDC_STATIC,44,24,41,8
+    ICON            "FRAMEICON",IDC_STATIC,12,12,20,20
+END
+
+IDD_HELPCONTENTS DIALOG  0, 0, 223, 257
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Poker Help"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "&OK",IDCANCEL,81,235,58,14
+    PUSHBUTTON      "&Scoring Hands",IDC_HELPSCORING,11,214,58,14
+    PUSHBUTTON      "&Keyboard Play",IDC_HELPKEYBOARD,151,214,58,14
+    LTEXT           "Poker is a card game of chance, in which you wager on the outcome of each hand of cards.  The variation of poker used in this game is 5 card draw.",
+                    IDC_STATIC,12,9,198,24,NOT WS_GROUP
+    LTEXT           "To Play:",IDC_STATIC,12,39,30,9,NOT WS_GROUP
+    ICON            IDI_POINTER,IDC_STATIC,9,50,18,20
+    LTEXT           "Press the ""Deal Hand"" button to draw 5 new cards.\nBy pressing this button you place your bet (according to the setting under the Bet menu).",
+                    IDC_STATIC,24,50,189,25,NOT WS_GROUP
+    ICON            IDI_POINTER,IDC_STATIC,9,78,18,20
+    LTEXT           "Select cards to hold by clicking the mouse over each card you wish to hold.  You may hold none, some, or all of the cards.  If the hand drawn is already a scoring hand,  then the scoreboard will show the type and payoff for the hand in yellow.",
+                    IDC_STATIC,24,78,180,42,NOT WS_GROUP
+    ICON            IDI_POINTER,IDC_STATIC,9,124,18,20
+    LTEXT           "Press the ""Draw Cards"" button to draw new cards to replace those not held.",
+                    IDC_STATIC,24,124,180,18,NOT WS_GROUP
+    ICON            IDI_POINTER,IDC_STATIC,9,145,18,20
+    LTEXT           "If the final hand is a scoring hand, the payoff associated with that hand will be added to your credits.",
+                    IDC_STATIC,24,145,189,18,NOT WS_GROUP
+    ICON            IDI_POINTER,IDC_STATIC,9,166,18,20
+    LTEXT           "Press the ""Deal Hand"" button to start a new game.\nEach game starts with a fresh deck of 52 cards.",
+                    IDC_STATIC,24,166,192,18,NOT WS_GROUP
+    LTEXT           "For more information, select one of the following topics, or select OK to return to the game.",
+                    IDC_STATIC,12,192,193,18,NOT WS_GROUP
+    PUSHBUTTON      "&Paytables",IDC_HELPPAYTABLE,81,214,58,14
+END
+
+IDD_HELPSCORING DIALOG  0, 0, 305, 263
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Poker Help: Scoring Hands"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "&OK",IDCANCEL,126,240,50,14
+    LTEXT           "Royal Flush",IDC_STATIC,7,9,57,11
+    LTEXT           "10, Jack, Queen, King, and Ace, all from the same suit.",
+                    IDC_STATIC,69,9,219,12
+    LTEXT           "Straight Flush",IDC_STATIC,6,24,57,15
+    LTEXT           "Five cards in sequence, all in the same suit.  An Ace can either end a sequence (for example: 10, Jack, Queen, Kind, and Ace), or it can begin a sequence (for example: Ace, 2, 3, 4, 5).",
+                    IDC_STATIC,69,24,219,27
+    LTEXT           "Four of a Kind",IDC_STATIC,6,54,57,12
+    LTEXT           "Four cards, all of the same face value, one each from the four suits (the fifth card can be any other card).  For example, 10 of spades clubs, hearts, and diamonds (along with a 5 of clubs).",
+                    IDC_STATIC,69,54,219,27
+    LTEXT           "Full House",IDC_STATIC,6,84,57,12
+    LTEXT           "Three cards all of the same face value, along with two other cards all of a different face value.  For example, 3 of spaces, clubes, and diamons, along with the Queen of hearts and clubs.",
+                    IDC_STATIC,69,84,222,27
+    LTEXT           "Flush",IDC_STATIC,6,114,57,12
+    LTEXT           "Five cards with any face values, all from the same suit.",
+                    IDC_STATIC,69,114,216,12
+    LTEXT           "Straight",IDC_STATIC,7,131,60,12
+    LTEXT           "Five cards in sequence, possibly from different suits.  An Ace can either end a sequence (for example: 10, Jack, Queen, Kind, and Ace), or it can begin a sequence (for example: Ace, 2, 3, 4, 5).",
+                    IDC_STATIC,69,131,222,27
+    LTEXT           "Three of a Kind",IDC_STATIC,6,162,60,12
+    LTEXT           "Three cards with the same face value.",IDC_STATIC,69,
+                    162,222,12
+    LTEXT           "Two Pair",IDC_STATIC,6,177,60,15
+    LTEXT           "Two pairs of cards, with each pair matching in face value.",
+                    IDC_STATIC,69,177,219,12
+    LTEXT           "Jacks or Better",IDC_STATIC,6,192,60,12
+    LTEXT           "A pair of jacks, queens, kings, or aces.",IDC_STATIC,69,
+                    192,222,12
+    LTEXT           "10's or Better",IDC_STATIC,6,207,60,15
+    LTEXT           "A pair of tens, jacks, queens, kings, or aces.  This is a scoring hand only if the paytable shows a non zero value for this hand (see Paytable under the Game menu).",
+                    IDC_STATIC,69,207,225,27
+END
+
+IDD_POKERPAY DIALOG  0, 0, 221, 198
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Poker Paytable"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "&OK",IDCHECKOK,19,176,50,14
+    PUSHBUTTON      "&Cancel",IDCANCEL,85,176,50,14
+    PUSHBUTTON      "&Help",IDPAYHELP,151,176,50,14
+    PUSHBUTTON      "5 Flush/&6 Full House",IDPAY56,120,42,80,14
+    PUSHBUTTON      "5 Flush/&7 Full House",IDPAY57,120,60,80,14
+    PUSHBUTTON      "5 Flush/&8 Full House",IDPAY58,120,79,80,14
+    PUSHBUTTON      "6 Flush/&9 Full House",IDPAY69,120,97,80,14
+    EDITTEXT        IDC_PAYROYALFLUSH,64,6,32,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PAYROYALFLUSH5,100,6,42,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PAYSTRAIGHTFLUSH,64,22,32,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PAYFOUROFAKIND,64,38,32,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PAYFULLHOUSE,64,54,32,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PAYFLUSH,64,70,32,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PAYSTRAIGHT,64,86,32,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PAYTHREEOFAKIND,64,102,32,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PAYTWOPAIR,64,118,32,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PAYJACKSORBETTER,64,134,32,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PAYTENSORBETTER,64,150,32,12,ES_AUTOHSCROLL
+    LTEXT           "Royal Flush",IDC_STATIC,8,8,54,12
+    LTEXT           "Straight Flush",IDC_STATIC,8,24,52,9
+    LTEXT           "Four of a Kind",IDC_STATIC,8,40,52,9
+    LTEXT           "Full House",IDC_STATIC,8,56,52,9
+    LTEXT           "Flush",IDC_STATIC,8,72,52,9
+    LTEXT           "Straight",IDC_STATIC,8,88,52,9
+    LTEXT           "Three of a Kind",IDC_STATIC,8,104,54,9
+    LTEXT           "Two Pair",IDC_STATIC,8,120,50,8
+    LTEXT           "Jacks or Better",IDC_STATIC,8,136,54,9
+    LTEXT           "10's or Better",IDC_STATIC,8,152,54,9
+    LTEXT           "$5 Bet Royal Flush",IDC_STATIC,145,8,66,9
+    GROUPBOX        "Casino Paytables",IDC_STATIC,110,28,100,90
+    GROUPBOX        "Game Variations",IDC_STATIC,110,124,100,34
+    DEFPUSHBUTTON   "&OK",IDOK2,19,176,50,14
+    PUSHBUTTON      "6 Flush/&9 Full House",IDPAY70,120,97,80,14
+    PUSHBUTTON      "&10's or Better",IDPAYTENSORBETTER,120,137,80,14
+END
+
+IDD_HELPPAYTABLE DIALOG  0, 0, 291, 183
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Poker Help: Paytable"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDCANCEL,120,160,50,14
+    LTEXT           "Poker uses a paytable to determine the payoff for each winning hand.  The paytable is shown on the poker main window during game play.  The paytable may also be adjusted by using the ""Edit Paytable"" option of the Game menu.",
+                    IDC_STATIC,5,5,277,26
+    LTEXT           "In the paytable edit dialog, you will see the 10 scoring hands of poker listed on the left.  Beside each is the payoff for that hand, given a bet of $1.  For bets of more than $1, the payoff is simply multiplied by the bet (except for Royal Flush).",
+                    IDC_STATIC,5,35,277,27
+    LTEXT           "Royal Flush has an extra payoff entry to the right of the main payoff entry.  For bets of 1-4 credits, the payoff is simply multiplied as for the other hands.  However, for a 5 credit bet, the alternate payoff is used, and is typically higher than 5X.",
+                    IDC_STATIC,5,65,277,26
+    LTEXT           "Besides editing the payoffs directly, you can also use one of the four preset buttons to the right.  Each will set the payoffs to a standard casino setting, with variation in the payoff for Full House and Flush.",
+                    IDC_STATIC,5,95,277,26
+    LTEXT           "A common video poker variation is to pay 1 credit for 10's or Better, making it easier to at least win back the bet.  By pressing this button, a pair of tens or better will pay 1 credit.",
+                    IDC_STATIC,5,125,280,30
+END
+
+IDD_HELPKEYBOARD DIALOG  0, 0, 275, 158
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Poker Help: Keyboard Play"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDCANCEL,110,135,50,14
+    LTEXT           "You can also play Poker without a pointing device. ",
+                    IDC_STATIC,10,10,175,10
+    LTEXT           "Press the ""Enter"" Key.",IDC_STATIC,120,45,75,10
+    LTEXT           "Pointing Device Method",IDC_STATIC,10,25,85,10
+    LTEXT           "Keyboard Equivalent",IDC_STATIC,120,25,85,10
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,10,36,255,1
+    LTEXT           "Pressing the ""Deal Hand""\nor the ""Draw Cards"" button.",
+                    IDC_STATIC,10,45,105,20
+    LTEXT           "Selecting cards to hold,\nby clicking on the card.",
+                    IDC_STATIC,10,70,105,20
+    LTEXT           "Press the number keys, ""1"" through ""5"".\n""1"" corresponds to the left most card, ""5"" to the rightmost.",
+                    IDC_STATIC,120,70,140,25
+    LTEXT           "Selecting menu items.",IDC_STATIC,10,105,90,15
+    LTEXT           "Use menu accelerator keys.\nFor example, ""Alt-G"" for the Game menu.",
+                    IDC_STATIC,120,105,145,20
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_STATS, DIALOG
+    BEGIN
+        LEFTMARGIN, 12
+        RIGHTMARGIN, 140
+        BOTTOMMARGIN, 160
+        HORZGUIDE, 110
+    END
+
+    IDD_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 160
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 94
+    END
+
+    IDD_HELPCONTENTS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 216
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 250
+    END
+
+    IDD_HELPSCORING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 298
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 256
+    END
+
+    IDD_POKERPAY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 214
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 191
+    END
+
+    IDD_HELPPAYTABLE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 284
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 176
+    END
+
+    IDD_HELPKEYBOARD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 268
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 151
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_POINTER             ICON                    "POINTER.ICO"
+FRAMEICON               ICON                    "poker.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 10,1,0,0
+ PRODUCTVERSION 10,1,0,0
+ FILEFLAGSMASK 0x17L
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x0L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "FileDescription", "Poker sample using QuickWin"
+            VALUE "FileVersion", "10, 1, 0, 0"
+            VALUE "InternalName", "Poker"
+            VALUE "LegalCopyright", "Copyright (C) 2007 Intel Corporation.  All Rights Reserved."
+            VALUE "OriginalFilename", "Poker.rc"
+            VALUE "ProductName", " Poker"
+            VALUE "ProductVersion", "10, 1, 0, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

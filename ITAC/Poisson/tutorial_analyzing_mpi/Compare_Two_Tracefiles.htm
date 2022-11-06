@@ -1,0 +1,32 @@
+
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+ <meta name="generator" content="Adobe RoboHelp 2015">
+<title>Compare Two Trace Files</title>
+<link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+</head>
+<script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+<script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+<body>
+
+<div style="width: 100%; position: relative;" id="header">
+	<p style="font-style: italic;">Tutorial: 
+	 Analyzing MPI Applications with Intel® Trace Analyzer and Collector 
+	 and Intel® VTune™ Amplifier XE</p>
+</div>
+
+
+<h1>Compare Two Trace Files</h1>
+
+<p><img src="Tutorial_files/itac_icon.png" alt="" border="0">&#160;Compare two trace files with the help of the <b>Comparison View</b>. To open a Comparison View for the original application trace file (<samp class="codeph">poisson_sendrecv.single.stf</samp>), go to <b>View &gt; Compare</b>. In the dialog that appears, choose the trace file of the revised application (<samp class="codeph">poisson_icomm.single.stf</samp>). The Comparison View shows an Event Timeline for each trace file and a Comparison Function Profile chart.</p>
+<p>Zoom into the first iteration in each trace file. The Comparison View looks similar to:</p>
+<p><img src="Tutorial_files/image12.png" alt="Comparing the First Iterations" border="0"></p>
+<p>In the Comparison View, you can see that using non-blocking communication helps to remove serialization and decrease the time of communication of processes.</p>
+<h2>Key Terms</h2>
+<p class="seealsoitem"><a href="Key_Terms.htm#serialization">Serialization</a></p>
+</body>
+</html>

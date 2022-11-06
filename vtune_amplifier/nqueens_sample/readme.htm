@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Intel® VTune™ Amplifier NQueens Sample"/>
+<meta name="prodname" content="VTune Amplifier"/>
+<meta name="version" content="2016"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="readme"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="resources/intel_gsp_styles.css"/>
+<title>Intel® VTune™ Amplifier NQueens Sample</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1"/>
+<!-- BEGIN SCRIPTS FOR EXPAND/COLLAPSE FUNCTIONALITY -->
+<script src="resources/jquery-1.11.1.min.js"><!----></script>
+<script src="resources/hide-show.js"><!----></script>
+<!-- END SCRIPTS FOR EXPAND/COLLAPSE FUNCTIONALITY -->
+<!-- Prism script to support syntax highlighting-->
+<script src="resources/prism/prism.js"><!----></script>
+
+<!-- prism.css stylesheet to support syntax highlighting-->
+<link href="resources/prism/prism.css" rel="stylesheet"/>
+</head>
+<body class="titlepage" id="readme"><a name="readme"><!-- --></a>
+
+
+<div id="banner">
+<div id="bannerblock">
+<img src="resources/intel_logo.png" class="intellogo" alt="Intel logo"/>
+<!--No product image to be included-->
+<h1 class="title">Intel® VTune™ Amplifier NQueens Sample</h1>
+</div>
+</div>
+<div id="contentblock">
+<div id="mainmenu"><h3>Contents</h3><p><a class="mainmenulinks" href="#GUID-8002F612-12C1-41F0-B491-0E5DCAB82CD0"/></p>
+<p><a class="mainmenulinks" href="#GUID-2747F019-473C-4F38-88C3-F9EEBE801662">Build Instructions for C# Samples</a></p>
+<p><a class="mainmenulinks" href="#GUID-F3E942E1-25F9-4CBC-8258-05929E122052">Build Instructions for the Fortran Sample</a></p>
+<p><a class="mainmenulinks" href="#GUID-4EA33345-B36C-4599-A899-AFAACF2CDC46">System Requirements</a></p>
+<p><a class="mainmenulinks" href="#GUID-2D9B4F29-2434-4131-B965-B513B108C1F7">Related Tutorials</a></p>
+<p><a class="mainmenulinks" href="#GUID-65DD2524-9C09-4FB9-B4E8-0BF06D6EFB7F"> Legal Information</a></p>
+</div>
+<div id="GUID-8002F612-12C1-41F0-B491-0E5DCAB82CD0"><p> The 
+		  <strong>NQueens</strong> 
+		  sample implements 
+		  <span> multiple</span> solution<span>s</span> to solve an n-queens problem. 
+		  <span>The 
+			 <strong>NQueens</strong> sample for Intel® VTune™ Amplfier contains the following solutions that can be used independently:</span></p>
+<a name="GUID-7F5C2E37-C7AF-4FA1-BACF-810266D30D40"><!-- --></a>
+<ul id="GUID-7F5C2E37-C7AF-4FA1-BACF-810266D30D40"><li id="LI_CC171913F41B4718A540C34082863229"><a name="LI_CC171913F41B4718A540C34082863229"><!-- --></a>
+<p><strong>parallel_nqueens_csharp</strong> C# sample 
+			 </p>
+</li>
+<li id="LI_970DCBB08A8945B59E235B136A1222D9"><a name="LI_970DCBB08A8945B59E235B136A1222D9"><!-- --></a>
+<p><strong>serial_nqueens_csharp</strong> C# sample 
+			 </p>
+</li>
+<li id="LI_0CC994025B234217B9035CDB2FDBBA82"><a name="LI_0CC994025B234217B9035CDB2FDBBA82"><!-- --></a>
+<p>n<strong>queens_fortran Fortran</strong> sample 
+			 </p>
+</li>
+</ul>
+</div>
+<div id="GUID-2747F019-473C-4F38-88C3-F9EEBE801662">
+<h2><a name="GUID-2747F019-473C-4F38-88C3-F9EEBE801662"><!-- --></a>Build Instructions for C# Samples</h2>
+<a name="GUID-F7337E78-0009-40D0-ABBB-BAA1608235D2"><!-- --></a>
+<ol id="GUID-F7337E78-0009-40D0-ABBB-BAA1608235D2"><li id="LI_0B639D9CEFA04657913A535C97D224DE"><a name="LI_0B639D9CEFA04657913A535C97D224DE"><!-- --></a>
+<p>Open the Visual Studio* IDE and choose 
+				<strong>File &gt; Open &gt; Project/Solution 
+				</strong>from the menu. 
+			 </p>
+</li>
+<li id="LI_47643C1A2C5F428C96C65DEF73DA5F69"><a name="LI_47643C1A2C5F428C96C65DEF73DA5F69"><!-- --></a>
+<p>In the 
+				<strong>Open Project</strong> dialog box, choose the 
+				<samp class="codeph">parallel_nqueens_csharp.sln</samp> or 
+				<samp class="codeph">serial_nqueens_csharp.sln</samp> file. 
+			 </p>
+</li>
+<li id="LI_3262E9E8B11C4E38AFD33024D37509D9"><a name="LI_3262E9E8B11C4E38AFD33024D37509D9"><!-- --></a>
+<p>Right-click the project in the Solution Explorer and choose 
+				<strong>Properties</strong> to display the<strong> Property Pages</strong> dialog box. 
+			 </p>
+</li>
+<li id="LI_8B6EB4B2B4F54DB38DA82C2A72667E36"><a name="LI_8B6EB4B2B4F54DB38DA82C2A72667E36"><!-- --></a>
+<p>Choose 
+				<strong>Release or Active (Release) 
+				</strong>in the 
+				<strong>Configuration</strong> drop-down list. 
+			 </p>
+</li>
+<li id="LI_57E37F3ED8E14033B0FDF517D3CFBFAA"><a name="LI_57E37F3ED8E14033B0FDF517D3CFBFAA"><!-- --></a>
+<p>Press 
+				<strong>F7</strong> or choose<strong> Build &gt; Build Solution</strong> from the menu to build the project. 
+			 </p>
+</li>
+</ol>
+<p>To use the sample with the VTune Amplifier, make sure to provide an integer value between 4 and 13 as the 
+		  <strong>Application parameters</strong>. If you do not provide a value, the sample application uses the default value of 13. 
+		</p>
+</div>
+<div id="GUID-F3E942E1-25F9-4CBC-8258-05929E122052">
+<h2><a name="GUID-F3E942E1-25F9-4CBC-8258-05929E122052"><!-- --></a>Build Instructions<span> for the Fortran Sample</span></h2>
+<p><a name="GUID-587BAAF8-5DCD-4AB4-B457-F14AD1AE92E2"><!-- --></a>
+<ol id="GUID-587BAAF8-5DCD-4AB4-B457-F14AD1AE92E2"><li id="LI_F1FD80FD4D1245AE8DC0A6F5D2EF7EED"><a name="LI_F1FD80FD4D1245AE8DC0A6F5D2EF7EED"><!-- --></a>
+<p>Open the Visual Studio* IDE and choose 
+				<strong>File &gt; Open &gt; Project/Solution 
+				</strong>from the menu. 
+			 </p>
+</li>
+<li id="LI_55CB19024FE74F578AFE09A301F5D864"><a name="LI_55CB19024FE74F578AFE09A301F5D864"><!-- --></a>
+<p>In the 
+				<strong>Open Project</strong> dialog box, choose the 
+				<samp class="codeph">nqueens_fortran.sln</samp>. 
+			 </p>
+<p>The solution includes two projects with a single-threaded and multithreaded version of the sample application. If you plan to use the tutorial with the sample, set up the 
+				<strong>nqueens_parallel</strong> as a startup project. 
+			 </p>
+</li>
+<li id="LI_E28A81B826844C5AAE8C3CB599E4F3DA"><a name="LI_E28A81B826844C5AAE8C3CB599E4F3DA"><!-- --></a>
+<p>Right-click the project in the Solution Explorer and choose 
+				<strong>Properties</strong> to display the<strong> Property Pages</strong> dialog box. 
+			 </p>
+</li>
+<li id="LI_A5F5FCB5945F4DFA84711D9950E1EC91"><a name="LI_A5F5FCB5945F4DFA84711D9950E1EC91"><!-- --></a>
+<p>Choose 
+				<strong>Release or Active (Release) 
+				</strong>in the 
+				<strong>Configuration</strong> drop-down list. 
+			 </p>
+</li>
+<li id="LI_42DC232B92364229B6CEC509C8B740F0"><a name="LI_42DC232B92364229B6CEC509C8B740F0"><!-- --></a>
+<p>Press 
+				<strong>F7</strong> or choose<strong> Build &gt; Build Solution</strong> from the menu to build the project. 
+			 </p>
+</li>
+</ol>
+</p>
+<div class="Note"><span class="notetitle">Note:</span> <p> Detailed build instructions are available in the tutorial listed below. 
+		  </p>
+</div>
+<p>To use the sample with the VTune Amplifier, make sure to provide an integer value between 4 and 15 as the 
+		  <strong>Application parameters</strong>. To follow the tutorial workflow, use the value of 15. 
+		</p>
+</div>
+<div id="GUID-4EA33345-B36C-4599-A899-AFAACF2CDC46">
+<h2><a name="GUID-4EA33345-B36C-4599-A899-AFAACF2CDC46"><!-- --></a>System Requirements</h2>
+<p><a name="GUID-2F526B8B-8CC1-4439-8ACC-BBADEFAB17AD"><!-- --></a>
+<ul id="GUID-2F526B8B-8CC1-4439-8ACC-BBADEFAB17AD"><li id="LI_85817B490B404F22B7C7FF48FC74822A"><a name="LI_85817B490B404F22B7C7FF48FC74822A"><!-- --></a>
+<p>Hardware: 
+			 </p>
+<a name="GUID-DA2FD84F-1287-497F-BE18-AF32D23DBEA3"><!-- --></a>
+<ul id="GUID-DA2FD84F-1287-497F-BE18-AF32D23DBEA3"><li id="LI_CE5F2C2EE7BE43D38E6E4DC92642017D"><a name="LI_CE5F2C2EE7BE43D38E6E4DC92642017D"><!-- --></a>
+<p>Any Intel® processor like 2nd Generation Intel® Core™ i3, i5, or i7 processors and Intel® Xeon® E3 or E5 processor family 
+				  </p>
+</li>
+</ul>
+</li>
+<li id="LI_CC7DDD802D9A4E79BFEE8C91010CEBA6"><a name="LI_CC7DDD802D9A4E79BFEE8C91010CEBA6"><!-- --></a>
+<p>Software: 
+			 </p>
+<a name="GUID-080323E6-B20C-4CE9-B156-32F7553AAF11"><!-- --></a>
+<ul id="GUID-080323E6-B20C-4CE9-B156-32F7553AAF11"><li id="LI_4E0EB89FF37F4AB5AAB7688435E1B567"><a name="LI_4E0EB89FF37F4AB5AAB7688435E1B567"><!-- --></a>
+<p>Microsoft Visual Studio 2012* (or higher) 
+				  </p>
+</li>
+<li id="LI_4E3E1D5710E44341868CE2C88DF781E4"><a name="LI_4E3E1D5710E44341868CE2C88DF781E4"><!-- --></a>
+<p>For the C# samples: Intel® Parallel Studio XE 2018 (or higher) Composer Edition for C++ Windows* 
+				  </p>
+</li>
+<li id="LI_EF8294FFFEEE43A3B1A14B5EE3BF8FB7"><a name="LI_EF8294FFFEEE43A3B1A14B5EE3BF8FB7"><!-- --></a>
+<p>a Fortran compiler, for example: Intel® Fortran Compiler 
+				  </p>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+</div>
+<div id="GUID-2D9B4F29-2434-4131-B965-B513B108C1F7">
+<h2><a name="GUID-2D9B4F29-2434-4131-B965-B513B108C1F7"><!-- --></a>Related Tutorials</h2>
+<p> The 
+		  <strong>NQueens</strong> sample for the VTune Amplifier is accompanied by the following tutorials: 
+		</p>
+<a name="GUID-16EEBE83-D2C9-475B-BF23-77BDC914F32A"><!-- --></a>
+<ul id="GUID-16EEBE83-D2C9-475B-BF23-77BDC914F32A"><li id="LI_3A7352990EE24FBC97A3CF2792FD104B"><a name="LI_3A7352990EE24FBC97A3CF2792FD104B"><!-- --></a>
+<p><a href="./tutorials/find_hotspots_fortran/index.htm" target="_blank">Finding Hotspots</a>: Identify the most time-consuming program units, analyze thread parallelism on available logical CPU cores, and identify synchronization objects preventing parallelism. This tutorial is based on the NQueens sample located at the 
+				<samp class="codeph">\nqueens_fortran</samp> folder. 
+			 </p>
+</li>
+</ul>
+</div>
+<div id="GUID-65DD2524-9C09-4FB9-B4E8-0BF06D6EFB7F">
+<h2><a name="GUID-65DD2524-9C09-4FB9-B4E8-0BF06D6EFB7F"><!-- --></a> Legal Information</h2>
+<p> Intel, the Intel logo, VTune and Xeon Phi are trademarks of Intel Corporation in the U.S. and/or other countries. 
+		</p>
+<p>*Other names and brands may be claimed as the property of others. 
+		</p>
+<p>Microsoft, Windows, and the Windows logo are trademarks, or registered trademarks of Microsoft Corporation in the United States and/or other countries. 
+		</p>
+<p> OpenCL and the OpenCL logo are trademarks of Apple Inc. used by permission from Khronos. 
+		</p>
+<p>© 2017, Intel Corporation 
+		</p>
+</div>
+</div>
+
+</body>
+</html>

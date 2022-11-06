@@ -1,0 +1,79 @@
+
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+ <meta name="generator" content="Adobe RoboHelp 2015">
+<title>Optimizing MPI Communications</title>
+<link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+</head>
+<script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+<script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+<body>
+
+<div style="width: 100%; position: relative;" id="header">
+	<p style="font-style: italic;">Tutorial: 
+	 Analyzing MPI Applications with Intel® Trace Analyzer and Collector 
+	 and Intel® VTune™ Amplifier XE</p>
+</div>
+
+
+<h1>Optimizing MPI Communications</h1>
+
+<p><img src="Tutorial_files/itac_icon.png" alt="" border="0">&#160;Use the Intel® Trace Analyzer to analyze an MPI application's behavior to improve performance at the inter-process level.</p>
+<p>This part of the tutorial uses the sample trace files <samp class="codeph">poisson_sendrecv.single.stf</samp> and <samp class="codeph">poisson_icomm.single.stf</samp> to demonstrate how to detect and remove serialization in your application.</p>
+<table width="100%">
+<col style="width: 27%;">
+<col style="width: 75%;">
+<tr>
+<td class="cellrowborder">
+<p><b>Step 1: Prepare for analysis</b></p>
+</td>
+<td class="cellrowborder">
+<p><a href="Prepare_for_Analysis.htm">Use the Intel Trace Analyzer Event Timeline chart to zoom in to a single iteration of your application</a>.</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder">
+<p><b>Step 2: Detect serialization</b></p>
+</td>
+<td class="cellrowborder">
+<ul>
+<li><a href="Ungroup_MPI.htm">Ungroup MPI functions to analyze MPI process activity in your application</a>.</li>
+<li><a href="Detect_Serialization_in_Function_Profile_and_Message_Profile.htm">Analyze your application with the Function Profile and Message Profile charts</a>.</li>
+<li><a href="Compare_Original_Tracefile_With_Idealized_Tracefile.htm">Compare the original tracefile with the idealized trace to identify problematic interactions</a>.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder">
+<p><b>Step 3: Remove serialization</b></p>
+</td>
+<td class="cellrowborder">
+<p><a href="Remove_Serialization.htm">Improve your application performance by replacing the problem-causing function</a>.</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder">
+<p><b>Step 4: Check the result</b></p>
+</td>
+<td class="cellrowborder">
+<p><a href="Compare_Two_Tracefiles.htm">Use the Intel Trace Analyzer Comparison chart to compare the serialized application with the revised one</a>.</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder">
+<p><b>Step 5: Analyze optimized communications</b></p>
+</td>
+<td class="cellrowborder">
+<p><a href="Analyze_Optimized_Communications.htm">Analyze the revised application in the Event Timeline to see if the revised code needs further optimization</a>.</p>
+</td>
+</tr>
+</table>
+<p class="seealso">Key Terms</p>
+<p class="seealsoitem"><a href="Key_Terms.htm#idealized_tracefile">Idealized Tracefile</a><br>
+<a href="Key_Terms.htm#serialization">Serialization</a></p>
+</body>
+</html>

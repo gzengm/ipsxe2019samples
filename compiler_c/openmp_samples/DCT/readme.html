@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+	<meta charset="UTF-8">
+	<style>
+	::selection {
+		background: #b7ffb7;
+	}
+	::-moz-selection {
+		background: #b7ffb7;
+	}
+
+	body {
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 16px;
+		width: 800px;
+		margin: 0 auto;
+	}
+    #banner {
+		/* Div for banner */
+		float:left;
+		margin: 0px;
+		margin-bottom: 10px;
+		width: 100%;
+		background-color: #0071C5;
+		z-index: 0;
+	}
+	#banner .logo {
+		/* Apply to logo in banner. Add as class to image tag. */
+		float: left;
+		margin-right: 20px;
+		margin-left: 20px;
+		margin-top: 15px;
+		padding-bottom: 5px;
+	}
+	h1 {
+		text-align: center;
+		font-size: 36px;
+	}
+    h1.title {
+		/* Add as class to H1 in banner */
+		font-family: "Intel Clear", Verdana, Arial, sans-serif;
+		font-weight:normal;
+		color: #FFFFFF;
+		font-size: 170%;
+		margin-right: 40px;
+		margin-left: 40px;
+		padding-right: 20px;
+		text-indent: 20px;
+	}
+	.h3-alike {
+		display:inline;
+		font-size: 1.17em;
+		font-weight: bold;
+	}
+    h3 {
+		font-size: 1.17em;
+		font-weight: bold;
+		color: #0071C5;
+	}
+	pre {
+		font-family: "Consolas", Monaco, monospace;
+		font-size:small;
+		background: #fafafa;
+		margin: 0;
+        padding-left:20px;
+	}
+    #footer {
+		font-size: small;
+	}
+	code {
+		font-family: "Consolas", Monaco, monospace;
+	}
+    .code-block
+    {
+        padding-left:20px;
+    }
+	.changes {
+		margin: 1em 0;
+	}
+	.changes input:active {
+		position: relative;
+		top: 1px;
+	}
+	.changes input:hover:after {
+		padding-left: 16px;
+		font-size: 10px;
+		content: 'More';
+	}
+	.changes input:checked:hover:after {
+		content: 'Less';
+	}
+	.changes input + .show-hide {
+		display: none;
+	}
+	.changes input:checked + .show-hide {
+		display: block;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0.5em 0 0.5em 2.5em;
+	}
+	ul li {
+		margin-bottom: 3px;
+	}
+	ul li:last-child {
+		margin-bottom: 0;
+	}
+	.disc {
+		list-style-type:disc
+	}
+	.circ {
+		list-style-type:circ
+	}
+	
+	.single {
+		padding: 0 0.5em;
+	}
+	.specs {
+		border-collapse:collapse;
+	}
+	.specs td, .specs th {
+		font-size: 14px;
+	}
+	.specs td {
+		border: 1px solid black;
+	}
+	.specs td td, .specs td th {
+		border: none;
+	}
+	.specs	td, .specs td td, .specs td th {
+		padding: 0 0.2em 0.2em;
+		text-align: center;
+	}
+	.specs td tr:last-child td, 
+	.specs td tr:last-child th {
+		padding: 0 0.2em;
+	}
+	.serial-time {
+	}
+	.modified-time {
+	width: 6.5em;
+	}
+	.compiler {
+	}
+	.comp-opt {
+	}
+	.sys-specs {
+		width: 18em;
+	}
+	</style>
+	<!--[if lte IE 8]>
+	<style>
+	.changes input + .show-hide {
+		display: block;
+	}
+	.changes input {
+		display: none;
+	}
+	</style>
+	<![endif]-->
+	<title>OpenMP Sample for Discrete Cosine Transform</title>
+</head>
+
+<body>
+    <div id="banner">
+		<img class="logo" src="data:image/png;base64,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
+		9Or1LzUmVVz+HJXDAAAAAElFTkSuQmCC">
+		<h1 class="title">OpenMP Sample for Discrete Cosine Transform</h1>
+	</div>
+	<p>Discrete Cosine Transform(DCT) and Quantization are the first two steps in JPEG compression standard. This sample demonstrates how DCT and Quantizing stages can be implemented to run faster using OpenMP* and Intel&reg; Threading Building Blocks (Intel® TBB). In order to see the effect of quantization on the image, the output of Quantization phase is passed on to the de-quantizer followed by Inverse DCT and stored as an output image file. DCT is a lossy compression algorithm which is used to represent every data point value using infinite sum of cosine functions which are linearly orthogonal to each other. DCT is the first step of compression in the JPEG standard. The program shows the possible effect of quality reduction in the image when we do DCT followed by quantization like in JPEG compression. To visibly see the effects if any, the inverse operations (Dequantization and Inverse Discrete Cosine Transform (IDCT)) are done and output is saved as bitmap image. This sample uses a serial implementation of the 2D-DCT (Two Dimensional DCT) algorithm, a vectorized implementation of the algorithm (using OpenMP), parallelized implementation and finally a version which includes both threading and vectorization solution</p>
+	
+	<div class="changes">
+		<div class="h3-alike">System Requirements:</div> <input type="checkbox">
+		<ul class="disc show-hide">
+			<li>Hardware:
+				<ul class="circ">
+					<li>Any Intel processor with Intel® Advanced Vector Extensions (Intel® AVX) support like 2nd Generation Intel® Core™ i3, i5, or i7 processors and Intel® Xeon® E3 or E5 processor family, or newer</li>
+				</ul>
+			</li>
+			<li>For Microsoft Windows*:
+				<ul class="circ">
+					<li>Microsoft Visual Studio 2013* standard edition or above</li>
+					<li>Intel® Parallel Studio XE 2019 Composer Edition for C++ Windows* or newer</li>
+				</ul>
+			</li>
+			<li>For Linux*:
+				<ul class="circ">
+					<li>GNU* GCC 4.5 or newer</li>
+					<li>Intel® Parallel Studio XE 2019 Composer Edition for C++ Linux* or newer</li>
+				</ul>
+			</li>
+			<li>For macOS*:
+				<ul>
+					<li>macOS* 10.13 or above</li>
+					<li>Xcode* 9.x or above</li>
+					<li>Intel&reg; Parallel Studio XE 2019 Composer Edition for C++ macOS* or newer</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+	
+	<h3>Code Change Highlights:</h3>
+		Below are some snapshots of the code changes done in the application code to gain performance.
+	<div class="changes">
+		<code>Intel® TBB</code> <input type="checkbox">
+		<div class="show-hide">
+			<div class="code-block"><strong>linear version (DCT.cpp):</strong>
+<pre>for(int i = 0; i < (size_of_image)/64; i++)
+{
+	startindex = (i * 64);
+	process_image_serial(indata, outdata, startindex);
+}</pre>
+			</div>
+			<div class="code-block"><strong>Intel® <code>TBB</code> version (DCT.cpp):</strong>
+<pre>tbb::parallel_for(int(0), (size_of_image)/64, [&](int i)
+{
+	int startindex = (i * 64);
+	process_image_SIMD(indata, outdata, startindex);
+});</pre></div>
+		</div>
+	</div>
+	<div class="changes">
+		<code>OpenMP SIMD</code> <input type="checkbox">
+		<div class="show-hide">
+			<div class="code-block"><strong>scalar version (matrix.cpp):</strong>
+<pre>matrix_serial matrix_serial::operator*(matrix_serial &y){
+  int size = y.row_size;
+  matrix_serial temp(size);
+  for(int i = 0; i < size; i++)
+  {
+    for(int j = 0; j < size; j++)
+    {
+      temp.ptr[(i * size) + j] = 0;
+      for(int k = 0; k < size; k++)
+        temp.ptr[(i * size) + j] += (ptr[(i * size) + k] * y.ptr[(k * size) + j]);
+    }
+  }
+  return temp;
+}</pre>
+			</div>
+			<div class="code-block"><strong>OpenMP SIMD (matrix.cpp):</strong>
+<pre>matrix_SIMD matrix_SIMD::operator*(matrix_SIMD &y){
+  int size = y.row_size;
+  matrix_SIMD temp(size);
+  auto ptr_copy = ptr;
+  auto tempptr_copy = temp.ptr;
+  auto yptr_copy = y.ptr;
+  
+  for(int i = 0; i < size; i++)
+  {
+    #pragma omp simd
+    for(int j = 0; j < size; j++)
+    {
+      tempptr_copy[(i * size) + j] = 0;
+      for(int k = 0; k < size; k++)
+        tempptr_copy[(i * size) + j] += (ptr_copy[(i * size) + k] * yptr_copy[(k * size) + j]);
+      }
+    }
+    return temp;
+  }</pre>
+			</div>
+		</div>			
+	</div>
+	<div class="changes">
+		<code>Intel® TBB</code> + <code>OpenMP SIMD</code> <input type="checkbox">
+		<div class="show-hide">
+			<div class="code-block">Combine Intel® <code>TBB</code> and <code>OpenMP SIMD</code> implementations as shown above to compute the DCT and IDCT of the image. The code for the same is in DCT.cpp</div>
+		</div>
+	</div>
+
+
+	<h3>Performance Data:</h3>
+	<p>Note: Modified Speedup shows performance speedup with respect to serial implementation.</p>
+	<table class="specs">
+		<tr>
+			<th class="modified-time">Modified Speedup</th>
+			<th class="compiler">Compiler (Intel® 64)</th>
+			<th class="comp-opt">Compiler options</th>
+			<th class="sys-specs">System specifications</th>
+		</tr>
+		  <tr>
+			<td width="20%">
+				<table>
+					<tr><td>OpenMP SIMD: 3.0x</td></tr>
+					<tr><td>Intel® TBB: 4.0x</td></tr>
+					<tr><td>Both: 9.8x</td></tr>
+				</table>
+			</td>
+			<td>Intel&reg; C++ Compiler 19.0 for Linux</td>
+			<td>-O2 -xAVX -qopenmp</td>
+			<td>
+				<table>
+					<tr><td>CentOS Linux release 7.2.1511</td></tr>
+					<tr><td>Intel&#174; Core(TM) i7-6700K CPU @ 4.00GHz</td></tr>
+					<tr><td>32GB memory</td></tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+		
+	<h3>Build Instructions:</h3>
+	<div class="changes">For Visual Studio users: <input type="checkbox">
+		<ul class="show-hide disc">
+            <li>Open the solution <code>.sln</code> file</li>
+			<li>[Optional] To collect performance numbers (will run example 5 times and take average time):
+				<ul class="circ">
+					<li>Project Properties -> C/C++ -> Preprocessor -> Preprocessor Definitions: add <code>PERF_NUM</code></li>
+				</ul>
+			</li>
+			<li>Choose a configuration (for best performance, choose a release configuration):
+				<ul class="circ">
+					<li>Intel-debug and Intel-release: uses Intel C++ compiler</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="changes">For Windows Command Line users: <input type="checkbox">
+		<ul class="show-hide disc">
+			<li>Enable your particular compiler environment</li>
+			<li>for Intel C++ Compiler:
+				<ul class="circ">
+					<li>open the appropriate Intel C++ compiler command prompt</li>
+					<li>navigate to project folder</li>
+					<li>compile with <code>Build.bat [perf_num]</code>
+						<ul>
+							<li><code>perf_num</code>: collect performance numbers (will run example 5 times and take average time)</li>
+						</ul>
+					</li>
+					<li>to run: <code>Build.bat run </code></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="changes">For Linux*/macOS* users: <input type="checkbox">
+		<ul class="show-hide disc">
+			<li>set the icc environment: <code>source &#60;icc-install-dir&#62;/bin/compilervars.sh {ia32|intel64}</code></li>
+			<li>navigate to project folder</li>
+			<li>for Intel C++ compiler:
+				<ul class="circ">
+					<li>to compile: <code>make [icpc] [perf_num=1]</code>
+						<ul>
+							<li><code>perf_num=1</code>: collect performance numbers (will run example 5 times and take average time)</li>
+						</ul>
+					</li>
+					<li>to run: <code>make run </code></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div id="footer">
+		<p>Intel, Intel logo, Intel386, Intel486, Atom, Core, Itanium, MMX, Pentium, VTune, Cilk, 
+		Xeon Phi, and Xeon are trademarks of Intel Corporation in the U.S. and/or other countries<br>
+		* Other names and brands may be claimed as the property of others <br>
+		Copyright &copy; Intel Corporation. All Rights Reserved<br>
+	</div>
+</body>
+</html>

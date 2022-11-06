@@ -1,0 +1,71 @@
+
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <meta name="generator" content="Adobe RoboHelp 2015">
+<title>Analyzing an MPI Application</title>
+<link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+<style title="hcp" type="text/css">
+<!--
+img.hcp1 { border:none; }
+-->
+</style>
+</head>
+<script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+<script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+<body>
+
+<div style="width: 100%; position: relative;" id="header">
+	<p style="font-style: italic;">Tutorial: 
+	 Analyzing MPI Applications with Intel® Trace Analyzer and Collector 
+	 and Intel® VTune™ Amplifier XE</p>
+</div>
+
+
+<h1>Analyzing an MPI Application</h1>
+
+<p>Use Intel® Trace Analyzer to conduct a performance analysis and tune MPI communications between processes. Then switch to the Intel® VTune™ Amplifier XE to carry out a new round of analysis and identify hotspots on specific processes.</p>
+<p>This tutorial uses the <samp class="codeph">poisson</samp> sample code as well as the sample trace files <samp class="codeph">poisson_sendrecv.single.stf</samp> and <samp class="codeph">poisson_icomm.single.stf</samp> to demonstrate the interoperability of the Intel Trace Analyzer and Intel VTune Amplifier XE that enables you to analyze and further tune the application.</p>
+<p><img src="Tutorial_files/image22.png" alt="" border="0"></p>
+<table width="100%">
+<col style="width: 35%;">
+<col style="width: 60%;">
+<tr>
+<td class="cellrowborder">
+<p><b>Step 1: <img src="Tutorial_files/itac_icon.png" alt="" border="0" class="hcp1"> <a href="Removing_Serialization.htm">Optimize MPI communications</a></b></p>
+</td>
+<td class="cellrowborder">
+<ul>
+<li>
+<p>Detect serialization in Function Profile and Message Profile.</p>
+</li>
+<li>
+<p>Find imbalance on the inter-process level by comparing the original application with the idealized one.</p>
+</li>
+<li>
+<p>Remove serialization.</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder">
+<p><b>Step 2: <img src="Tutorial_files/amplifier_icon.png" alt="" border="0" class="hcp1"> <a href="Tuning_Single_Processes.htm">Improve intra-process performance</a></b></p>
+</td>
+<td class="cellrowborder">
+<ul>
+<li>
+<p>Identify hotspots on the intra-process level.</p>
+</li>
+<li>
+<p>Interpret the collected data to find MPI processes in the workload and find possible ways to resolve the issue.</p>
+</li>
+</ul>
+</td>
+</tr>
+</table>
+</body>
+</html>

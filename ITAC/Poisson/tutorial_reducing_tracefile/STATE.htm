@@ -1,0 +1,56 @@
+
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+ <meta name="generator" content="Adobe RoboHelp 2015">
+<title>STATE</title>
+<link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+ <link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+</head>
+<script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+<script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+<body>
+
+ <div style="width: 100%; position: relative;" id="header">
+	<p style="font-style: italic;">Tutorial: 
+	 Reducing Trace File Size for Intel® Trace Analyzer and Collector</p>
+</div>
+
+<h1>STATE</h1>
+
+<p><img src="Tutorial_files/itac_icon.png" alt="" border="0">&#160;Specify the STATE option in the configuration file to define the function that matches the pattern.</p>
+<p>To do this:</p>
+<ol>
+<li>
+<p>Create a new configuration file.</p>
+</li>
+<li>
+<p>In the configuration file, specify <samp class="codeph">STATE</samp> to collect the trace data for the <samp class="codeph">MPI_Allreduce</samp> &#160;and <samp class="codeph">MPI_Sendrecv</samp> functions:</p>
+<p class="code">STATE MPI:* OFF<br>
+STATE MPI:*Allreduce* ON<br>
+STATE MPI:*Sendrecv* ON</p>
+</li>
+<li>
+<p>Save the configuration file: <samp class="codeph">my_settings_state.conf</samp>.</p>
+</li>
+<li>
+<p>Set the <samp class="codeph">VT_CONFIG</samp> environment variable to the directory that contains the configuration file:</p>
+<p class="code">VT_CONFIG=/&lt;<i>configuration file path name</i>&gt;/my_settings_state.conf</p>
+</li>
+<li>
+<p>Run the application.</p>
+<p><b>Linux* OS:</b></p>
+<p class="code">$ mpirun -trace -n 4 ./poisson</p>
+<p><b>Windows* OS:</b></p>
+<p class="code">&gt; mpiexec -n 4 poisson.exe</p>
+</li>
+</ol>
+<h2>Key Terms</h2>
+<p class="seealsoitem"><a href="Key_Terms.htm#config_file">Configuration File</a></p>
+
+</body>
+</html>

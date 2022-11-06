@@ -1,0 +1,11 @@
+Poisson Fortran90 sample for the Intel(R) Trace Analyzer and Collector
+
+License Information Follows
+---------------------------
+* src/boundary_functions.f90, src/ErrHnd.f90, src/output.f90, src/pardat_icomm.f90,
+* src/pardat_sendrecv.f90, src/red_black.f90, src/types.f90
+* readme.htm, Makefile, build.bat
+
+Copyright 2018 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/  

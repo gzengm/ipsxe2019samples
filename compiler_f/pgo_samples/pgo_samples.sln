@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "pgo_samples", "msvs\pgo_samples.vfproj", "{BE5D1F09-8AD6-46A4-961E-27CBC3A3DBC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		prof_gen|Win32 = prof_gen|Win32
+		prof_gen|x64 = prof_gen|x64
+		prof_use|Win32 = prof_use|Win32
+		prof_use|x64 = prof_use|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE5D1F09-8AD6-46A4-961E-27CBC3A3DBC1}.prof_gen|Win32.ActiveCfg = prof_gen|Win32
+		{BE5D1F09-8AD6-46A4-961E-27CBC3A3DBC1}.prof_gen|Win32.Build.0 = prof_gen|Win32
+		{BE5D1F09-8AD6-46A4-961E-27CBC3A3DBC1}.prof_gen|x64.ActiveCfg = prof_gen|x64
+		{BE5D1F09-8AD6-46A4-961E-27CBC3A3DBC1}.prof_gen|x64.Build.0 = prof_gen|x64
+		{BE5D1F09-8AD6-46A4-961E-27CBC3A3DBC1}.prof_use|Win32.ActiveCfg = prof_use|Win32
+		{BE5D1F09-8AD6-46A4-961E-27CBC3A3DBC1}.prof_use|Win32.Build.0 = prof_use|Win32
+		{BE5D1F09-8AD6-46A4-961E-27CBC3A3DBC1}.prof_use|x64.ActiveCfg = prof_use|x64
+		{BE5D1F09-8AD6-46A4-961E-27CBC3A3DBC1}.prof_use|x64.Build.0 = prof_use|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

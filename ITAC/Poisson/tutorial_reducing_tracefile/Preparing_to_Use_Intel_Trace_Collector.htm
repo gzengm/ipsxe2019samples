@@ -1,0 +1,88 @@
+
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+ <meta name="generator" content="Adobe RoboHelp 2015">
+<title>Prerequisites</title>
+<link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+ <link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+<style title="hcp" type="text/css">
+<!--
+ol.hcp1 { list-style:decimal; }
+-->
+</style>
+</head>
+
+<script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+<script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+<body>
+
+ <div style="width: 100%; position: relative;" id="header">
+	<p style="font-style: italic;">Tutorial: 
+	 Reducing Trace File Size for Intel® Trace Analyzer and Collector</p>
+</div>
+
+<h1>Prerequisites</h1>
+<p>This section describes the steps you need to do before you start using 
+ the Intel® Trace Analyzer and Collector.</p>
+<h2>Required Software</h2>
+<p>To perform all the steps described in this tutorial, you will need the 
+ following software installed on your system:</p>
+<ul>
+	<li>Intel® compilers</li>
+	<li>Intel® MPI Library</li>
+	<li>Intel® Trace Analyzer and Collector</li>
+	<li>(Windows* OS) Microsoft* Visual Studio*</li>
+</ul>
+<p>All of the Intel products above are installed as part of <a href="https://software.intel.com/en-us/intel-parallel-studio-xe">Intel® 
+ Parallel Studio XE Cluster Edition</a>.</p>
+<h2>Setting Up the Environment</h2>
+<p><b>Linux* OS:</b></p>
+<p>Set the required environment variables by sourcing the <samp class="codeph">psxevars.c[sh]</samp> 
+ script available at <samp class="codeph">&lt;install-dir&gt;/parallel_studio_xe_&lt;version&gt;.x.xxx/bin</samp>, 
+ where <samp class="codeph">&lt;install-dir&gt;</samp> is the Intel® Parallel 
+ Studio XE Cluster Edition installation directory. For example:</p>
+<pre>
+$ source psxevars.sh</pre>
+<p><b>Windows* OS:</b></p>
+<p>Open the command prompt from <b>Start &gt; Intel Parallel Studio XE 
+ <i>version</i> &gt; Compiler and Performance Libraries &gt; Intel 64 Visual 
+ Studio <i>version</i> environment</b>. This will set all required environment 
+ variables and you will be ready to trace your applications.</p>
+<h2>Creating Trace Files</h2>
+<p>To get the <samp class="codeph">poisson</samp> application source code, 
+ go to <a href="https://software.intel.com/en-us/product-code-samples">https://software.intel.com/en-us/product-code-samples</a>, 
+ download and extract the Intel® Trace Analyzer and Collector <i>Poisson 
+ Sample</i> archive to your working directory. You are then ready to trace 
+ the application:</p>
+<p><b>Linux* OS:</b></p>
+<ol class="hcp1">
+	<li><p>Compile the application by running the <samp class="codeph">make</samp> 
+	 command. Adjust the <samp class="codeph">Makefile</samp>, if necessary.</p></li>
+	<li><p>Run the application:</p>
+	<p class="code">$ make run</p></li>
+</ol>
+<p><b>Windows* OS:</b></p>
+<p>From the command prompt you opened in the previous step, do the following:</p>
+<ol class="hcp1">
+	<li><p>Compile the application by running the <samp class="codeph">build.bat</samp> 
+	 file:</p>
+	<p class="code">&gt; build.bat release</p></li>
+	<li style="list-style: decimal;"><p>Run the application to generate 
+	 a trace file:</p>
+	<p class="code">&gt; build.bat run</p></li>
+</ol>
+<p>For your convenience, Intel® Trace Analyzer and Collector comes with 
+ a set of trace files available at <samp class="codeph">&lt;install-dir&gt;/examples/traces</samp>.</p>
+<p><b>OS X*:</b></p>
+<p>On OS X* Intel® Trace Collector is unavailable, therefore you cannot 
+ trace applications on this OS. Generate a trace file on a Linux* or Windows* 
+ machine, or use the generated trace files from <samp class="codeph">&lt;install-dir&gt;/examples/traces</samp>.</p>
+<p>Once you have the trace data available for the <samp class="codeph">poisson</samp> 
+ application, you are ready to start the analysis.</p>
+</body>
+</html>

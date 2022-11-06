@@ -1,0 +1,10 @@
+Excel Mixed Language sample
+
+License Information Follows
+---------------------------
+* Fcall.f90
+* readme.html, Build.bat, Excel.sln
+
+Copyright 2019 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/  

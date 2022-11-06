@@ -1,0 +1,11 @@
+Intel(R) Fortran sample Rings
+
+License Information Follows
+---------------------------
+* src\GLUtilsMod.f90, src\Rings.f90, src\RingsMod.f90
+* src\README.TXT
+* build.bat, readme.html
+
+Copyright 2016 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement

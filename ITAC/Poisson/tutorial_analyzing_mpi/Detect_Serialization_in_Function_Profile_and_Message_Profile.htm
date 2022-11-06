@@ -1,0 +1,34 @@
+
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+ <meta name="generator" content="Adobe RoboHelp 2015">
+<title>Detect Serialization in Function Profile and Message Profile</title>
+<link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+</head>
+<script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+<script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+<body>
+
+<div style="width: 100%; position: relative;" id="header">
+	<p style="font-style: italic;">Tutorial: 
+	 Analyzing MPI Applications with Intel® Trace Analyzer and Collector 
+	 and Intel® VTune™ Amplifier XE</p>
+</div>
+
+
+<h1>Detect Serialization in Function Profile and Message Profile</h1>
+
+<p><img src="Tutorial_files/itac_icon.png" alt="" border="0">&#160;Continue the analysis of your application with information provided by other charts.</p>
+<p>In the Function Profile chart, open the <b>Load Balance</b> tab.</p>
+<p>Go to the <b>Charts</b> menu to open a Message Profile.</p>
+<p><img src="Tutorial_files/image05.png" alt="Many Charts" border="0"></p>
+<p>In the Load Balance tab, expand <samp class="codeph">MPI_Sendrecv</samp> and <samp class="codeph">MPI_Allreduce</samp>. The Load Balancing indicates that the time spent in <samp class="codeph">MPI_Sendrecv</samp> increases with the process number, while the time for <samp class="codeph">MPI_Allreduce</samp> decreases.</p>
+<p>Examine the Message Profile Chart down to the lower right corner. The color coding of the blocks indicates that messages travelling from a higher rank to a lower rank need proportionally more time while the messages travelling from a lower rank to a higher rank reveal a weak even-odd kind of pattern.</p>
+<h2>Key Terms</h2>
+<p class="seealsoitem"><a href="Key_Terms.htm#serialization">Serialization</a></p>
+</body>
+</html>

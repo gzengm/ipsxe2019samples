@@ -1,0 +1,31 @@
+!
+! src\resource.fd generated from src\resource.h
+!
+      integer, parameter :: IDC_VER3 = 1003
+      integer, parameter :: IDM_SAVE = 30004
+      integer, parameter :: IDC_VER4 = 1004
+      integer, parameter :: IDC_VER5 = 1005
+      integer, parameter :: IDC_EXPLORER1 = 1006
+      integer, parameter :: IDM_PASTE = 30011
+      integer, parameter :: IDD_FXPLORER_DIALOG = 101
+      integer, parameter :: IDC_EDIT1 = 1010
+      integer, parameter :: IDM_HELPCONTENTS = 30012
+      integer, parameter :: IDM_PRINTSETUP = 30007
+      integer, parameter :: IDM_SAVEAS = 30005
+      integer, parameter :: IDM_GO = 30002
+      integer, parameter :: IDM_CUT = 30009
+      integer, parameter :: IDM_COPY = 30010
+      integer, parameter :: IDM_HELPSEARCH = 30013
+      integer, parameter :: IDM_ABOUT = 30015
+      integer, parameter :: IDM_BACK = 30017
+      integer, parameter :: IDM_EXIT = 30001
+      integer, parameter :: IDM_HELPHELP = 30014
+      integer, parameter :: IDM_NEW = 30002
+      integer, parameter :: IDC_PROGRESS1 = 1007
+      integer, parameter :: IDC_URLLABEL = 1013
+      integer, parameter :: IDM_OPEN = 30003
+      integer, parameter :: IDM_PRINT = 30006
+      integer, parameter :: IDM_UNDO = 30008
+      integer, parameter :: IDC_VER1 = 1001
+      integer, parameter :: IDC_VER2 = 1002
+      integer, parameter :: IDM_STOP = 30003

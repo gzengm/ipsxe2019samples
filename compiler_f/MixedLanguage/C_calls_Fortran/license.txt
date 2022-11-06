@@ -1,0 +1,10 @@
+C_calls_Fortran Mixed Language sample
+
+License Information Follows
+---------------------------
+* CMAIN.CPP, FSUB.F90
+* README.TXT, readme.html, Build.bat, C_calls_Fortran.sln
+
+Copyright 2017 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/  

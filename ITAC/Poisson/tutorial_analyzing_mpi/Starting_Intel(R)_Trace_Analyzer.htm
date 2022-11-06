@@ -1,0 +1,77 @@
+
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+ <meta name="generator" content="Adobe RoboHelp 2015">
+<title>Getting Started with Intel® Trace Analyzer</title>
+<link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+</head>
+
+<script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+<script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+<body>
+
+<div style="width: 100%; position: relative;" id="header">
+	<p style="font-style: italic;">Tutorial: 
+	 Analyzing MPI Applications with Intel® Trace Analyzer and Collector 
+	 and Intel® VTune™ Amplifier XE</p>
+</div>
+
+
+<h1>Starting Intel® Trace Analyzer</h1>
+<p>Invoke the Intel® Trace Analyzer GUI.</p>
+<p>On Linux* OS and OS X*, enter the command:</p>
+<pre>
+$ traceanalyzer [&lt;trace_file&gt;.stf]</pre>
+<p>On Windows* OS, navigate to an <samp class="codeph">.stf</samp> file 
+ &#160;and double-click to open it in the Intel Trace Analyzer.</p>
+<p><b>Intel® Trace Analyzer GUI</b></p>
+<img src="Tutorial_files/image01.png" alt="" border="0"> 
+<table width="100%">
+	<col style="width: 10%;">
+	<col style="width: 90%;">
+	<tr>
+		<td class="cellrowborder"><p><img src="Tutorial_files/A.png" alt="" border="0"></p></td>
+		<td class="cellrowborder"><p>Use the <b>Charts</b> menu to open 
+		 and navigate the various Intel Trace Analyzer charts within the 
+		 current tracefile and use them to analyze the application trace 
+		 data.</p></td>
+	</tr>
+	<tr>
+		<td class="cellrowborder"><p><img src="Tutorial_files/B.png" alt="" border="0"></p></td>
+		<td class="cellrowborder"><p>Use the Toolbar buttons to control 
+		 the display of the currently open trace file.</p></td>
+	</tr>
+	<tr>
+		<td class="cellrowborder"><p><img src="Tutorial_files/C.png" alt="" border="0"></p></td>
+		<td class="cellrowborder"><p>The Trace Map displays the MPI function 
+		 activity for the application over time. MPI function activity 
+		 is displayed in red.</p>
+		<p>Drag your mouse on a section in the Trace Map to zoom into the 
+		 relevant subsets of tracefile charts. This map appears for all 
+		 the charts.</p></td>
+	</tr>
+	<tr>
+		<td class="cellrowborder"><p><img src="Tutorial_files/D.png" alt="" border="0"></p></td>
+		<td class="cellrowborder"><p>The currently open chart is the Event 
+		 Timeline. This chart displays individual process activities over 
+		 time. Horizontal bars represent the processes with the functions 
+		 called in these processes. The bars consist of colored rectangles 
+		 labeled with the function names. Black lines indicate messages 
+		 sent between processes. These lines connect sending and receiving 
+		 processes. Blue lines represent collective operations, such as 
+		 broadcast or reduce operations.</p>
+		<p>To change the displayed chart, go to <b>Charts</b>.</p></td>
+	</tr>
+	<tr>
+		<td class="cellrowborder"><p><img src="Tutorial_files/E.png" alt="" border="0"></p></td>
+		<td class="cellrowborder"><p>The Status Bar displays the exact 
+		 time point and function type when you hover the mouse over the 
+		 processes shown in the Event Timeline.</p></td>
+	</tr>
+</table>
+</body>
+</html>

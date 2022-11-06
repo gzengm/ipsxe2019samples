@@ -1,0 +1,33 @@
+
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+ <meta name="generator" content="Adobe RoboHelp 2015">
+<title>Ungroup MPI Functions</title>
+<link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+</head>
+<script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+<script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+<body>
+
+<div style="width: 100%; position: relative;" id="header">
+	<p style="font-style: italic;">Tutorial: 
+	 Analyzing MPI Applications with Intel® Trace Analyzer and Collector 
+	 and Intel® VTune™ Amplifier XE</p>
+</div>
+
+
+<h1>Ungroup MPI Functions</h1>
+
+<p><img src="Tutorial_files/itac_icon.png" alt="" border="0">&#160;Analyze MPI process activity in your application.</p>
+<p>To see the particular MPI functions called in the application, right-click on MPI (marked with a red rectangle) in the Event Timeline and select <b>Ungroup Group MPI</b>. This operation exposes the individual MPI calls.</p>
+<p><img src="Tutorial_files/image34.png" alt="" style="border: none;" border="0"></p>
+<p>After ungrouping the MPI functions, you see that the processes communicate with their direct neighbors using <samp class="codeph">MPI_Sendrecv</samp> at the start of the iteration.</p>
+<p><img src="Tutorial_files/image04.png" alt="MPI Ungrouped" width="800" height="477" border="0"></p>
+<p>This data exchange has a disadvantage: process <samp class="codeph">i</samp> does not exchange data with its neighbor <samp class="codeph">i+1</samp> until the exchange between <samp class="codeph">i-1</samp> and <samp class="codeph">i</samp> is complete. This delay appears as a staircase pattern resulting with the processes waiting for each other.</p>
+<p>The <samp class="codeph">MPI_Allreduce</samp> at the end of the iteration resynchronizes all processes; that is why this block has the reverse staircase appearance.</p>
+</body>
+</html>

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xml:lang="ja-jp" lang="ja-jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="プロシージャー間の最適化を使用してパフォーマンスを向上する"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5802FE1F-A872-4B07-9816-EA3D42046146.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-1CDB7EFA-FE52-4DE1-8A3A-FAE870065126"/>
+<meta name="DC.Language" content="ja-JP"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>プロシージャー間の最適化を使用してパフォーマンスを向上する</title>
+<script src="resources/prism/prism.js"><!----></script>
+<link href="resources/prism/prism.css" rel="stylesheet"/>
+</head>
+<body id="GUID-1CDB7EFA-FE52-4DE1-8A3A-FAE870065126">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+
+
+<h1 class="topictitle1">プロシージャー間の最適化を使用してパフォーマンスを向上する</h1>
+<div><p>コンパイラーは、ソース行の境界を越えて最適化できる場合、インライン展開などの追加の最適化を実行することができます。インライン展開は、<span class="option">-ipo</span> オプションで有効になります。</p>
+<p><span class="option">-ipo</span> オプションを使用してプログラムを再コンパイルし、プロシージャー間の最適化を有効にします。</p>
+<p><samp class="codeph">icc -std=c99 -qopt-report=2 -qopt-report-phase=vec -D NOALIAS -D ALIGNED -ipo Multiply.c Driver.c -o MatVector</samp></p>
+<p>ベクトル化メッセージは <span class="filepath">Driver.c</span> (行 150) のインライン展開の場所を示していることに注目してください。これは、<samp class="codeph">ipo_out.optrpt</samp> で確認できます。</p>
+<pre class="msgblock">ループの開始 Driver.c(152,16)
+   リマーク #15542: ループはベクトル化されませんでした: 内部ループがすでにベクトル化されています。
+
+   ループの開始 Multiply.c(37,5) インライン展開後 Driver.c(150,9)
+      リマーク #15542: ループはベクトル化されませんでした: 内部ループがすでにベクトル化されています。
+
+      ループの開始 Multiply.c(49,9) インライン展開後 Driver.c(150,9)
+         リマーク #15300: ループがベクトル化されました。
+      ループの終了
+
+      ループの開始 Multiply.c(49,9) インライン展開後 Driver.c(150,9)
+      &lt;ベクトル化の剰余ループ&gt;
+         リマーク #15335: 剰余ループはベクトル化されませんでした: ベクトル化は可能ですが非効率です。オーバーライドするには vector always ディレクティブまたは -vec-threshold0 を使用してください。
+      ループの終了
+   ループの終了
+ループの終了
+
+ループの開始 Driver.c(74,5) インライン展開後 Driver.c(159,5)
+   リマーク #15300: ループがベクトル化されました。
+ループの終了 </pre>
+<p><div class="Note"><h3 class="NoteTipHead">注</h3> 行番号および列番号は異なる場合があります。
+    </div>
+</p>
+<p>ここで、実行ファイルを開始して、実行時間を記録してください。</p>
+<p><a href="GUID-1FDD8248-CE1A-457C-8E66-917FAB74DDB9.html#GUID-1FDD8248-CE1A-457C-8E66-917FAB74DDB9"><img class="border(0)" style="border-style: none" src="GUID-7F3B04BE-CA31-4F1C-B7C4-88C93723B324-low.jpg" alt="次へ: 追加の演習"/></a></p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>親トピック:</strong> <a href="GUID-5802FE1F-A872-4B07-9816-EA3D42046146.html">チュートリアル: Linux* 版および macOS* 版</a></div>
+</div>
+<div/>
+</body>
+</html>

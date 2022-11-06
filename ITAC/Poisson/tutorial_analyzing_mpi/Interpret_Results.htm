@@ -1,0 +1,70 @@
+
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <meta name="generator" content="Adobe RoboHelp 2015">
+<title>Interpret Results</title>
+<link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+</head>
+<script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+<script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+<body>
+
+<div style="width: 100%; position: relative;" id="header">
+	<p style="font-style: italic;">Tutorial: 
+	 Analyzing MPI Applications with Intel® Trace Analyzer and Collector 
+	 and Intel® VTune™ Amplifier XE</p>
+</div>
+
+
+<h1>Interpret Results</h1>
+
+<p><img src="Tutorial_files/amplifier_icon.png" alt="" border="0">&#160;Explore the application-level performance:</p>
+<ol>
+<li>
+<p>Intel® VTune™ Amplifier XE opens with the Summary page. Use this page as a starting point for the analysis of your application. In the <b>Elapsed Time</b> section of the Summary page, find out the elapsed time. For the current application it is 0.463 seconds:</p>
+<p><img src="Tutorial_files/image24.png" alt="" border="0"></p>
+<p>This display also indicates that this is a single-threaded application with the CPU time equal to 0.080 seconds.</p>
+</li>
+<li>
+<p>In the <b>Top Hotspot</b> section, see the most time-consuming functions. For the <samp class="codeph">poisson</samp> application, they are <samp class="codeph">poisson_red_black_</samp> and <samp class="codeph">mpi_recv</samp>.</p>
+<p><img src="Tutorial_files/image25.png" alt="" border="0"></p>
+</li>
+<li>
+<p>To analyze the most time-consuming functions, click the <b>Bottom Up</b> tab. Take a look at the CPU Time column, in which you can see that it took 70.010 milliseconds to execute the most time consuming function of the application and 9.990 milliseconds to execute <samp class="codeph">MPI_Recv</samp>.</p>
+<p><img src="Tutorial_files/image26.png" alt="" width="800" border="0"></p>
+<div class="Note">
+<h3 class="NoteTipHead">Note</h3>
+<p>To see MPI functions under the <b>Bottom-Up</b> tab, make sure that <b>Call Stack Mode</b> at the bottom of the tab is set to <b>User Functions + 1</b></p>
+</div>
+<p>It proves that the result we saw in the Intel® Trace Analyzer Event Timeline is correct: this is the <samp class="codeph">MPI_Recv</samp> call that generates imbalance in the application. Since there is no need to optimize this kind of logical imbalance, proceed with the analysis.</p>
+</li>
+<li>
+<p>To see the imbalance created by the other function, filter the <samp class="codeph">MPI_Recv</samp> out of the analysis scope. To do this, right-click the function at the <b>Bottom-Up</b> tab and select <b>Filter Out By Selection</b>, as shown in the example:</p>
+<p><img src="Tutorial_files/image30.png" alt="" border="0"></p>
+</li>
+<li>
+<p>Take a look at the function with poor CPU usage. Double-click the <samp class="codeph">poisson_red_black_</samp> function to open the source and identify the hotspot code regions. The beginning of the hotspot function is highlighted. The source code in the <b>Source</b> pane is not editable.</p>
+<div class="Note">
+<h3 class="NoteTipHead">Note</h3>
+<p>To enable the <b>Source</b> pane, make sure to build the target with debugging symbols using the <samp class="codeph">-g</samp> (Linux* OS) and <samp class="codeph">/Zi</samp> (Windows* OS) compiler flags.</p>
+</div>
+</li>
+<li>
+<p>For the <samp class="codeph">poisson</samp> application, you can see the cycle in which computation took most of the CPU time.</p>
+<p><img src="Tutorial_files/image27.png" alt="" width="800" border="0"></p>
+<p>Two options for resolving the issue are vectorize, or parallelize the cycle.</p>
+</li>
+</ol>
+<p>For more detailed explanations and more methods for analysis of your application, see the <a href="http://software.intel.com/en-us/intel-software-technical-documentation?field_software_product_tid[]=20841&amp;field_operating_system_tid[]=20841">Intel® Software Documentation Library</a> or <a href="https://software.intel.com/en-us/intel-vtune-amplifier-xe">Intel® VTune™ Amplifier XE product page</a> and refer to the <i>Finding Hotspots</i> tutorials.</p>
+<h2>Key Terms</h2>
+<p class="seealsoitem"><a href="Key_Terms.htm#cpu_time">CPU time</a><br>
+<a href="Key_Terms.htm#elapsed_time">Elapsed time</a><br>
+<a href="Key_Terms.htm#hotspot">Hotspot</a><br>
+<a href="Key_Terms.htm#target">Target</a></p>
+
+</body>
+</html>

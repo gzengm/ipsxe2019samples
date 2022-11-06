@@ -1,0 +1,10 @@
+Intel(R) Fortran sample AnimateGL
+
+License Information Follows
+---------------------------
+* src\AnimateGL.f90, src\AnimateMod.f90, src\GLUtilsMod.f90
+* build.bat, readme.html
+
+Copyright 2016 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement

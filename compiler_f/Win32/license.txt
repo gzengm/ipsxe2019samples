@@ -1,0 +1,17 @@
+Intel® Fortran Compiler - Win32 Samples
+
+License Information Follows
+---------------------------
+* Angle\*.*
+* Crypto\*.*
+* Generic\*.*
+* GetOpenFileName\*.*
+* MemoryStatus\*.*
+* Platform\*.*
+* ProcessorInfo\*.*
+* ProcessStatus\*.*
+* build.bat, readme.html
+
+Copyright 2016 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/

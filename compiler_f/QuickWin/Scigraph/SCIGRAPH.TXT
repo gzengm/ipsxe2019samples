@@ -1,0 +1,511 @@
+SciGraph: A Scientific Graphing Package for Fortran
+Intel Visual Fortran Sample Programs
+
+SciGraph is a package of Fortran routines for drawing scientific graphs.  
+Graph types available include:
+* Line Graphs
+* Bar Graphs
+* XY Graphs
+* Pie Graphs
+All graphs are fully customzable, including control over axis including log scales, 
+data points, colors and shades, error bars, and many other aspects of a scientific graph.
+
+All graphs are drawn using Intel Visual Fortran's QuickWin graphics routines, 
+so they can be easily added to an already existing QuickWin application. SciGraph can be used
+from QuickWin project types only, not other project types.
+
+SciGraph is provided as sample code and may be freely used and adapted for use in your applications.
+As sample code, Intel cannot provide programming assistance on how to use it, but please feel free to
+notify Intel Premier Support if you find a bug in the code.  The Intel Visual Fortran user forum at
+http://software.intel.com/en-us/forums/intel-visual-fortran-compiler-for-windows/ is a good resource 
+for "how to" questions.
+
+This file is broken into the following parts:
+A. Getting Started with SciGraph
+B. SciGraph Overview
+C. Data and Graph Types in SciGraph
+D. Axis Types in SciGraph
+E. Calling Sequence for SciGraph
+F. Descriptions of Functions in SciGraph
+G. Return codes from SciGraph functions
+
+A. Getting Started with SciGraph
+
+The Demo Program   
+
+A SciGraph demo program SGDemo is included with SciGraph.  To build the demo program, build the 
+solution or the SGDemo project which depends on the Scigraph library project.  Then run SGDemo.
+
+Using SciGraph from your own programs
+
+The easiest way to use SciGraph in your own programs is to add the six source files to your
+QuickWin project: SCIGRAPH.F90, SGADMIN.F90, SGDATA.F90, SGDRAW.F90, SGLOWLVL.F90, SGPLOT.F90.
+Then insert the statement "USE SCIGRAPH" in all modules and program units which are to use
+ScigGraph functions and call the functions as described in this document.
+
+B. SciGraph Overview
+
+Making a graph with the SciGraph graphing library has three phases:
+
+0. Use the SciGraph module
+1. Collecting or calculating data in your Fortran program and storing it in an array
+2. Filling in the settings information about the graph, the axis, and the data in the appropriate 
+structures
+3. Telling the graphing library to start graphing, and finally telling  SciGraph to plot the 
+data with the associated settings
+
+0. USE SCIGRAPH
+
+In order to access the SciGraph routines, you must first place the following line at the beginning 
+of any modules or other program units which use the SciGraph routines:
+
+	USE SCIGRAPH
+
+This module is automatically created by building the Scigraph library project.
+
+1. Data
+
+Data which you wish to graph with the graphing library must be stored in arrays.  Each data range 
+must be completely specified by a single array.  The one exception is if the x-data range is 
+labels (like in a bar graph), and then the text data must be in one array, and all the numeric 
+data in another. Numeric data must be of the REAL(4) data type. 
+
+2. Specifying settings information
+
+There are three classes of information that need to be correctly specified to make a graph.
+
+1. Graph settings, which specify the graph location, title, type, and the color of the graph 
+background
+
+2. Data settings, which specify the title and style of data ranges, what types of markers, lines, 
+or bars to use when plotting data, the number of data points, the range of the data
+
+3. Axis settings, which specify what scale the graph will have, the range of data to graph, where 
+the axes will be, what the axis markings will look like, whether the axis is logarithmic or linear, 
+and what the graph grid will look like
+
+4. Telling SciGraph to do the graphing
+    There are two parts to telling SciGraph to draw your graph.
+   a.  Call PlotGraph, which puts up the graph window, draws the background, the graph border, the 
+        axes, and the graph and axis titles
+   b.  Call one of the Plot*Data routines (PlotData, PlotMultiData, PlotLabelData, PlotLabelMultiData), 
+        which plots your data on the graph.  You may call one or more of these routines multiple times, 
+        although you may not call PlotData or PlotMultiData in the same program as either of 
+        PlotLabelData or PlotLabelMultiData.
+
+C. Data and Graph Types in SciGraph
+
+      $DTNUM               		! data is numeric,numeric
+      $DTTEXT             		! data is text,numeric
+
+      $GTBAR               		! bar graph (x=text labels, y=num)
+      $GTLINE              		! line graph (x=text labels, y=num)
+      $GTLINEWERRBAR       	! line graph with error bars (same)
+      $GTXY                		! xy graph (x=num, y=num) 
+      $GTXYWERRBAR         	! xy graph with error bars
+      $GTPOLAR            		! polar coordinate graph
+
+As with all constants in the SciGraph library, the graph type and data type constants start with a 
+dollar sign and then two capital letters.  All SciGraph constants are in the SCIGRAPH module; to 
+access them include the line "USE SCIGRAPH" in each program unit which uses SciGraph.  Since the 
+data type and graph type are closely related, both will be discussed here.   
+
+There are essentially two classes of data:  data which has numbers and labels, and purely numeric 
+data.  If your data has labels, you MUST use a $GTBAR, $GTLINE, or $GTLINEWERRBAR graph.  Otherwise 
+you must use a $GTXY, $GTXYWERRBAR, or $GTPOLAR graph.  Numeric data for the graphs with labels 
+will be in a one array, and text in another.  Numeric data of non-label graphs will all be in a 
+single array.  Numbers in data arrays.  Note that the data type is automatically set by 
+Get*DataDefaults, so you will probably not need to set it.  Data is specified in groupings called 
+data ranges.  A data range is a set of data points which are related to each other, will share a 
+single DataSettings structure, and will be plotted together.  A graph may have multiple data ranges.  
+An array holding data for an xy graph with 3 data ranges each containing 7 points, might look like 
+the following:
+
+  REAL*4 array(2,7,3)
+  DATA array / x1,y1, x2,y2, x3,y3, .....  x7,y7,    ! data range 1 
+               x1,y1, x2,y2, ....          x7,y7,    ! data range 2 
+               x1,y1, x2,y2, ....          x7,y7 /   ! data range 3 
+
+Arrays holding data for a bar graph with 4 data ranges, each containing 3 points might look like 
+the following:
+
+  REAL*4 numArray(3,4)
+  CHARACTER*20 labelArray(3)
+
+  DATA numArray / x1, x2, x3,           	! data range 1
+                  x1, x2, x3,           	! data range 2
+                  x1, x2, x3,           	! data range 3
+                  x1, x2, x3 /          	! data range 4
+  DATA labelArray / 'x1 bars','x2 bars','x3 bars' /
+
+An array holding error bar information for an xy graph with 4 points in 2 data ranges would look 
+like the following:
+
+  REAL*4 xyArray(3,4,2)
+  DATA xyArray /x1,y1,yerr1,  x2,y2,yerr2,  x3,y3,yerr3,  ! data range 1
+                x1,y1,yerr1,  x2,y2,yerr2,  x3,y3,yerr3 / ! data range 2
+
+Note that you must use the GetMultiDataDefaults and GetLabelMultiDataDefaults to get settings for 
+arrays which contain more than a single data sets.
+
+D. Axis Types in SciGraph
+
+     $AFNONE, $AFLINEAR	! no transform function: leave data as is
+     $AFLOG10             		! take log base 10 of each data point
+     $AFLOG              		! take log base e (natural log) 
+     $AFLOG2   		          	! take log base 2
+
+Standard graphs will of two axes, both of which will be of type $AFLINEAR.  If your data is some 
+exponential relationship, you should use one of the log axes.
+
+E. Calling Sequence for SciGraph
+
+This section details the sequence in which the SciGraph library functions should be called.  
+
+For label graphs (bar, line, line with error bars) you should call:  
+        GetGraphDefaults
+        GetLabel{Multi}DataDefaults
+        GetAxis{Multi}Defaults (once for each axis)
+        PlotGraph
+        PlotLabel{Multi}Data
+
+Include "Multi" where noted if you wish to specify multiple data ranges at once, and not otherwise.
+
+For non-label graphs (xy, xy with error bars, polar) you should call:
+        GetGraphDefaults
+        Get{Multi}DataDefaults
+        GetAxis{Multi}Defaults (once for each axis)
+        PlotGraph
+        Plot{Multi}Data
+
+Again, include "Multi" where noted if you wish to specify multiple data ranges at once, and not 
+otherwise.  
+
+Functions MUST be called in the order specified, or the graphing library will not work correctly.
+
+F.  Descriptions of Functions in SciGraph
+
+Each function will be described in brief, and its parameters and use described.  The functions are 
+described in groups.  The following functions are in the SciGraph Library:
+
+        1.     GetGraphDefaults
+
+        2.     GetDataDefaults
+        3.     GetMultiDataDefaults
+        4.     GetLabelDataDefaults
+        5.     GetLabelMultiDataDefaults
+
+        6.     GetAxisDefaults
+        7.     GetAxisMultiDefaults
+
+        8.     PlotGraph
+
+        9.     PlotData
+        10.   PlotMultiData
+        11.   PlotLabelData
+        12.   PlotLabelMultiData
+        
+        There are no subroutines in SciGraph.
+
+Group 1: GetGraphDefaults
+
+GetGraphDefaults is a function which takes a GraphSettings structure and a graph type.  The 
+GraphSettings structure specifies all the information and settings for the graph at the highest 
+level.  This includes the location on screen of the graph, the background color of the graph, the 
+graph title, and other such information.  GetGraphDefaults fills in the "graph" parameter with 
+default values which are reasonable for the given graph type.  "graphType" will be one of: 
+$GTBAR, $GTLINE, $GTLINEWERRBAR, $GTXY, $GTXYWERRBAR, or $GTPOLAR.  For a description of what 
+each graph type means, see "C. Data and Graph Types in SciGraph" above.   Here is the interface 
+for GetGraphDefaults:
+
+   INTERFACE 
+	INTEGER FUNCTION GetGraphDefaults(graphType,graph)
+	       INTEGER             graphType    	! input
+	       TYPE(GraphSettings) graph		! output
+	END FUNCTION
+   END
+
+GetGraphDefaults would be the first routine called in the SciGraph library.  See "E. Calling Sequence 
+for SciGraph" above.  A normal call to GetGraphDefaults might look like:
+        
+   retv = GetGraphDefaults($GTXY, myXYGraph)
+
+This would fill in the "myXYGraph" structure with reasonable graph defaults for an XY graph.  Note 
+that after you have gotten the graph defaults, you can modify them to suit your particular 
+application.  One common thing to do is to change the size and location of the graph on screen by 
+setting the x1,y1,x2,and y2 fields in the graph settings structure.  The following example does this:
+
+   retv = GetGraphDefaults($GTXY, myXYGraph)
+   myXYGraph.x1 = 10
+   myXYGraph.y1 = 20
+   myXYGraph.x2 = 200
+   myXYGraph.y2 = 300
+
+When PlotGraph is called the graph will be scaled down so that it is completely drawn between the 
+screen pixels (10,20) and (200,300).
+
+Group 2:  GetDataDefaults, GetMultiDataDefaults, GetLabelDataDefaults, and GetLabelMultiDataDefaults
+
+The functions in this group fill in settings for one or more sets of  numeric or numeric and label 
+data.  The settings are stored in a DataSettings structure.  A data settings structure contains all 
+the settings for a given data range.  These settings include the color of the markers and lines or
+bars for the data set, the maximum and minimum data points in the set, and the title of the data set.  
+All of these functions take a GraphSettings structure which is used as input to generate good 
+defaults for the data settings.  This is one of the reasons why it is important to call the 
+routines in the order specified above.  The routines also take the number of data points your 
+set has.  This parameter is called numPoints for the numeric graph functions and numLabels for 
+the label functions.  If you are specifying one of the bar or line graphs you should call 
+GetLabelDataDefaults.  If you wish to plot more than one data range on a line or bar graph you 
+MUST call GetLabelDataMultiDefaults, not GetLabelDataDefaults.  If you are specifying any non-label 
+graph you should call GetDataDefaults.  If you have all your data in a single array, you can call 
+GetMultiDataDefaults, which allows you to specify a number of data ranges at once, and fills in an 
+array of data settings structures.  Unlike with label graphs, GetMultiDataDefaults is not necessary 
+to plot multiple data ranges; instead you may call GetDataDefaults numerous times.  Note that the 
+following calls are equivalent:
+
+   retv = GetDataDefaults(graph,7,data,dSettings(1))
+                                and
+   retv = GetMultiDataDefaults(graph,7,data,1,dSettings)
+
+as are:
+
+   retv = GetDataDefaults(graph,8,data,dSettings(1))
+   retv = GetDataDefaults(graph,8,data,dSettings(2))
+                                and
+   retv = GetMultiDataDefaults(graph,8,data,2,dSettings)
+
+After having called one of the data default functions it is common to refine some of the default 
+data settings.  Take the following GetDataDefaults call for an xy graph:
+
+   retv = GetDataDefaults(graph,7,data,dSettings)
+   dSettings.markerType = $MKFISQUARE
+   dSettings.lineType = $LTDOT
+   dSettings.lineColor = $CIGREEN
+
+When PlotData is called, the  data will be plotted using filled in squares as markers, and connected 
+with a dotted green line
+
+Here are the numeric function interfaces:
+
+   INTERFACE
+       INTEGER FUNCTION GetDataDefaults(graph,numPoints,data,dSettings)
+          TYPE(GraphSettings)   graph         ! input/output
+          INTEGER               numPoints     ! input: # of data points
+          REAL(4)               data(1)       ! input: actual data
+          TYPE(DataSettings)    dSettings     ! output 
+       END FUNCTION
+
+       INTEGER FUNCTION GetMultiDataDefaults(graph,numPoints,data, &
+                                             numSettings,dSettingsArray)
+          TYPE(GraphSettings)  graph         ! input
+          INTEGER              numPoints     ! input: # of data points
+          REAL*4               data(1)       ! input: actual data
+          INTEGER*2            numSettings   ! input
+          RECORD(DataSettings) dSettingsArray(numSettings)    ! output 
+      END FUNCTION
+   END     
+
+And here are the label function interfaces:
+   INTERFACE
+	 INTEGER FUNCTION GetLabelDataDefaults(graph,numLabels,labels, &
+                                             data,dSettings)
+          TYPE(GraphSettings)   graph              ! input
+          INTEGER               numLabels          ! input
+          CHARACTER*(*)         labels(numLabels)  ! input  
+          REAL*4                data(1)            ! input: actual data
+          TYPE(DataSettings)    dSettings          ! output 
+       END FUNCTION
+
+       INTEGER FUNCTION GetLabelMultiDataDefaults(graph,numLabels, & 
+                                                  labels, data, &
+                                                  numSettings, &
+                                                  dSettingsArray)
+          TYPE(GraphSettings)   graph              ! input
+          INTEGER               numLabels          ! input
+          CHARACTER*(*)         labels(numLabels)  ! input  
+          REAL*4                data(1)            ! input: actual data
+          INTEGER               numSettings        ! input
+          TYPE(DataSettings)    dSettingsArray(numSettings)    ! output
+      END FUNCTION
+    END
+
+
+Group 3:  GetAxisDefaults, GetAxisMultiDefaults
+        
+The are two functions which can be used to fill in the axis settings structures.  An axis setting 
+structure contains all settings the apply to the graph axis and the optional grid (an extension of 
+the axis tick marks).   These settings include the axis color, the major and minor tick color and 
+type, the axis font, and the axis function.  The function GetAxisDefaults fills in a given axis 
+structure with appropriate values for a given graph, data setting structure, and specified axis.  If 
+you wish the axis structure to be filled in based on an array of data setting structures you must use 
+GetAxisMultiDefaults.  GetAxisMultiDefaults looks through the specified array of data setting 
+structures and determines appropriate values for maximum and minimum values, and the axis increment.  
+GetAxisDefaults applies the same methods to just a single data settings structure.  The axisType is 
+one of $ATX or $ATY for rectangular graphs, and one of $ATR or $ATTHETA for polar graphs.  The axis 
+function specifies whether the axis should be linear, or if its tick marks should increase 
+logarithmicly.  The valid axisFuncs are: $AFLINEAR, $AFLOG2, $AFLOG, $AFLOG10.  A standard call to 
+GetAxisDefaults might look like:
+
+  retv = GetAxisDefaults(graph,dSettings,$ATX,$AFLINEAR,axisFunc,axis)
+
+Note that as with the data settings functions, the call 
+
+  retv = GetAxisDefaults(graph,1,dSettings,$ATX,$AFLINEAR,axisFunc,axis)
+
+would be the same as the one above.
+
+
+Some common fine-tuning of the axis settings might be as follows:
+
+  retv = GetAxisDefaults(graph,dSettings,$ATX,$AFLINEAR,axisFunc,axis)
+  axis.gridStyle=$GTMAJOR
+  axis.gridColor=$CIBLUE
+  axis.tickColor=$CIRED
+  axis.minorTickColor=$CIGREEN
+
+When PlotGraph is called, the x-axis will have big red ticks, small green ticks, and a blue grid 
+across the graph on the major ticks.
+
+
+Here are the interfaces for these two functions:
+        
+    INTERFACE 
+	INTEGER FUNCTION GetAxisDefaults(graph,dSettings, &
+                                       axisType,axisFunc,axis)
+          TYPE(GraphSettings)   graph       ! input
+          TYPE(DataSettings)    dSettings   ! input 
+          INTEGER               axisType    ! input: $ATX,$ATY
+          INTEGER               axisFunc    ! input: $AFNONE, $AFLOG,...
+          TYPE(AxisSettings)    axis        ! output
+      END FUNCTION
+
+
+      INTEGER FUNCTION GetAxisMultiDefaults(graph,numSettings, &
+                                            dSettingsArray,    &
+                                            axisType,axisFunc,axis)
+          TYPE(GraphSettings)   graph        ! input
+          INTEGER               numSettings  ! input
+          TYPE(DataSettings)    dSettingsArray(numSettings)    ! input 
+          INTEGER               axisType     ! input: $ATX,$ATY
+          INTEGER               axisFunc     ! input: $AFNONE, AFLOG,...
+          TYPE(AxisSettings)    axis         ! output
+      END FUNCTION
+  END INTERFACE     
+
+
+Group 4: PlotGraph
+
+Once all of the graph, data, and axis settings have been specified, it is time to tell the graphing 
+library to start drawing the graph.  PlotGraph draws the graph border, title, and axes in the 
+appropriate colors and styles as specified by the three types of settings structures.  Note that no 
+data points are plotted by this function, only the overall graph layout is drawn.  Up to four axes 
+may be on a rectangular graph, one on each side.  For polar graphs there must be two axes.  It is 
+important to correctly fill in the "numSettings" parameter which specifies the total number of data 
+sets you will eventually plot.  If  you do not specify the correct number, the data legends may not 
+print correctly.  Here is the interface for PlotGraph:
+
+    INTERFACE 
+	INTEGER FUNCTION PlotGraph(graph,numAxes,axisArray,numSettings)
+          TYPE(GraphSettings)  graph               ! input
+          INTEGER              numAxes             ! input
+          TYPE(AxisSettings)   axisArray(numAxes)  ! input
+          INTEGER              numSettings         ! input
+      END FUNCTION
+  END INTERFACE
+
+
+Group 5: PlotData, PlotMultiData, PlotLabelData, PlotLabelMultiData
+
+Once you have called PlotGraph, you are ready to plot all the data that you have specified settings 
+for.  If you have label data you must use PlotLabelData.  If you wish to plot more than one data range 
+on a line or  bar graph you MUST should call PlotLabelMultiData NOT PlotLabelData.  If you have 
+numeric data you should use PlotData.  If you have all of your numeric data in a single array, you 
+may use PlotMultiData to plot all your ranges at once, instead of with multiple calls to PlotData.  
+While graphs may have up to 4 axes, you must specify a single X and a single Y axis to plot your 
+data against.  Note that the x axis is specified before the y axis. Here is a typical call to 
+PlotData:
+
+   retv = PlotData(graph,data,dSettings,xaxis,yaxis)
+
+Note that the following sets of calls are equivalent: (assuming the proper 
+declarations)
+
+   retv = PlotData(graph,data1,dSettings1,xaxis,yaxis)
+   retv = PlotData(graph,data2,dSettings2,xaxis,yaxis)
+                                and
+   retv = PlotMultiData(graph,data,2,dSettings,xaxis,yaxis)
+
+
+Here are the interfaces for the numeric plotting functions:
+
+   INTERFACE
+	 INTEGER FUNCTION PlotData(graph,data,dSettings,axis1,axis2)
+          TYPE(GraphSettings)      graph         ! input
+          REAL*4                   data(1)       ! input: actual data
+          TYPE(DataSettings)       dSettings     ! input
+          TYPE(AxisSettings)       axis1         ! input          
+          TYPE(AxisSettings)       axis2         ! input
+      END FUNCTION
+
+      INTEGER FUNCTION PlotMultiData(graph,data,numSettings, &
+                                     dSettingsArray,axis1,axis2)
+          TYPE(GraphSettings)   graph          ! input
+          REAL*4                data(1)        ! input: actual data
+          INTEGER               numSettings    ! input
+          TYPE(DataSettings)    dSettingsArray(numSettings)    ! input
+          TYPE(AxisSettings)    axis1          ! input
+          TYPE(AxisSettings)    axis2          ! input
+      END FUNCTION
+   END INTERFACE
+
+Here is a typical call to PlotLabelData:
+  retv = PlotLabelData(graph,labels,data,dSettings,xaxis,yaxis)
+
+Multiple data sets must be plotted with:
+  retv = PlotLabelMultiData(graph,labels,data,2,dSettings,xaxis,yaxis)
+
+Here are the interfaces for the label plotting functions:
+
+
+  INTERFACE
+	INTEGER FUNCTION PlotLabelData(graph,labels,data,dSettings, &
+                                     axis1,axis2)
+          TYPE(GraphSettings)     graph         ! input
+          CHARACTER*(*)           labels(1)     ! input  
+          REAL*4                  data(1)       ! input: actual data
+          TYPE(DataSettings)      dSettings     ! input
+          TYPE(AxisSettings)      axis1         ! input
+          TYPE(AxisSettings)      axis2         ! input
+      END FUNCTION
+
+      INTEGER FUNCTION PlotLabelMultiData(graph,labels,data, &
+                                          numSettings,dSettingsArray, &
+                                          axis1,axis2)
+          TYPE(GraphSettings)   graph         ! input
+          CHARACTER*(*)         labels(1)     ! input  
+          REAL*4                data(1)       ! input: actual data
+          INTEGER               numSettings   ! input
+          TYPE(DataSettings)    dSettingsArray(numSettings)    ! input
+          TYPE(AxisSettings)    axis1         ! input
+          TYPE(AxisSettings)    axis2         ! input
+      END FUNCTION
+
+
+G. Return codes from SciGraph Functions
+
+Every SciGraph function returns a value, which is one of the following:
+
+        $GEOK               		! no error
+        $GEGRAPHMODE        	! couldn't enter graphics mode
+        $GEFONT             		! couldn't set fonts 
+        $GEGRAPH            		! the graph info or type was bad
+        $GEAXIS             		! the axis info, type, or func was bad
+        $GEDATA             		! invalid data or data settings info
+        $GEDIMS             		! one or more of the dimensions was bad
+        $GEPARAMS           	! one or more of the params was bad
+        $GENOPLOTGRAPH      	! didn't do plot graph before plot data
+
+Functions which worked correctly return $GEOK.  All other return values indicate a failure of 
+some sort.  The user of SciGraph can check the error code to see what is wrong.  Errors frequently 
+occur because of not calling the functions in the correct order. (See "D. Calling Sequence for 
+SciGraph")

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xml:lang="ja-jp" lang="ja-jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="データのアライメントによりパフォーマンスを向上する"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9AD30AA8-98FF-4D12-AC12-7AB9888AF2CF.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-242A8980-1567-4E58-9368-8296023C18FB"/>
+<meta name="DC.Language" content="ja-JP"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>データのアライメントによりパフォーマンスを向上する</title>
+<script src="resources/prism/prism.js"><!----></script>
+<link href="resources/prism/prism.css" rel="stylesheet"/>
+</head>
+<body id="GUID-242A8980-1567-4E58-9368-8296023C18FB">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+
+
+<h1 class="topictitle1">データのアライメントによりパフォーマンスを向上する</h1>
+<div><div class="section" id="GUID-6B2F5190-9F96-408C-9031-968AA542A6AB"><p>ベクトル化はアライメントされたデータで実行する場合、より高速なコードを生成することができます。ここでは、<span class="filepath">Driver.c</span> の 配列 <samp class="codeph">a</samp>、<samp class="codeph">b</samp>、<samp class="codeph">x</samp> を 16 バイト境界にアライメントすることによりパフォーマンスを向上させます。このアライメントによって、ベクトル化はすべての配列に速度の遅いアライメントされていないロード命令ではなく、アライメント済みロード命令を使用して、アライメントのランタイムテストを回避することできます。<samp class="codeph">ALIGNED</samp> マクロで <samp class="codeph">__align declspec</samp> キーワードを使用すると、<span class="filepath">Driver.c</span> の <samp class="codeph">a</samp>、<samp class="codeph">b</samp>、<samp class="codeph">x</samp> の宣言が変更されます。キーワードの構文は次のとおりです。</p>
+<p><samp class="codeph">__declspec(align(16)) float array[30];</samp></p>
+<p>この命令は、オフセットが "offset" (デフォルト=0) バイトの "base" バイト境界でアライメントされた配列を作成するようコンパイラーに指示します。次に例を示します。</p>
+<p><samp class="codeph">__declspec(align(16)) FTYPE a[ROW][COLWIDTH];</samp></p>
+<p>さらに、行列 <samp class="codeph">a</samp> の行の長さが 16 バイトの倍数になるようにパディングする必要があります。<samp class="codeph">a</samp> の各行は 16 バイトのアライメントになります。また、このアライメントによる利点を最大限に活かすには、<samp class="codeph">#pragma vector aligned</samp> を使用して、<span class="filepath">Multiply.c</span> の配列がアライメントされていると安全に仮定できることをベクトル化機能に知らせる必要があります。</p>
+<div class="Note"><h3 class="NoteTipHead">注</h3> <p><samp class="codeph">#pragma vector aligned</samp> を使用する場合、ループのすべての配列またはサブ配列が確実に 16 バイトにアライメントされていなければなりません。そうでない場合、ランタイムエラーが発生することがあります。<samp class="codeph">#pragma vector aligned</samp> を使用していなくても、データのアライメントによりパフォーマンスの利点は得られます。<span class="filepath">Multiply.c</span> の <samp class="codeph">ALIGNED</samp> マクロによるコードを参照してください。</p>
+<p>インテル&reg; AVX 命令セット向けにコンパイルする場合は、データを 32 バイト境界にアライメントしてください。パフォーマンスが向上することがあります。この場合、<samp class="codeph">#pragma vector aligned</samp> は、コンパイラーにデータを 32 バイト境界にアライメントするよう指示します。</p>
+</div>
+<p><span class="option">/Qopt-report:4</span> を使用して、更新された参照のレポートを確認できます (プロジェクトのプロパティー・ページで <b class="uicontrol">[構成プロパティ]</b> &gt; <b class="uicontrol">[C/C++]</b> &gt; <b class="uicontrol">[Diagnostics [Intel C++] (診断 [インテル&reg; C++])]</b> を選択し、<b class="uicontrol">[Optimization Diagnostics Level (最適化診断レベル)]</b> を <b class="uicontrol">[Level 4 (レベル 4) (/Qopt-report:4)]</b> に設定します)。データを確実に一貫したアライメントにするには、<samp class="codeph">ALIGNED</samp> プリプロセッサー定義を追加した後、プログラムをリビルドしてください。</p>
+<p>#pragma vector aligned 追加前の Multiply.optrpt:</p>
+<pre class="msgblock">
+ループの開始 Multiply.c(49,9)
+ベクトル化のピールループ
+ループの終了
+
+ループの開始 Multiply.c(49,9)
+Multiply.c(50,13): リマーク #15388: ベクトル化のサポート: 参照 a[i][j] にアラインされたアクセスが含まれています。
+Multiply.c(50,13): リマーク #15388: ベクトル化のサポート: 参照 x[j] にアラインされたアクセスが含まれています。
+Multiply.c(49,9): リマーク #15305: ベクトル化のサポート: ベクトル長 2
+Multiply.c(49,9): リマーク #15399: ベクトル化のサポート: アンロールファクターが 4 に設定されます。
+Multiply.c(49,9): リマーク #15309: ベクトル化のサポート: 正規化されたベクトル化のオーバーヘッド 1.031
+Multiply.c(49,9): リマーク #15300: ループがベクトル化されました。
+Multiply.c(49,9): リマーク #15442: すべてのループは剰余として実行されます。
+Multiply.c(49,9): リマーク #15448: マスクなしアライン・ユニット・ストライド・ロード: 2 
+Multiply.c(49,9): リマーク #15475: --- ベクトルのコストサマリー開始 ---
+Multiply.c(49,9): リマーク #15476: スカラーコスト: 10 
+Multiply.c(49,9): リマーク #15477: ベクトルコスト: 4.000 
+Multiply.c(49,9): リマーク #15478: スピードアップの期待値: 2.380 
+Multiply.c(49,9): リマーク #15488: --- ベクトルのコストサマリー終了 ---
+ループの終了
+
+ループの開始 Multiply.c(49,9)
+代替アライメントでベクトル化されたループ
+ループの終了
+
+ループの開始 Multiply.c(49,9)
+ベクトル化の剰余ループ
+ループの終了</pre>
+<p>プリプロセッサーの定義に <samp class="codeph">ALIGNED</samp> を追加後の Multiply.optrpt: 
+      </p>
+<pre class="msgblock">
+ループの開始 Multiply.c(49,9)
+Multiply.c(50,13): リマーク #15388: ベクトル化のサポート: 参照 a[i][j] にアラインされたアクセスが含まれています。
+Multiply.c(50,13): リマーク #15388: ベクトル化のサポート: 参照 x[j] にアラインされたアクセスが含まれています。
+Multiply.c(49,9): リマーク #15305: ベクトル化のサポート: ベクトル長 2
+Multiply.c(49,9): リマーク #15399: ベクトル化のサポート: アンロールファクターが 4 に設定されます。
+Multiply.c(49,9): リマーク #15309: ベクトル化のサポート: 正規化されたベクトル化のオーバーヘッド 0.594
+Multiply.c(49,9): リマーク #15300: ループがベクトル化されました。
+Multiply.c(49,9): リマーク #15448: マスクなしアライン・ユニット・ストライド・ロード: 2 
+Multiply.c(49,9): リマーク #15475: --- ベクトル・コスト・サマリー開始 ---
+Multiply.c(49,9): リマーク #15476: スカラーコスト: 10 
+Multiply.c(49,9): リマーク #15477: ベクトルコスト: 4.000 
+Multiply.c(49,9): リマーク #15478: スピードアップの期待値: 2.410 
+Multiply.c(49,9): リマーク #15488: --- ベクトル・コスト・サマリー終了 ---
+ループの終了
+
+ループの開始 Multiply.c(49,9)
+ベクトル化の剰余ループ
+Multiply.c(50,13): リマーク #15388: ベクトル化のサポート: 参照 a[i][j] にアラインされたアクセスが含まれています。
+Multiply.c(50,13): リマーク #15388: ベクトル化のサポート: 参照 x[j] にアラインされたアクセスが含まれています。
+Multiply.c(49,9): リマーク #15335: 剰余ループはベクトル化されませんでした: ベクトル化は可能ですが、非効率です。オーバーライドするには vector always ディレクティブまたは /Qvec-threshold0 を使用してください。
+Multiply.c(49,9): リマーク #15305: ベクトル化のサポート: vector length 2
+Multiply.c(49,9): リマーク #15309: ベクトル化のサポート: normalized vectorization overhead 2.417
+ループの終了</pre>
+<p><div class="Note"><h3 class="NoteTipHead">注</h3> 行番号および列番号は異なる場合があります。
+        </div>
+</p>
+<p>ここで、実行ファイルを開始して、実行時間を記録してください。</p>
+</div>
+<p><a href="GUID-AF6A1A2C-41AE-4051-A147-41053698CB84.html"><img class="border(0)" style="border-style: none" src="GUID-7F3B04BE-CA31-4F1C-B7C4-88C93723B324-low.jpg" alt="次へ: プロシージャー間の最適化を使用してパフォーマンスを向上する"/></a></p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>親トピック:</strong> <a href="GUID-9AD30AA8-98FF-4D12-AC12-7AB9888AF2CF.html">チュートリアル: Windows* 版</a></div>
+</div>
+<div/>
+</body>
+</html>

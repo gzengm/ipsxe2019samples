@@ -1,0 +1,85 @@
+
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+ <meta name="generator" content="Adobe RoboHelp 2015">
+<title>Overview</title>
+<link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+ <link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+</head>
+
+<script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+<script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+<body>
+
+ <div style="width: 100%; position: relative;" id="header">
+	<p style="font-style: italic;">Tutorial: 
+	 Reducing Trace File Size for Intel® Trace Analyzer and Collector</p>
+</div>
+
+<h1>Overview</h1>
+<p><img src="Tutorial_files/itac_icon.png" alt="" border="0">&#160;Intel® 
+ Trace Analyzer and Collector enables you to understand MPI application 
+ behavior and quickly find bottlenecks to achieve high performance for 
+ parallel cluster applications. &#160;Intel Trace Collector generates trace 
+ files of MPI applications, while Intel Trace Analyzer visualizes the MPI 
+ application behavior using the generated trace file.</p>
+<p>Large trace files are hard to manage: it takes a long time to generate 
+ them, a lot of disk space to store them, and they are difficult to analyze 
+ with the Intel® Trace Analyzer. For these reasons, you need reduce the 
+ trace file size whenever possible. Learn how to reduce trace file size 
+ with the Intel® Trace Collector.</p>
+<table width="100%">
+	<col style="width: 20%;">
+	<col style="width: 80%;">
+	<tr>
+		<td class="cellrowborder"><p><b>About This Tutorial</b></p></td>
+		<td class="cellrowborder"><p>This tutorial demonstrates a workflow 
+		 applied to the <samp class="codeph">poisson</samp> application. 
+		 Its source code is available at <a href="https://software.intel.com/en-us/product-code-samples">https://software.intel.com/en-us/product-code-samples</a>. 
+		 You can ultimately apply the same steps to your own application(s).</p>
+		<p>The options to reduce the trace file size are:</p>
+		<ul>
+			<li>Create a configuration file</li>
+			<li>Run the application with the <samp class="codeph">-trace-collectives</samp> 
+			 and <samp class="codeph">-trace-pt2pt</samp> options</li>
+			<li>Use the <samp class="codeph">MPI_Pcontrol</samp> function</li>
+		</ul>
+		<p>After you reduced the trace file size, generate the trace file.</p></td>
+	</tr>
+	<tr>
+		<td class="cellrowborder"><p><b>Estimated Duration</b></p></td>
+		<td class="cellrowborder"><p>10-15 minutes.</p></td>
+	</tr>
+	<tr>
+		<td class="cellrowborder"><p><b>Learning Objectives</b></p></td>
+		<td class="cellrowborder"><p>After you complete this tutorial, 
+		 you should be able to:</p>
+		<ul>
+			<li>Reduce trace file size using various Intel® Trace Collector 
+			 functionality</li>
+			<li>Generate trace files of reduced size</li>
+		</ul></td>
+	</tr>
+	<tr>
+		<td class="cellrowborder"><p><b>More Resources</b></p></td>
+		<td class="cellrowborder"><p>Learn more about the Intel® Trace 
+		 Analyzer and Collector in the User and Reference Guides available 
+		 at:</p>
+		<ul>
+			<li><a href="https://software.intel.com/en-us/itc-user-and-reference-guide">Intel® 
+			 Trace Collector User and Reference Guide</a></li>
+			<li><a href="https://software.intel.com/en-us/ita-user-and-reference-guide">Intel® 
+			 Trace Analyzer User and Reference Guide</a></li>
+		</ul></td>
+	</tr>
+</table>
+<h2>Key Terms</h2>
+<p class="seealsoitem"><a href="Key_Terms.htm#config_file">Configuration 
+ File</a></p>
+</body>
+</html>

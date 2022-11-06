@@ -1,0 +1,10 @@
+Fortran Profile Guided Optimization Sample
+
+License Information Follows
+---------------------------
+* pgo_sample.f90, ReadMe.txt 
+* makefile, build.bat, readme.html
+
+Copyright 2017 Intel Corporation 
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/ 

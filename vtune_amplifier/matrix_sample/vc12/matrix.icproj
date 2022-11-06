@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<VisualStudioProject
+	ProjectType="Intel C++ Project"
+	Version="13.0"
+	Name="matrix"
+	ProjectGUID="{8AFA7C67-F24A-4E99-9AAC-75A11A0EB610}"
+	VCNestedProjectGUID="{4FD47AFD-5C17-4D47-A992-8F47F1114F01}"
+	VCNestedProjectFileName="matrix.vcproj"
+	>
+	<Configurations>
+		<Configuration
+			Name="Release|x64"
+			>
+			<Tool
+				Name="CppCmplrTool"
+				GenerateAlternateCodePaths="0"
+				UseProcessorExtensions="0"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release_OMP|x64"
+			>
+			<Tool
+				Name="CppCmplrTool"
+				GenerateAlternateCodePaths="0"
+				UseProcessorExtensions="0"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release_MKL|x64"
+			>
+			<Tool
+				Name="CppCmplrTool"
+				GenerateAlternateCodePaths="0"
+				UseProcessorExtensions="0"
+			/>
+		</Configuration>
+	</Configurations>
+	<Files/>
+</VisualStudioProject>

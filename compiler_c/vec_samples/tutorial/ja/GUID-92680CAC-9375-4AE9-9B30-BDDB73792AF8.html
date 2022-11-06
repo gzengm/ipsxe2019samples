@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xml:lang="ja-jp" lang="ja-jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="ベクトル化レポートを生成する"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5802FE1F-A872-4B07-9816-EA3D42046146.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-92680CAC-9375-4AE9-9B30-BDDB73792AF8"/>
+<meta name="DC.Language" content="ja-JP"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>ベクトル化レポートを生成する</title>
+<script src="resources/prism/prism.js"><!----></script>
+<link href="resources/prism/prism.css" rel="stylesheet"/>
+</head>
+<body id="GUID-92680CAC-9375-4AE9-9B30-BDDB73792AF8">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+
+
+<h1 class="topictitle1">ベクトル化レポートを生成する</h1>
+<div><p>ベクトル化レポートは、コード中のベクトル化されたループおよびされなかったループとその理由を示します。ベクトル化レポートを生成するには、<span class="option">qopt-report-phase=vec</span> コンパイラー・オプションを <span class="option">qopt-report=1</span> または <span class="option">qopt-report=2</span> とともに使用します。</p>
+<p><span class="option">qopt-report-phase=vec</span> とともに <span class="option">qopt-report=1</span> を指定すると、コード中のベクトル化されたループを示すレポートを生成され、<span class="option">qopt-report-phase=vec</span> とともに <span class="option">qopt-report=2</span> を指定すると、コード中のベクトル化されたループおよびされなかったループとその理由を示すレポートが生成されます。</p>
+<p><span class="option">O1</span> オプションを指定するとベクトル化が無効になるため、コンパイラーはベクトル化レポートを生成しません。ベクトル化レポートを生成するには、<span class="option">O2</span>、<span class="option">qopt-report-phase=vec</span>、および <span class="option">qopt-report=1</span> オプションを指定してプロジェクトをコンパイルしてください。</p>
+<p><samp class="codeph">icc -std=c99 -O2 -D NOFUNCCALL -qopt-report=1 -qopt-report-phase=vec Multiply.c Driver.c -o MatVector</samp></p>
+<p>注: <span class="option">-D NOFUNCCALL</span> で Matvec 関数の呼び出しをインライン展開された同等のコードに置き換えます。</p>
+<p>プログラムを再コンパイルし、<span class="filepath">MatVector</span> を実行します。新しい実行時間を記録します。短縮された時間は主に、ベクトル化レポート <samp class="codeph">Driver.optrpt</samp> で示されているように、行番号 145 の内部ループの自動ベクトル化によるものです。</p>
+<p><pre class="msgblock">
+ループの開始 Driver.c(140,5)
+   リマーク #25460: ループの最適化はレポートされていません。
+
+   ループの開始 Driver.c(143,9)
+      リマーク #25460: ループの最適化はレポートされていません。
+
+      ループの開始 Driver.c(145,13)
+         リマーク #15300: ループがベクトル化されました。
+      ループの終了
+
+      ループの開始 Driver.c(145,13)
+      &lt;ベクトル化の剰余ループ&gt;
+      ループの終了
+   ループの終了
+ループの終了
+</pre>
+</p>
+<div class="Note"><h3 class="NoteTipHead">注</h3> <p>行番号および列番号は異なる場合があります。</p>
+</div>
+<p><span class="option">qopt-report-phase=vec,loop</span> とともに <span class="option">qopt-report=2</span> を指定すると、生成されるリストにベクトル化されなかったまたはマルチバージョンが生成されなかったループとその理由も含まれます。</p>
+<p><span class="option">qopt-report-phase=vec,loop</span> とともに <span class="option">qopt-report=2</span> オプションを指定してプロジェクトを再コンパイルします。</p>
+<p><samp class="codeph">icc -std=c99 -O2 -D NOFUNCCALL -qopt-report-phase=vec,loop -qopt-report=2 Multiply.c Driver.c -o MatVector</samp></p>
+<p>ベクトル化レポート <samp class="codeph">Multiply.optrpt</samp> は、<span class="filepath">Multiply.c</span> の行番号 37 のループが、ループの入れ子の最内ループではないためにベクトル化しなかったことを示しています。行番号 49 の最内ループの 2 つのバージョンが生成され、1 つのバージョンはベクトル化されました。</p>
+<p><pre class="msgblock">ループの開始 Multiply.c(37,5)
+   リマーク #15542: ループはベクトル化されませんでした: 内部ループがすでにベクトル化されています。
+
+   ループの開始 Multiply.c(49,9)
+   &lt;ベクトル化のピールループ、マルチバージョン v1&gt;
+   ループの終了
+
+   ループの開始 Multiply.c(49,9)
+   &lt;マルチバージョン v1&gt;
+      リマーク #25228: データの依存関係のループをマルチバージョンにしました。
+      リマーク #15300: ループがベクトル化されました。
+   ループの終了
+
+   ループの開始 Multiply.c(49,9)
+   &lt;代替アライメントでベクトル化されたループ、マルチバージョン v1&gt;
+   ループの終了
+
+   ループの開始 Multiply.c(49,9)
+   &lt;ベクトル化の剰余ループ、マルチバージョン v1&gt;
+   ループの終了
+
+   ループの開始 Multiply.c(49,9)
+   &lt;マルチバージョン v2&gt;
+   リマーク #15304: ループはベクトル化されませんでした: マルチバージョンのベクトル化できないループ・インスタンスです。
+   リマーク #25439: 剰余ありアンロール - 2
+   ループの終了
+
+   ループの開始 Multiply.c(49,9)
+   &lt;剰余、マルチバージョン v2&gt;
+   ループの終了
+ループの終了
+</pre>
+</p>
+<div class="Note"><h3 class="NoteTipHead">注</h3> <ul id="GUID-96F67F49-0658-4E1F-A4D4-6E9A3C18C3A6"><li><p>行番号および列番号は異なる場合があります。</p>
+</li>
+<li><p><span class="option">qopt-report</span> および <span class="option">qopt-report-phase</span> コンパイラー・オプションの詳細については、『インテル&reg; C++  コンパイラー・デベロッパー・ガイドおよびリファレンス』の「コンパイラー・オプション」を参照してください。</p>
+</li>
+</ul>
+</div>
+<p><a href="GUID-5CEA2788-D9FF-4C5A-A104-7251B9200405.html#GUID-5CEA2788-D9FF-4C5A-A104-7251B9200405"><img class="border(0)" style="border-style: none" src="GUID-7F3B04BE-CA31-4F1C-B7C4-88C93723B324-low.jpg" alt="次へ: ポインター一義化によりパフォーマンスを向上する"/></a></p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>親トピック:</strong> <a href="GUID-5802FE1F-A872-4B07-9816-EA3D42046146.html">チュートリアル: Linux* 版および macOS* 版</a></div>
+</div>
+<div/>
+</body>
+</html>

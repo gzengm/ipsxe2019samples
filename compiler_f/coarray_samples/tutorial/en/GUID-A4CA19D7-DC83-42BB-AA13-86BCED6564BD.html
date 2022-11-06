@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Sequential Program"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-47F3A864-0145-403B-A45E-5D813BFB4EBA.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-A4CA19D7-DC83-42BB-AA13-86BCED6564BD"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Sequential Program</title>
+<script src="resources/prism/prism.js"><!----></script>
+<link href="resources/prism/prism.css" rel="stylesheet"/>
+</head>
+<body id="GUID-A4CA19D7-DC83-42BB-AA13-86BCED6564BD">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+
+
+<h1 class="topictitle1">Sequential Program</h1>
+<div><p>Open the sample file: 
+      <samp class="codeph">mcpi_sequential.f90</samp> (the sample file is located in the 
+      <samp class="codeph">src</samp> folder for command-line builds). The named constants for integer and real kinds are declared using 
+      <samp class="codeph">SELECTED_INT_KIND</samp> and 
+      <samp class="codeph">SELECTED_REAL_KIND</samp>. Select an integer kind that can hold large integers. The 
+      <samp class="codeph">num_trials</samp> is declared as the number of trials. It is set to 6,000,000 in this example. The variable total counts the number of points that are found within the circle. 
+    </p>
+<p>The Fortran standard intrinsic 
+      <samp class="codeph">RANDOM_NUMBER</samp> is used to generate the points for testing. The standard does not say if the random sequence is different for each run of the program, so it is called 
+      <samp class="codeph">RANDOM_SEED</samp> with no arguments. Intel&reg; Fortran uses the time-of-day clock to initialize the random number generator. 
+    </p>
+<p> The main body of the program is this loop: 
+    </p>
+<p><pre>! Run the trials. Get a random X and Y and see if the position
+! is within a circle of radius 1. If it is, add one to the subtotal
+do bigi=1_K_BIGINT,num_trials
+    call RANDOM_NUMBER(x)
+    call RANDOM_NUMBER(y)
+    if ((x*x)+(y*y) &lt;= 1.0_K_SINGLE) total = total + 1_K_BIGINT
+end do</pre></p>
+<p>At the end of the trials, divide the total by the number of trials and then multiply by four: 
+    </p>
+<p><pre>! total/num_trials is an approximation of pi/4
+print *, "Computed value of pi is",&amp;
+    REAL(4_K_BIGINT*total,K_DOUBLE)/REAL(num_trials,K_DOUBLE)</pre></p>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3>  The 
+        <samp class="codeph">REAL</samp> intrinsic is used to convert the integers to double precision before dividing. 
+      </div>
+</p>
+<p>The program includes code to show the elapsed time for the application. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-47F3A864-0145-403B-A45E-5D813BFB4EBA.html">Tutorial: Using Coarray Fortran</a></div>
+</div>
+<div/>
+</body>
+</html>

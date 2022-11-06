@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xml:lang="ja-jp" lang="ja-jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="サンプル・アプリケーションをコンパイルする"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-08A02E1B-9BA2-4127-A95B-1C0E1F0B127B.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-E5867E35-16DA-4DA4-BE7A-1BD938EB3E81"/>
+<meta name="DC.Language" content="ja-JP"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>サンプル・アプリケーションをコンパイルする</title>
+<script src="resources/prism/prism.js"><!----></script>
+<link href="resources/prism/prism.css" rel="stylesheet"/>
+</head>
+<body id="GUID-E5867E35-16DA-4DA4-BE7A-1BD938EB3E81">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+
+
+<h1 class="topictitle1">サンプル・アプリケーションをコンパイルする</h1>
+<div><p><samp class="codeph">hello_image.f90</samp> サンプルは Hello world アプリケーションです。通常の Hello world とは異なり、この Co-Array Fortran プログラムは、ホストマシンで平行して実行される複数のイメージ、またはプロセスにスポーンします。このアプリケーションのソースコードは、次のように単純な Fortran プログラムです。</p>
+<pre>
+program hello_image
+
+  write(*,*) "Hello from image ", this_image(), &amp;
+              "out of ", num_images()," total images"
+
+end program hello_image
+</pre><p><samp class="codeph">this_image()</samp> および <samp class="codeph">num_images(</samp>) の関数呼び出しに注目してください。これらは、新しい Fortran 2008 組込み関数です。<samp class="codeph">num_images()</samp> 関数は、このプログラムでスポーンされたイメージまたはプロセス数の合計を返します。<samp class="codeph">this_image()</samp> 関数は、1 から <samp class="codeph">N</samp> の範囲の各イメージの一意の識別子を返します。<samp class="codeph">N</samp> はこのプログラムで作成されるイメージの合計数です。
+	 </p>
+<p>Co-Array Fortran 機能を含むこのサンプルをコンパイルするには、<span class="option">coarray</span> コンパイラー・オプションを使用します。</p>
+<div class="section" id="GUID-D65E3395-7804-4EF6-A1E9-E18C5DCD370D"><p><samp class="codeph">ifort -coarray hello_image.f90 -o hello_image</samp></p>
+<p><samp class="codeph">hello_image</samp> ファイルの実行結果は、システムに搭載されているプロセッサー・コア数によって異なります。</p>
+<p><samp class="codeph">./hello_image</samp></p>
+</div>
+<p>出力結果は次のようになります。</p>
+<pre class="msgblock">
+Hello from image     1 out of      8  total images
+Hello from image     6 out of      8  total images
+Hello from image     7 out of      8  total images
+Hello from image     2 out of      8  total images
+Hello from image     5 out of      8  total images
+Hello from image     8 out of      8  total images
+Hello from image     3 out of      8  total images
+Hello from image     4 out of      8  total images
+</pre>
+<p>デフォルトでは、Co-Array Fortran アプリケーションがインテル&reg; コンパイラーでコンパイルされると、ホスト・プラットフォームのプロセッサー・コア数と同じ数のイメージが作成されます。上記は、デュアル・クワッドコアで合計 8 コアを搭載するホストシステムで実行された例です。各イメージは個別にスポーンされたプロセスであり、非同期に実行します。
+	 </p>
+<p/>
+<div class="Note"><h3 class="NoteTipHead">注</h3> <p><span class="option">-coarray</span> オプションと <span class="option">-qopenmp</span> オプションを同時に使用しないでください。Co-Array Fortran 言語拡張と OpenMP* 言語拡張を混在して使用することはできません。</p>
+</div>
+<p/>
+<p><a href="GUID-D950EFC8-74C5-4A06-8603-5113C6305F78.html#GUID-D950EFC8-74C5-4A06-8603-5113C6305F78"><img class="border(0)" style="border-style: none" src="GUID-7F3B04BE-CA31-4F1C-B7C4-88C93723B324-low.jpg" alt="次へ: イメージ数を制御する"/></a></p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>親トピック:</strong> <a href="GUID-08A02E1B-9BA2-4127-A95B-1C0E1F0B127B.html">チュートリアル: Linux* 版</a></div>
+</div>
+<div/>
+</body>
+</html>

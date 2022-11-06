@@ -1,0 +1,10 @@
+Advisor Vectorization Introduction Sample
+
+License Information Follows
+---------------------------
+example.cpp
+loop_hashes.def, readme.hmtl, readme.txt
+
+Copyright 2016 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/  

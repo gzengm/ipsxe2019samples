@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xml:lang="ja-jp" lang="ja-jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="パフォーマンスのベースラインを確定する"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9AD30AA8-98FF-4D12-AC12-7AB9888AF2CF.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-DE61F086-8437-4B2D-AF2D-CDBAB882B9E3"/>
+<meta name="DC.Language" content="ja-JP"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>パフォーマンスのベースラインを確定する</title>
+<script src="resources/prism/prism.js"><!----></script>
+<link href="resources/prism/prism.css" rel="stylesheet"/>
+</head>
+<body id="GUID-DE61F086-8437-4B2D-AF2D-CDBAB882B9E3">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+
+
+<h1 class="topictitle1">パフォーマンスのベースラインを確定する</h1>
+<div><div class="section" id="GUID-CFB47CB5-C32B-4A36-980E-C3DC4FFC649E"><p>パフォーマンスの向上を測定するためのパフォーマンスのベースラインを確定するには、プロジェクトを次の設定でビルドします。<ol id="GUID-CA13D8E1-5FEA-425A-89B0-C6E25832F4C5"><li><p><b class="uicontrol">[プロジェクト] &gt; [プロパティ]</b> を選択します。プロジェクトの [プロパティ ページ] が表示されます。</p>
+</li>
+<li><p><b class="uicontrol">[構成プロパティ]</b> &gt; <b class="uicontrol">[C/C++]</b> &gt; <b class="uicontrol">[Optimization (最適化)]</b> を選択します。</p>
+</li>
+<li><p><b class="uicontrol">[Optimization (最適化)]</b> を <b class="uicontrol">[Minimize Size (プログラムサイズ)]</b> に設定します。</p>
+</li>
+<li><p><b class="uicontrol">[構成プロパティ]</b> &gt; <b class="uicontrol">[C/C++]</b> &gt; <b class="uicontrol">[Optimization [Intel C++] (最適化 [インテル&reg; C++])]</b> &gt; <b class="uicontrol">[Interprocedural Optimization (プロシージャー間の最適化)]</b> を <b class="uicontrol">[No (いいえ)]</b> に設定します。</p>
+</li>
+<li><p><b class="uicontrol">[構成プロパティ]</b> &gt; <b class="uicontrol">[C/C++]</b> &gt; <b class="uicontrol">[Language [Intel C++] (言語 [インテル&reg; C++])]</b> を選択します。</p>
+<p><b class="uicontrol">[Enable C99 Support (C99 サポートを有効にする)]</b> を <b class="uicontrol">[Yes (はい)]</b> に設定します。</p>
+<div class="Note"><h3 class="NoteTipHead">注</h3> <p><span class="option">/Qstd=c99</span> は、c99 言語標準に準拠するようにコンパイラーに指示します。このコンパイルでは、このオプションを指定する必要がありませんが、この例は可変長配列 (VLA) を使用しているため、後で <span class="keyword">restrict</span> 修飾子をコンパイルする際にこのオプションが必要になります。</p>
+</div>
+</li>
+<li><p><b class="uicontrol">[構成プロパティ]</b> &gt; <b class="uicontrol">[C/C++]</b> &gt; <b class="uicontrol">[Code Generation (コード生成)]</b> を選択します。</p>
+<p><b class="uicontrol">[Floating Point Model (浮動小数点モデル)]</b> を <b class="uicontrol">[Fast (/fp:fast)]</b> に設定します。</p>
+<p><span class="option">/fp:fast</span> オプションは、浮動小数点算術演算においてより強力な最適化を行うようにコンパイラーに指示します。<span class="option">/fp:precise</span> オプションや <span class="option">/fp:strict</span> オプションは、自動ベクトル化の機会を制限することがあります。</p>
+</li>
+<li><p>プロジェクトをリビルドし、実行ファイルを開始します (<b class="uicontrol">[デバッグ] &gt; [デバッグなしで開始]</b>)。出力結果で表示される実行時間を記録してください。この時間が、以降のパフォーマンス向上を測定する際のベースラインとなります。</p>
+</li>
+</ol>
+</p>
+</div>
+<p><a href="GUID-2C6D2B07-1308-4ACE-B577-944E11D46027.html#GUID-2C6D2B07-1308-4ACE-B577-944E11D46027"><img class="border(0)" style="border-style: none" src="GUID-7F3B04BE-CA31-4F1C-B7C4-88C93723B324-low.jpg" alt="次へ: ベクトル化レポートを生成する"/></a></p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>親トピック:</strong> <a href="GUID-9AD30AA8-98FF-4D12-AC12-7AB9888AF2CF.html">チュートリアル: Windows* 版</a></div>
+</div>
+<div/>
+</body>
+</html>

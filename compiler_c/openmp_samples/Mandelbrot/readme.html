@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+	<meta charset="UTF-8">
+	<style>
+	::selection {
+		background: #b7ffb7;
+	}
+	::-moz-selection {
+		background: #b7ffb7;
+	}
+
+	body {
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 16px;
+		width: 800px;
+		margin: 0 auto;
+	}
+    #banner {
+		/* Div for banner */
+		float:left;
+		margin: 0px;
+		margin-bottom: 10px;
+		width: 100%;
+		background-color: #0071C5;
+		z-index: 0;
+	}
+	#banner .logo {
+		/* Apply to logo in banner. Add as class to image tag. */
+		float: left;
+		margin-right: 20px;
+		margin-left: 20px;
+		margin-top: 15px;
+		padding-bottom: 5px;
+	}
+	h1 {
+		text-align: center;
+		font-size: 36px;
+	}
+    h1.title {
+		/* Add as class to H1 in banner */
+		font-family: "Intel Clear", Verdana, Arial, sans-serif;
+		font-weight:normal;
+		color: #FFFFFF;
+		font-size: 170%;
+		margin-right: 40px;
+		margin-left: 40px;
+		padding-right: 20px;
+		text-indent: 20px;
+	}
+	.h3-alike {
+		display:inline;
+		font-size: 1.17em;
+		font-weight: bold;
+	}
+    h3 {
+		font-size: 1.17em;
+		font-weight: bold;
+		color: #0071C5;
+	}
+	pre {
+		font-family: "Consolas", Monaco, monospace;
+		font-size:small;
+		background: #fafafa;
+		margin: 0;
+        padding-left:20px;
+	}
+    #footer {
+		font-size: small;
+	}
+	code {
+		font-family: "Consolas", Monaco, monospace;
+	}
+    .code-block
+    {
+        padding-left:20px;
+    }
+	.changes {
+		margin: 1em 0;
+	}
+	.changes input:active {
+		position: relative;
+		top: 1px;
+	}
+	.changes input:hover:after {
+		padding-left: 16px;
+		font-size: 10px;
+		content: 'More';
+	}
+	.changes input:checked:hover:after {
+		content: 'Less';
+	}
+	.changes input + .show-hide {
+		display: none;
+	}
+	.changes input:checked + .show-hide {
+		display: block;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0.5em 0 0.5em 2.5em;
+	}
+	ul li {
+		margin-bottom: 3px;
+	}
+	ul li:last-child {
+		margin-bottom: 0;
+	}
+	.disc {
+		list-style-type:disc
+	}
+	.circ {
+		list-style-type:circ
+	}
+	
+	.single {
+		padding: 0 0.5em;
+	}
+	.specs {
+		border-collapse:collapse;
+	}
+	.specs td, .specs th {
+		font-size: 14px;
+	}
+	.specs td {
+		border: 1px solid black;
+	}
+	.specs td td, .specs td th {
+		border: none;
+	}
+	.specs	td, .specs td td, .specs td th {
+		padding: 0 0.2em 0.2em;
+		text-align: center;
+	}
+	.specs td tr:last-child td, 
+	.specs td tr:last-child th {
+		padding: 0 0.2em;
+	}
+	.serial-time {
+	}
+	.modified-time {
+	width: 6.5em;
+	}
+	.compiler {
+	}
+	.comp-opt {
+	}
+	.sys-specs {
+		width: 18em;
+	}
+	</style>
+	<!--[if lte IE 8]>
+	<style>
+	.changes input + .show-hide {
+		display: block;
+	}
+	.changes input {
+		display: none;
+	}
+	</style>
+	<![endif]-->
+	<title>OpenMP Sample for Mandelbrot</title>
+</head>
+
+<body>
+    <div id="banner">
+		<img class="logo" src="data:image/png;base64,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
+		9Or1LzUmVVz+HJXDAAAAAElFTkSuQmCC">
+	<h1 class="title">OpenMP Sample for Mandelbrot</h1>
+        </div>	
+	<p>The Mandelbrot set is a well known application of visual mathematics. It is a good example of simple math with complex (imaginary) numbers on a complex plane leading to visually impressive results. It works by keeping track of how many iterations of the equation <code>z<sub>n+1</sub> = z<sub>n</sub><sup>2</sup> + c</code> will occur before a complex number is no longer bound. This can go on forever, and the image generated is unique at every depth, but for the sake of running time there is usually a maximum depth that the iteration can occur. The simulations in this example are run serially, with OpenMP* <code>pragma omp simd</code> for vectorization, and Intel&#174; Threading Building Blocks (Intel&#174; TBB) <code>tbb::parallel_for</code> for parallelization.</p>
+	<p>In addition, this code uses an image base class (<code>image_base.h</code>) and <code>BMPImage</code> class (<code>bmp_image.cpp</code>) to write the results to a viewable image. Do not worry about how this is implemented, as it is unaffected by the code changes listed below.</p>
+	
+	<div class="changes">
+		<div class="h3-alike">System Requirements:</div> <input type="checkbox">
+		<ul class="disc show-hide">
+			<li>Hardware:
+				<ul class="circ">
+					<li>Any Intel processor with Intel® Advanced Vector Extensions (Intel® AVX) support like 2nd Generation Intel® Core™ i3, i5, or i7 processors and Intel® Xeon® E3 or E5 processor family, or newer</li>
+				</ul>
+			</li>
+			<li>For Microsoft* Windows*:
+				<ul class="circ">
+					<li>Microsoft Visual Studio* 2013 Professional Edition or above</li>
+					<li>Intel&#174; Parallel Studio XE 2019 Composer Edition for C++ Windows* or newer</li>
+				</ul>
+			</li>
+			<li>For Linux*:
+				<ul class="circ">
+					<li>GNU* GCC 4.5 or newer</li>
+					<li>Intel&#174; Parallel Studio XE 2019 Composer Edition for C++ Linux* or newer</li>
+				</ul>
+			</li>
+			<li>For macOS*:
+				<ul>
+					<li>macOS* 10.13 or above</li>
+					<li>Xcode* 9.x or above</li>
+					<li>Intel&reg; Parallel Studio XE 2019 Composer Edition for C++ macOS* or newer</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	
+	<h3>Code Change Highlights:</h3>
+	<div class="changes">
+		<div class="changes">All changes occur while traversing the complex plane, using one <code>for</code> loop for the y-axis, and one <code>for</code> loop for the x-axis.</div>
+		<code>tbb:parallel_for</code> <input type="checkbox">
+		<div class="show-hide">
+			<div class="code-block"><strong>linear version:</strong>
+<pre>// Traverse the sample space in equally spaced steps with width * height samples
+for (int j = 0; j &#60; height; ++j) {
+    for (int i = 0; i &#60; width; ++i) {
+        double z_real = x0 + i*xstep;
+        double z_imaginary = y0 + j*ystep;
+        double c_real = z_real;
+        double c_imaginary = z_imaginary;
+
+        double depth = 0;
+        // Figures out how many recurrences are required before divergence, up to max_depth
+        while(depth &#60; max_depth) {
+            if(z_real * z_real + z_imaginary * z_imaginary > 4.0) {
+                break; // Escape from a circle of radius 2
+            }
+            double temp_real = z_real*z_real - z_imaginary*z_imaginary;
+            double temp_imaginary = 2.0*z_real*z_imaginary;
+            z_real = c_real + temp_real;
+            z_imaginary = c_imaginary + temp_imaginary;
+
+            ++depth;
+        }
+        output[j*width + i] = static_cast<unsigned char>(static_cast<double>(depth) / max_depth * 255);
+    }
+}</pre>
+			</div>
+			<div class="code-block"><strong><code>tbb::parallel_for</code> version:</strong>
+<pre>// Traverse the sample space in equally spaced steps with width * height samples
+<strong>tbb::parallel_for</strong> (0; height; 1, [&](int j) {
+    <strong>for</strong> (int i = 0; i &#60; width; ++i) {
+        double z_real = x0 + i*xstep;
+        double z_imaginary = y0 + j*ystep;
+        double c_real = z_real;
+        double c_imaginary = z_imaginary;
+
+        double depth = 0;
+        // Figures out how many recurrences are required before divergence, up to max_depth
+        while(depth &#60; max_depth) {
+            if(z_real * z_real + z_imaginary * z_imaginary > 4.0) {
+                break; // Escape from a circle of radius 2
+            }
+            double temp_real = z_real*z_real - z_imaginary*z_imaginary;
+            double temp_imaginary = 2.0*z_real*z_imaginary;
+            z_real = c_real + temp_real;
+            z_imaginary = c_imaginary + temp_imaginary;
+
+            ++depth;
+        }
+        output[j*width + i] = static_cast<unsigned char>(static_cast<double>(depth) / max_depth * 255);
+    }
+});</pre>
+			</div>
+		</div>
+	</div>
+	<div class="changes">
+		<code>pragma omp simd</code> <input type="checkbox">
+		<div class="show-hide">
+			<div class="code-block"><strong>scalar version:</strong>
+<pre>// Traverse the sample space in equally spaced steps with width * height samples
+for (int j = 0; j &#60; height; ++j) {
+    for (int i = 0; i &#60; width; ++i) {
+        double z_real = x0 + i*xstep;
+        double z_imaginary = y0 + j*ystep;
+        double c_real = z_real;
+        double c_imaginary = z_imaginary;
+
+        double depth = 0;
+        // Figures out how many recurrences are required before divergence, up to max_depth
+        while(depth &#60; max_depth) {
+            if(z_real * z_real + z_imaginary * z_imaginary > 4.0) {
+                break; // Escape from a circle of radius 2
+            }
+            double temp_real = z_real*z_real - z_imaginary*z_imaginary;
+            double temp_imaginary = 2.0*z_real*z_imaginary;
+            z_real = c_real + temp_real;
+            z_imaginary = c_imaginary + temp_imaginary;
+
+            ++depth;
+        }
+        output[j*width + i] = static_cast<unsigned char>(static_cast<double>(depth) / max_depth * 255);
+    }
+}</pre>
+			</div>
+			<div class="code-block"><strong><code>pragma omp simd</code> version:</strong>
+<pre>// Traverse the sample space in equally spaced steps with width * height samples
+for (int j = 0; j &#60; height; ++j) {
+<strong>#pragma omp simd</strong>
+    for (int i = 0; i &#60; width; ++i) {
+        double z_real = x0 + i*xstep;
+        double z_imaginary = y0 + j*ystep;
+        double c_real = z_real;
+        double c_imaginary = z_imaginary;
+
+        double depth = 0;
+        // Figures out how many recurrences are required before divergence, up to max_depth
+        while(depth &#60; max_depth) {
+            if(z_real * z_real + z_imaginary * z_imaginary > 4.0) {
+                break; // Escape from a circle of radius 2
+            }
+            double temp_real = z_real*z_real - z_imaginary*z_imaginary;
+            double temp_imaginary = 2.0*z_real*z_imaginary;
+            z_real = c_real + temp_real;
+            z_imaginary = c_imaginary + temp_imaginary;
+
+            ++depth;
+        }
+        output[j*width + i] = static_cast<unsigned char>(static_cast<double>(depth) / max_depth * 255);
+    }
+}</pre>
+			</div>
+		</div>
+	</div>
+	<div class="changes">
+		<code>tbb::parallel_for</code> + <code>pragma omp simd</code><input type="checkbox">
+		<div class="show-hide">
+			<div class="code-block"><strong>linear/scalar version:</strong>
+<pre>// Traverse the sample space in equally spaced steps with width * height samples
+for (int j = 0; j &#60; height; ++j) {
+    for (int i = 0; i &#60; width; ++i) {
+        double z_real = x0 + i*xstep;
+        double z_imaginary = y0 + j*ystep;
+        double c_real = z_real;
+        double c_imaginary = z_imaginary;
+
+        double depth = 0;
+        // Figures out how many recurrences are required before divergence, up to max_depth
+        while(depth &#60; max_depth) {
+            if(z_real * z_real + z_imaginary * z_imaginary > 4.0) {
+                break; // Escape from a circle of radius 2
+            }
+            double temp_real = z_real*z_real - z_imaginary*z_imaginary;
+            double temp_imaginary = 2.0*z_real*z_imaginary;
+            z_real = c_real + temp_real;
+            z_imaginary = c_imaginary + temp_imaginary;
+
+            ++depth;
+        }
+        output[j*width + i] = static_cast<unsigned char>(static_cast<double>(depth) / max_depth * 255);
+    }
+}</pre>
+			</div>
+			<div class="code-block"><strong><code>tbb::parallel_for</code> + <code>pragma omp simd</code> version:</strong>
+<pre>// Traverse the sample space in equally spaced steps with width * height samples
+<strong>tbb::parallel_for</strong> (0; height; 1, [&](int j) {
+<strong>#pragma omp simd</strong>
+    for (int i = 0; i &#60; width; ++i) {
+        double z_real = x0 + i*xstep;
+        double z_imaginary = y0 + j*ystep;
+        double c_real = z_real;
+        double c_imaginary = z_imaginary;
+
+        double depth = 0;
+        // Figures out how many recurrences are required before divergence, up to max_depth
+        while(depth &#60; max_depth) {
+            if(z_real * z_real + z_imaginary * z_imaginary > 4.0) {
+                break; // Escape from a circle of radius 2
+            }
+            double temp_real = z_real*z_real - z_imaginary*z_imaginary;
+            double temp_imaginary = 2.0*z_real*z_imaginary;
+            z_real = c_real + temp_real;
+            z_imaginary = c_imaginary + temp_imaginary;
+
+            ++depth;
+        }
+        output[j*width + i] = static_cast<unsigned char>(static_cast<double>(depth) / max_depth * 255);
+    }
+});</pre>
+
+			</div>
+		</div>
+	</div>
+
+
+	<h3>Performance Data:</h3>
+    <p><strong>Note</strong>: Modified Speedup shows performance speedup with respect to serial implementation.</p>
+	<table class="specs">
+		<tr>
+			<th class="modified-time">Modified Speedup</th>
+			<th class="compiler">Compiler (Intel-64)</th>
+			<th class="comp-opt">Compiler options</th>
+			<th class="sys-specs">System specifications</th>
+		</tr>
+		<tr>
+			<td>
+				<table>
+					<tr><td>simd: 1.4x</td></tr>
+					<tr><td>tbb::parallel_for: 2.3x</td></tr>
+					<tr><td>Both: 3.5x</td></tr>
+				</table>
+			</td>
+			<td><a href="http://software.intel.com/en-us/c-compilers">Intel&reg;  C++ Compiler 19.0 for Windows</a></td>
+			<td>/O3 /QxHost /Qipo /Qopenmp /Qtbb</td>
+			<td>
+				<table>
+					<tr><td>Microsoft Windows 10 Enterprise (x64)</td></tr>
+					<tr><td>Intel® Core(TM) i5-5300U CPU @ 2.30GHz</td></tr>
+					<tr><td>8GB memory</td></tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table>
+					<tr><td>simd: 1.6x</td></tr>
+					<tr><td>tbb::parallel_for: 5.0x</td></tr>
+					<tr><td>Both: 7.6x</td></tr>
+				</table>
+			</td>
+			<td><a href="http://software.intel.com/en-us/c-compilers">Intel&reg;  C++ Compiler 19.0 for Linux</a></td>
+			<td>-O3 -xHost -ipo -qopenmp -tbb</td>
+			<td>
+				<table>
+					<tr><td>RHEL* 7 (x64)</td></tr>
+					<tr><td>4th Generation Intel® Core™ i7-4790 CPU @ 3.60GHz</td></tr>
+					<tr><td>32GB memory</td></tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+		
+	<h3>Build Instructions:</h3>
+	<div class="changes">For Microsoft Visual Studio users: <input type="checkbox">
+		<ul class="show-hide disc">
+			<li>Open the solution <code>.sln</code> file</li>
+			<li>[Optional] To collect performance numbers (will run example 5 times and take average time):
+				<ul class="circ">
+					<li>Project Properties -> C/C++ -> Preprocessor -> Preprocessor Definitions: add <code>PERF_NUM</code></li>
+				</ul>
+			</li>
+			<li>Choose a configuration (for best performance, choose a release configuration):</li>
+				<ul class="circ">
+					<li>Intel-debug and Intel-release: uses Intel C++ compiler</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="changes">For Microsoft Windows Command Line users: <input type="checkbox">
+		<ul class="show-hide disc">
+			<li>Enable your particular compiler environment</li>
+			<li>for Intel C++ Compiler:
+				<ul class="circ">
+					<li>open the appropriate Intel C++ compiler command prompt and navigate to project folder</li>
+					<li>to compile: <code>Build.bat [perf_num]</code>
+						<ul>
+							<li><code>perf_num</code>: collect performance numbers (will run example 5 times and take average time)</li>
+						</ul>
+					</li>
+					<li>to run: <code>Build.bat run [help|0|1|2|3|4]</code></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="changes">For Linux* or macOS* users: <input type="checkbox">
+		<ul class="show-hide disc">
+			<li>from a terminal window, navigate to the project folder</li>
+			<li>using Intel C++ compiler:
+				<ul class="circ">
+					<li>set the icc environment: <code>source &#60;icc-install-dir&#62;/bin/compilervars.sh {ia32|intel64}</code><li>
+					<li>to compile: <code>make [icpc] [perf_num=1]</code>
+						<ul>
+							<li><code>perf_num=1</code>: collect performance numbers (will run example 5 times and take average time)</li>
+						</ul>
+					</li>
+					<li>to run: <code>make run [option=help|0|1|2|3|4]</code></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div id="footer">
+		<p>Intel, Intel logo, Intel386, Intel486, Atom, Core, Itanium, MMX, Pentium, VTune, Cilk, 
+		Xeon Phi, and Xeon are trademarks of Intel Corporation in the U.S. and/or other countries<br>
+		* Other names and brands may be claimed as the property of others <br>
+		Copyright &copy; Intel Corporation. All Rights Reserved<br>
+	</div>
+</body>
+</html>

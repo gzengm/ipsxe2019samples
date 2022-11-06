@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xml:lang="ja-jp" lang="ja-jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="自動ベクトル化について"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-45D22AF6-DFF5-4D33-BF83-B74D625C092D.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-CB4DB803-6820-4B01-9622-AB755D5B471D"/>
+<meta name="DC.Language" content="ja-JP"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>自動ベクトル化について</title>
+<script src="resources/prism/prism.js"><!----></script>
+<link href="resources/prism/prism.css" rel="stylesheet"/>
+</head>
+<body id="GUID-CB4DB803-6820-4B01-9622-AB755D5B471D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+
+
+<h1 class="topictitle1">自動ベクトル化について</h1>
+<div><p>インテル&reg; コンパイラーでは、ベクトル化はパックド SIMD 命令を生成してループをアンロールします。パックド命令は一度に複数のデータ要素で演算するため、ループをより効率良く実行できます。コンパイラーが適したループを自動で識別し、最適化するため、自動ベクトル化と呼ばれることもあります。</p>
+<p>ベクトル化により呼び出されるライブラリー・ルーチンは、互換マイクロプロセッサーよりもインテル製マイクロプロセッサーにおいてより優れたパフォーマンスが得られる可能性があります。また、ベクトル化は、<span class="option">m</span> や <span class="option">x</span> などの特定のオプションによる影響を受けます。</p>
+<p>インテル製マイクロプロセッサーおよび互換マイクロプロセッサーの両方で、ベクトル化はインテル&reg; コンパイラーの最適化レベル <span class="option">O2</span> (デフォルト) 以上で有効になります。多くのループは自動でベクトル化されますが、自動でベクトル化されないループについては、簡単なコード変更でベクトル化できることがあります。このチュートリアルで行う作業は次のとおりです。<ul id="GUID-39E47931-3727-4314-AEF4-A217A7B29A46"><li><p>パフォーマンスのベースラインを確定する</p>
+</li>
+<li><p>ベクトル化レポートを生成する</p>
+</li>
+<li><p>データのアライメントによりパフォーマンスを向上する</p>
+</li>
+<li><p>プロシージャー間の最適化を使用してパフォーマンスを向上する</p>
+</li>
+</ul>
+</p>
+<p>このチュートリアルには Linux* 版、macOS* 版、Windows* 版があります。</p>
+<p><a href="GUID-CCB54569-CEF3-4679-9803-FB3ECDD20124.html#GUID-CCB54569-CEF3-4679-9803-FB3ECDD20124">Linux* 版および macOS* 版のチュートリアルを開始する</a></p>
+<p><a href="GUID-FC788A94-E6F9-45DA-B28D-1ECA14EE3A39.html#GUID-FC788A94-E6F9-45DA-B28D-1ECA14EE3A39">Windows* 版のチュートリアルを開始する</a></p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>親トピック:</strong> <a href="GUID-45D22AF6-DFF5-4D33-BF83-B74D625C092D.html">チュートリアル: 自動ベクトル化の使用</a></div>
+</div>
+<div/>
+</body>
+</html>

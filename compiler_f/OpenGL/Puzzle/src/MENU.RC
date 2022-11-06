@@ -1,0 +1,217 @@
+//==============================================================
+//
+// SAMPLE SOURCE CODE - SUBJECT TO THE TERMS OF SAMPLE CODE LICENSE AGREEMENT,
+// http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/
+//
+// Copyright 2016 Intel Corporation
+//
+// THIS FILE IS PROVIDED "AS IS" WITH NO WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT
+// NOT LIMITED TO ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+// PURPOSE, NON-INFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS.
+//
+// =============================================================
+//
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+CUBEMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "Game"
+    BEGIN
+        MENUITEM "NewCube",                     10
+        MENUITEM "Random\tF11",                 11
+        MENUITEM "Recover\tShift+F10",          12
+        MENUITEM "Exit",                        13
+        MENUITEM "Continuous",                  14
+    END
+    POPUP "ViewPoint"
+    BEGIN
+        POPUP "Distance"
+        BEGIN
+            MENUITEM "Increase\tAlt+i",             30
+            MENUITEM "Decrease\tAlt+d",             31
+        END
+        MENUITEM "Cycle/R-Axis\tAlt+R",         21
+        MENUITEM "Cycle/G-Axis\tAlt+G",         22
+        MENUITEM "Cycle/B-Axis\tAlt+B",         23
+        POPUP "CycleSpeed"
+        BEGIN
+            MENUITEM "Slow",                        200
+            MENUITEM "Medium",                      201
+            MENUITEM "Fast",                        202
+        END
+        MENUITEM "ShiftAngle/R-Axis\tAlt+r",    25
+        MENUITEM "ShiftAngle/G-Axis\tAlt+g",    26
+        MENUITEM "ShiftAngle/B-Axis\tAlt+b",    27
+        POPUP "ShiftAngleSize"
+        BEGIN
+            MENUITEM "Small",                       240
+            MENUITEM "Medium",                      241
+            MENUITEM "Large",                       242
+        END
+    END
+    POPUP "Rotate"
+    BEGIN
+        MENUITEM "Red 1\tF1",                   529
+        MENUITEM "Red 2\tF2",                   530
+        MENUITEM "Red 3\tF3",                   531
+        MENUITEM "Red 1/CW\tShift+F1",          533
+        MENUITEM "Red 2/CW\tShift+F2",          534
+        MENUITEM "Red 3/CW\tShift+F3",          535
+        MENUITEM "Green 1\tF4",                 545
+        MENUITEM "Green 2\tF5",                 546
+        MENUITEM "Green 3\tF6",                 547
+        MENUITEM "Green 1/CW\tShift+F4",        549
+        MENUITEM "Green 2/CW\tShift+F5",        550
+        MENUITEM "Green 3/CW\tShift+F6",        551
+        MENUITEM "Blue 1\tF7",                  577
+        MENUITEM "Blue 2\tF8",                  578
+        MENUITEM "Blue 3\tF9",                  579
+        MENUITEM "Blue 1/CW\tShift+F7",         581
+        MENUITEM "Blue 2/CW\tShift+F8",         582
+        MENUITEM "Blue 3/CW\tShift+F9",         583
+        MENUITEM "Undo\tF10",                   500
+    END
+    POPUP "Options"
+    BEGIN
+        MENUITEM "AxisOn/Off\tAlt+a",           40
+        POPUP "RotateSpeed"
+        BEGIN
+            MENUITEM "Slower\tAlt+o",               51
+            MENUITEM "Faster\tAlt+f",               52
+            MENUITEM "Slowest\tAlt+O",              53
+            MENUITEM "Fastest\tAlt+F",              54
+        END
+        POPUP "CubeSize"
+        BEGIN
+            MENUITEM "Smaller\tAlt+s",              32
+            MENUITEM "Larger\tAlt+l",               33
+            MENUITEM "Smallest\tAlt+S",             34
+            MENUITEM "Largest\tAlt+L",              35
+        END
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+CUBEACCEL ACCELERATORS MOVEABLE PURE 
+BEGIN
+    "B",            23,                     ASCII,  ALT, NOINVERT
+    "F",            54,                     ASCII,  ALT, NOINVERT
+    "G",            22,                     ASCII,  ALT, NOINVERT
+    "L",            35,                     ASCII,  ALT, NOINVERT
+    "O",            53,                     ASCII,  ALT, NOINVERT
+    "R",            21,                     ASCII,  ALT, NOINVERT
+    "S",            34,                     ASCII,  ALT, NOINVERT
+    VK_F1,          529,                    VIRTKEY, NOINVERT
+    VK_F1,          533,                    VIRTKEY, SHIFT, NOINVERT
+    VK_F10,         500,                    VIRTKEY, NOINVERT
+    VK_F10,         12,                     VIRTKEY, SHIFT, NOINVERT
+    VK_F11,         11,                     VIRTKEY, SHIFT, NOINVERT
+    VK_F2,          530,                    VIRTKEY, NOINVERT
+    VK_F2,          534,                    VIRTKEY, SHIFT, NOINVERT
+    VK_F3,          531,                    VIRTKEY, NOINVERT
+    VK_F3,          535,                    VIRTKEY, SHIFT, NOINVERT
+    VK_F4,          545,                    VIRTKEY, NOINVERT
+    VK_F4,          549,                    VIRTKEY, SHIFT, NOINVERT
+    VK_F5,          546,                    VIRTKEY, NOINVERT
+    VK_F5,          550,                    VIRTKEY, SHIFT, NOINVERT
+    VK_F6,          547,                    VIRTKEY, NOINVERT
+    VK_F6,          551,                    VIRTKEY, SHIFT, NOINVERT
+    VK_F7,          577,                    VIRTKEY, NOINVERT
+    VK_F7,          581,                    VIRTKEY, SHIFT, NOINVERT
+    VK_F8,          578,                    VIRTKEY, NOINVERT
+    VK_F8,          582,                    VIRTKEY, SHIFT, NOINVERT
+    VK_F9,          579,                    VIRTKEY, NOINVERT
+    VK_F9,          583,                    VIRTKEY, SHIFT, NOINVERT
+    "a",            40,                     ASCII,  ALT, NOINVERT
+    "b",            27,                     ASCII,  ALT, NOINVERT
+    "d",            31,                     ASCII,  ALT, NOINVERT
+    "f",            52,                     ASCII,  ALT, NOINVERT
+    "g",            26,                     ASCII,  ALT, NOINVERT
+    "i",            30,                     ASCII,  ALT, NOINVERT
+    "l",            33,                     ASCII,  ALT, NOINVERT
+    "o",            51,                     ASCII,  ALT, NOINVERT
+    "r",            25,                     ASCII,  ALT, NOINVERT
+    "s",            32,                     ASCII,  ALT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+CUBEICON                ICON    DISCARDABLE     "cube.ico"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

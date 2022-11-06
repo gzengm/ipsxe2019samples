@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "ipo_sample", "Msvs\ipo_sample.vfproj", "{DA32D746-5B99-49F7-8521-6CE1127B20B3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA32D746-5B99-49F7-8521-6CE1127B20B3}.Release|Win32.ActiveCfg = Release|Win32
+		{DA32D746-5B99-49F7-8521-6CE1127B20B3}.Release|Win32.Build.0 = Release|Win32
+		{DA32D746-5B99-49F7-8521-6CE1127B20B3}.Release|x64.ActiveCfg = Release|x64
+		{DA32D746-5B99-49F7-8521-6CE1127B20B3}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

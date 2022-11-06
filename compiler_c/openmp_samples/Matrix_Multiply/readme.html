@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+	<meta charset="UTF-8">
+	<style>
+	::selection {
+		background: #b7ffb7;
+	}
+	::-moz-selection {
+		background: #b7ffb7;
+	}
+
+	body {
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 16px;
+		width: 800px;
+		margin: 0 auto;
+	}
+    #banner {
+		/* Div for banner */
+		float:left;
+		margin: 0px;
+		margin-bottom: 10px;
+		width: 100%;
+		background-color: #0071C5;
+		z-index: 0;
+	}
+	#banner .logo {
+		/* Apply to logo in banner. Add as class to image tag. */
+		float: left;
+		margin-right: 20px;
+		margin-left: 20px;
+		margin-top: 15px;
+		padding-bottom: 5px;
+	}
+	h1 {
+		text-align: center;
+		font-size: 36px;
+	}
+    h1.title {
+		/* Add as class to H1 in banner */
+		font-family: "Intel Clear", Verdana, Arial, sans-serif;
+		font-weight:normal;
+		color: #FFFFFF;
+		font-size: 170%;
+		margin-right: 40px;
+		margin-left: 40px;
+		padding-right: 20px;
+		text-indent: 20px;
+	}
+	.h3-alike {
+		display:inline;
+		font-size: 1.17em;
+		font-weight: bold;
+	}
+    h3 {
+		font-size: 1.17em;
+		font-weight: bold;
+		color: #0071C5;
+	}
+	pre {
+		font-family: "Consolas", Monaco, monospace;
+		font-size:small;
+		background: #fafafa;
+		margin: 0;
+        padding-left:20px;
+	}
+    #footer {
+		font-size: small;
+	}
+	code {
+		font-family: "Consolas", Monaco, monospace;
+	}
+    .code-block
+    {
+        padding-left:20px;
+    }
+	.changes {
+		margin: 1em 0;
+	}
+	.changes input:active {
+		position: relative;
+		top: 1px;
+	}
+	.changes input:hover:after {
+		padding-left: 16px;
+		font-size: 10px;
+		content: 'More';
+	}
+	.changes input:checked:hover:after {
+		content: 'Less';
+	}
+	.changes input + .show-hide {
+		display: none;
+	}
+	.changes input:checked + .show-hide {
+		display: block;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0.5em 0 0.5em 2.5em;
+	}
+	ul li {
+		margin-bottom: 3px;
+	}
+	ul li:last-child {
+		margin-bottom: 0;
+	}
+	.disc {
+		list-style-type:disc
+	}
+	.circ {
+		list-style-type:circ
+	}
+	
+	.single {
+		padding: 0 0.5em;
+	}
+	.specs {
+		border-collapse:collapse;
+	}
+	.specs td, .specs th {
+		font-size: 14px;
+	}
+	.specs td {
+		border: 1px solid black;
+	}
+	.specs td td, .specs td th {
+		border: none;
+	}
+	.specs	td, .specs td td, .specs td th {
+		padding: 0 0.2em 0.2em;
+		text-align: center;
+	}
+	.specs td tr:last-child td, 
+	.specs td tr:last-child th {
+		padding: 0 0.2em;
+	}
+	.serial-time {
+	}
+	.modified-time {
+	width: 6.5em;
+	}
+	.compiler {
+	}
+	.comp-opt {
+	}
+	.sys-specs {
+		width: 18em;
+	}
+	</style>
+	<!--[if lte IE 8]>
+	<style>
+	.changes input + .show-hide {
+		display: block;
+	}
+	.changes input {
+		display: none;
+	}
+	</style>
+	<![endif]-->
+	<title>OpenMP Sample for Matrix Multiplication</title>
+</head>
+
+<body>
+    <div id="banner">
+		<img class="logo" src="data:image/png;base64,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
+		9Or1LzUmVVz+HJXDAAAAAElFTkSuQmCC">
+	<h1 class="title">OpenMP Sample for Matrix Multiplication</h1>
+        	</div>
+	<p>This sample is a multithreaded implementation of matrix multipication using OpenMP*. In the implementation, each thread can concurrently compute some submatrix of the product without needing OpenMP data or control synchronization. The algorithm uses OpenMP to parallelize the outer-most loop.</p>
+	
+	<div class="changes">
+		<div class="h3-alike">System Requirements</div><input type="checkbox">
+		<ul class="show-hide disc">
+			<li>Hardware:
+				<ul>
+					<li>Any Intel&reg; processor like Intel&reg; Core&#8482; i3, i5, 
+					or i7 processors and Intel&reg; Xeon&reg; E3 or E5 processor family</li>
+				</ul>
+			</li>
+			<li>For Microsoft* Windows*:
+				<ul>
+					<li>Microsoft Visual Studio* 2013, 2015 or 2017 Professional Edition or above</li>
+					<li>Intel&reg; Parallel Studio XE 2019 Composer Edition for C++ Windows* or newer</li>
+				</ul>
+			</li>
+			<li>For Linux*:
+				<ul>
+					<li>GNU* GCC 4.5 or newer</li>
+					<li>Intel&reg; Parallel Studio XE 2019 Composer Edition for C++ Linux* or newer</li>
+				</ul>
+			</li>
+			<li>For macOS*:
+				<ul>
+					<li>macOS* 10.12 or above</li>
+					<li>Xcode* 8.x or above</li>
+					<li>Intel&reg; Parallel Studio XE 2019 Composer Edition for C++ macOS* or newer</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+	<h3>Build Instructions</h3>
+	<div class="changes">
+	<div>For Microsoft Visual Studio users: <input type="checkbox">
+		<ul class="show-hide disc">
+            <li>Open Visual Studio and load the solution file openmp_samples_20xx.sln which corresponds to the version of Visual Studio.</li>
+			<li>Choose a release configuration (either x64 or Win32). Build the solution. Run the application, which is an OpenMP parallel program, and see execution time.
+				<ul class="circ">
+					<li>Debug and Release: uses Intel C++ compiler</li>
+				</ul>
+			</li>
+			<li>Turn off OpenMP as follows, in order to generate a serial application. Rebuild the solution. Run the application again, and record execution time of serial program.
+				<ul class="circ">
+					<li>Project Properties -> C/C++ -> Language [Intel C++] -> OpenMP Support: set to <code>No</code><br>The warning "warning #3180: unrecognized OpenMP #pragma" will be emitted a few times during compilation.</li>
+				</ul>
+			</li>
+			<li>Setting execution time of serial program as baseline, calculate speedup of OpenMP parallel program.
+				<ul class="circ">
+					<li>Speedup = execution time of OpenMP parallel program / execution time of serial program</li>
+				</ul></li>
+			<li>(Optionally) To build the solution with Visual C++ compiler, follow the instructions below.
+				<ul class="circ">
+					<li>Right-click on the <code>openmp_samples</code> project in Solution Explorer -> Intel compiler -> Use Visual C++</li>
+					<li>Rebuild the solution. Then run the application.</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	</div>
+	<div class="changes">
+	<div>For Microsoft Windows Command Line users: <input type="checkbox">
+		<ul class="show-hide disc">
+		    <li>Open one of the following Intel C++ compiler command prompt from Start menu.
+				<ul class="circ">
+					<li>IA-32 Visual Studio 201X environment</li>
+					<li>Intel 64 Visual Studio 201X environment</li>
+				</ul>
+		    </li>
+            <li>Build and run the application with OpenMP support: <br />
+                <code>build</code> <br />
+                <code>build run</code></li>
+            <li>Build without OpenMP support, and run the application as baseline: <br />
+                <code>build serial</code> <br />
+                <code>build run serial</code></li>
+            <li>Calculate speedup of OpenMP parallel program.
+            	<ul class="circ">
+					<li>Speedup = execution time of OpenMP parallel program / execution time of serial program</li>
+				</ul>
+            </li>
+			<li>(Optionally) To build the application with Visual C++ compiler, follow the instructions below.
+				<ul class="circ">
+					<li>Open an appropriate Visual C++ command prompt from Start menu, either x86 or x64.</li>
+					<li>Build with command <code>build</code> or <code>build serial</code>. They will invoke Visual C++ compiler to build the application. Then run the application with command <code>build run</code>.
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	</div>
+	<div class="changes">
+	<div>For Linux or macOS users: <input type="checkbox">
+		<ul class="show-hide disc">
+			<li>From a terminal window, navigate to the project folder</li>
+			<li>Set the environment variables for Intel&reg C++ compiler:<br />
+				<code>source &#60;icc-install-dir&#62;/bin/compilervars.sh &#60;arg&#62;</code><br />
+						where <code>&#60;icc-install-dir&#62;</code> is the directory structure containing the <code>bin</code> directory and <code>&#60;arg&#62;</code> is <code>ia32</code> or <code>intel64</code></li>
+			<li>To compile with OpenMP support and generate a parallelized application:<br /><code>make</code><br />
+				To run the application: <br />
+				<code>make run</code>
+			</li>
+			<li>To compile without OpenMP support and generate a serial application as baseline:<br /><code>make serial</code><br />
+				To run the application: <br />
+				<code>make run</code>
+			</li>
+            <li>Calculate speedup of OpenMP parallel program.
+            	<ul class="circ">
+					<li>Speedup = execution time of OpenMP parallel program / execution time of serial program</li>
+				</ul>
+            </li>
+		</ul>
+	</div>
+	</div>
+	<div id="footer">
+		<p>Intel, Intel logo, Intel386, Intel486, Atom, Core, Itanium, MMX, Pentium, VTune, Cilk, 
+		Xeon Phi, and Xeon are trademarks of Intel Corporation in the U.S. and/or other countries<br>
+		* Other names and brands may be claimed as the property of others <br>
+		Copyright &copy; Intel Corporation. All Rights Reserved<br>
+	</div>
+	</body>
+</html>

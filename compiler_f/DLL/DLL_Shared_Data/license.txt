@@ -1,0 +1,10 @@
+Intel(R) Fortran sample - DLL_Shared_Data
+
+License Information Follows
+---------------------------
+* src\main.f90, src\shared_globals.f90
+* build.bat, readme.html
+
+Copyright 2019 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement

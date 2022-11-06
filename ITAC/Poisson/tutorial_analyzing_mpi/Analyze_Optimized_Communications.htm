@@ -1,0 +1,40 @@
+
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <meta name="generator" content="Adobe RoboHelp 2015">
+<title>Analyze Optimized Communications</title>
+<link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+</head>
+<script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+<script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+<body>
+
+
+<h1>Analyze Optimized Communications</h1>
+
+<p><img src="Tutorial_files/itac_icon.png" alt="" border="0">&#160;Investigate other instances of time-consuming MPI calls in the revised application. To do this:</p>
+<ol>
+<li>
+<p>Open the <b>Summary Page</b> for the <samp class="codeph">poisson_icomm.single.stf</samp> to see the MPI- and CPU-time ratio and get information about the most time-consuming MPI functions. To open the <b>Summary Page</b>, click the <img src="Tutorial_files/image32.png" alt="" border="0"> toolbar button.</p>
+<p><img src="Tutorial_files/image33.png" alt="" border="0"></p>
+<p>You can see that it is the <samp class="codeph">MPI_Recv</samp> function that consumes 5.47% of the MPI time. To take a closer look at the function, click <b>Continue</b> here and go to the <b>Event Timeline</b>.</p>
+</li>
+<li>
+<p>Open the <b>Event Timeline</b>, zoom into the first bunch of MPI communications and ungroup grouped MPI calls.</p>
+</li>
+<li>
+<p>Zoom deeper to see the <samp class="codeph">MPI_Recv</samp> calls closer:</p>
+<p><img src="Tutorial_files/image29.png" alt="" border="0"></p>
+<p>You can see that the processes starting from <samp class="codeph">P1</samp> have already called <samp class="codeph">MPI_Recv</samp>, but are waiting for <samp class="codeph">P0</samp> to send data. This kind of communication generates imbalance which is later reduced by <samp class="codeph">MPI_Allreduce</samp> resynchronizing all the <samp class="codeph">MPI_Recv</samp> calls.</p>
+</li>
+<li>
+<p>To prove that it is exactly the <samp class="codeph">MPI_Recv</samp> call that causes imbalance, analyze the application with Intel® VTune™ Amplifier XE.</p>
+</li>
+</ol>
+<h2>Key Terms</h2>
+<p class="seealsoitem"><a href="Key_Terms.htm#serialization">Serialization</a></p>
+</body>
+</html>

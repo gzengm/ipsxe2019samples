@@ -1,0 +1,12 @@
+Intel® Fortran Dialog Box Samples
+
+License Information Follows
+---------------------------
+* FEXPLORER/*.*
+* TEMP/*.*
+* WHIZZY/*.*
+* readme.html
+
+Copyright 2016 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/

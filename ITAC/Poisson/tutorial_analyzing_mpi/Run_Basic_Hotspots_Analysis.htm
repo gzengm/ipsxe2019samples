@@ -1,0 +1,44 @@
+
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <meta name="generator" content="Adobe RoboHelp 2015">
+<title>Run Basic Hotspots Analysis</title>
+<link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+</head>
+<script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+<script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+<body>
+
+<div style="width: 100%; position: relative;" id="header">
+	<p style="font-style: italic;">Tutorial: 
+	 Analyzing MPI Applications with Intel® Trace Analyzer and Collector 
+	 and Intel® VTune™ Amplifier XE</p>
+</div>
+
+
+<h1>Run Basic Hotspots Analysis</h1>
+
+<p><img src="Tutorial_files/amplifier_icon.png" alt="" border="0">&#160;Open the <b>Summary Page</b> in Intel® Trace Analyzer and copy the command line for Intel® VTune™ Amplifier XE:</p>
+<p><img src="Tutorial_files/image35.png" alt="" style="border: 1px solid black;" border="1"></p>
+<div class="Note">
+<h3 class="NoteTipHead">Note</h3>
+<p>This information is available only for tracefiles generated on Linux* OS. On Windows* OS, make up the command line manually, see the example below.</p>
+</div>
+<p>Run the command line to perform the hotspot analysis with Intel VTune Amplifier.</p>
+<p><b>Linux OS:</b></p>
+<pre>
+&amp; mpirun -gtool "amplxe-cl -collect hotspots -r result:1" -n 16 ./poisson inp
+</pre>
+<p><b>Windows OS:</b></p>
+<pre>
+&gt; mpiexec -gtool "amplxe-cl -collect hotspots -r result:1" -n 16 ./poisson inp
+</pre>
+<p>Navigate to the <samp class="codeph">result.1</samp> directory and open the <samp class="codeph">poisson.1.amplxe</samp> file in Intel VTune Amplifier.</p>
+<h2>Key Terms</h2>
+<p class="seealsoitem"><a href="Key_Terms.htm#hotspot">Hotspot</a></p>
+</body>
+</html>

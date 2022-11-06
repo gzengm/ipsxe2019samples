@@ -1,0 +1,105 @@
+
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+ <meta name="generator" content="Adobe RoboHelp 2015">
+<title>Summary</title>
+<link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+<style title="hcp" type="text/css">
+<!--
+ul.hcp1 { list-style:disc; }
+-->
+</style>
+</head>
+<script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+<script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+<body>
+
+<div style="width: 100%; position: relative;" id="header">
+	<p style="font-style: italic;">Tutorial: 
+	 Analyzing MPI Applications with Intel® Trace Analyzer and Collector 
+	 and Intel® VTune™ Amplifier XE</p>
+</div>
+
+
+<h1>Summary</h1>
+
+<p>You have completed the <i>Analyzing Application with Intel® Trace Analyzer and Collector and Intel® VTune™ Amplifier</i> tutorial. The following is the summary of important things to remember when using these tools to analyze and tune your application.</p>
+<table width="100%">
+<col style="width: 18%;">
+<col style="width: 41%;">
+<col style="width: 41%;">
+<tr>
+<th class="cellrowborder">
+<p>Step</p>
+</th>
+<th class="cellrowborder">
+<p>Tutorial Recap</p>
+</th>
+<th class="cellrowborder">
+<p>Key Tutorial Take-aways</p>
+</th>
+</tr>
+<tr>
+<td class="cellrowborder">
+<p><b>1. Optimize MPI communications</b></p>
+</td>
+<td class="cellrowborder">
+<ul class="hcp1">
+<li>Prepared for the application analysis.</li>
+<li>Used the Event Timeline, Function Profile, Message Profile and Imbalance Diagram to detect serialization that slows down the application.</li>
+<li>Removed serialization by replacing the problem-causing function.</li>
+<li>Compared the original trace file with the trace file of the revised application.</li>
+<li>Analyzed the improved communications in the Event Timeline.</li>
+</ul>
+</td>
+<td class="cellrowborder">
+<ul>
+<li>
+<p>Ungroup MPI functions to identify which functions slow down the application.</p>
+</li>
+<li>
+<p>Use the Function Profile and Message Profile charts to see how much time is spent in MPI.</p>
+</li>
+<li>
+<p>Generate the idealized trace and compare it with the original trace to get an insight on your application under the ideal circumstances and isolate problematic interactions.</p>
+</li>
+<li>
+<p>In the real-world cases, it may be necessary to formulate a hypothesis regarding how the program should behave and to check this hypothesis using the most suitable chart.</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder">
+<p><b>2. Improve intra-process performance</b></p>
+</td>
+<td class="cellrowborder">
+<ul class="hcp1">
+<li>Built the target and launched the Basic Hotspots data collection using the interoperability features of the tools.</li>
+<li>Analyzed function calls and CPU time spent in each program unit of your application and identified the function that took the most CPU time.</li>
+<li>Found possible way to resolve the issue and optimize the source code.</li>
+</ul>
+</td>
+<td class="cellrowborder">
+<ul>
+<li>
+<p>Start analyzing the performance of your application from the <strong>Summary</strong> window to explore the performance metrics for the whole application.</p>
+</li>
+<li>
+<p>Then, move to the <strong>Bottom-up</strong> window to analyze the performance per function. Focus on the <em>hotspots</em> - functions that took the most CPU time. By default, they are located at the top of the table.</p>
+</li>
+<li>
+<p>Double-click the hotspot function in the <strong>Bottom-up</strong> pane or <strong>Call Stack</strong> pane to open its source code.</p>
+</li>
+</ul>
+</td>
+</tr>
+</table>
+<p><b>Next step:</b> Use the Intel® Trace Analyzer and Collector and Intel® VTune™ Amplifier to analyze your own application.</p>
+</body>
+</html>

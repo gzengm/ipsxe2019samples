@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xml:lang="ja-jp" lang="ja-jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="イメージ数を制御する"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9AD30AA8-98FF-4D12-AC12-7AB9888AF2CF.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-91FDD919-FFF6-4DBF-916F-73F02739C677"/>
+<meta name="DC.Language" content="ja-JP"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>イメージ数を制御する</title>
+<script src="resources/prism/prism.js"><!----></script>
+<link href="resources/prism/prism.css" rel="stylesheet"/>
+</head>
+<body id="GUID-91FDD919-FFF6-4DBF-916F-73F02739C677">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+
+
+<h1 class="topictitle1">イメージ数を制御する</h1>
+<div><p>このステップでは、Co-Array Fortran アプリケーションで作成されるイメージの数を制御します。</p>
+<div class="section" id="GUID-D22DC26A-4E63-4EE1-9BB1-3905B0597B96"><ol id="GUID-9AEE252A-13D4-4319-ADA9-5E86D6CAE205"><li><p><b class="uicontrol">[プロジェクト] &gt; [プロパティ]</b> を選択します。プロジェクトの [プロパティ ページ] ダイアログボックスが表示されます。</p>
+</li>
+<li><p>プロジェクトの [プロパティ ページ] ダイアログボックスで、<b class="uicontrol">[構成プロパティ] &gt; [Fortran] &gt; [Language (言語)] &gt; [Coarray Images (Co-Array イメージ)]</b> を選択し、リストボックスに <span class="keyword">2</span> と入力します。<b class="uicontrol">[OK]</b> をクリックして、[プロパティ ページ] ダイアログボックスを閉じます。</p>
+</li>
+<li><p><b class="uicontrol">[ビルド] &gt; [ソリューションのリビルド]</b> を選択して、前回のビルドで作成された既存のファイルをすべて削除してから、ソースコードをコンパイルします。</p>
+</li>
+<li><p><b class="uicontrol">[デバッグ] &gt; [デバッグなしで開始]</b> を選択して、アプリケーションを開始します。</p>
+</li>
+</ol>
+<p>出力結果は次のようになります。</p>
+<pre class="msgblock">
+Hello from image     2 out of    2  total images
+Hello from image     1 out of    2  total images
+</pre>
+</div>
+<p>これで、このチュートリアルは終了です。
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>親トピック:</strong> <a href="GUID-9AD30AA8-98FF-4D12-AC12-7AB9888AF2CF.html">チュートリアル: Windows* 版</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,11 @@
+Intel(R) Fortran sample Puzzle
+
+License Information Follows
+---------------------------
+* src\CUBE.F90, src\CUBE.ICO, src\MAIN.F90
+* src\MENU.RC, src\Resource.h, src\SHAREDAT.F90
+* build.bat, readme.html
+
+Copyright 2016 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement

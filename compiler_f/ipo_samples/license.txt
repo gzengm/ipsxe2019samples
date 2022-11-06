@@ -1,0 +1,10 @@
+Intel® Fortran Interprocedural Optimization (IPO) Sample
+
+License Information Follows
+---------------------------
+* ipo_sample_init.f90, ipo_sample_main.f90, ipo_sample_sum.f90
+* readme.html, Makefile, build.bat
+
+Copyright 2017 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/

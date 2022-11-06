@@ -1,0 +1,84 @@
+
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+ <meta name="generator" content="Adobe RoboHelp 2015">
+<title>Instrument Your Code</title>
+<link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+ <link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+</head>
+<script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+<script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+<body>
+
+ <div style="width: 100%; position: relative;" id="header">
+	<p style="font-style: italic;">Tutorial: 
+	 Reducing Trace File Size for Intel® Trace Analyzer and Collector</p>
+</div>
+
+<h1>Instrument Your Code</h1>
+
+<p><img src="Tutorial_files/itac_icon.png" alt="" border="0">&#160;Insert the <samp class="codeph">MPI_Pcontrol</samp> function call into your application to turn the trace collection on and off.</p>
+<p>To collect the data on the <samp class="codeph">exchange</samp> function of the <samp class="codeph">poisson</samp> application, do the following:</p>
+<ol>
+<li>
+<p>Go to <samp class="codeph">&lt;<i>installdir</i>&gt;/examples/poisson/pardat.f90</samp></p>
+</li>
+<li>
+<p>Edit the <samp class="codeph">pardat.f90</samp> file:</p>
+<ol>
+<li>
+<p>Right after the <samp class="codeph">MPI_Init</samp> call, turn the trace collection off:</p>
+<p class="code">MPI_Pcontrol(0);</p>
+</li>
+<li>
+<p>At the beginning of the <samp class="codeph">poisson_red_black</samp> subroutine, turn the trace collection on:</p>
+<p class="code">MPI_Pcontrol(1);</p>
+</li>
+<li>
+<p>At the end of the <samp class="codeph">poisson_red_black</samp> subroutine, turn the trace collection off</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Save the <samp class="codeph">pardat.f90</samp> file.</p>
+</li>
+<li>
+<p>Rebuild the application.</p>
+</li>
+<li>
+<p>Run the application.</p>
+<p><b>Linux* OS:</b></p>
+<p class="code">$ mpirun -trace -n 4 ./poisson</p>
+<p><b>Windows* OS:</b></p>
+<p class="code">&gt; mpiexec -n 4 poisson.exe</p>
+</li>
+</ol>
+<p>Check your work:</p>
+<ol>
+<li>
+<p>Open the resulting trace file <samp class="codeph">poisson.stf</samp> in Intel® Trace Analyzer.</p>
+</li>
+<li>
+<p>In the Function Profile, right-click <b>Group MPI</b> and select <b>Ungroup Group MPI</b> from the context menu.</p>
+</li>
+<li>
+<p>Go to the <b>Load Balance</b> tab of the Function Profile to see how the <samp class="codeph">MPI_Finalize</samp>, <samp class="codeph">MPI_Sendrecv</samp> and <samp class="codeph">MPI_Allreduce</samp> functions are distributed among the four processes.</p>
+</li>
+<li>
+<p>Go to <b>Charts &gt; Event Timeline</b> to see the activities in each of the four processes individually.</p>
+</li>
+</ol>
+<p>You can see that the trace data was collected only for a particular part of the code. Note the <samp class="codeph">VT_API</samp> group: it stands for the part of the code where trace data collection was turned off:</p>
+<p><img src="Tutorial_files/image03.png" alt="" border="0"></p>
+<h2>Key Terms</h2>
+<p class="seealsoitem"><a href="Key_Terms.htm#config_file">Configuration File</a><br>
+<a href="Key_Terms.htm#event_timeline">Event Timeline</a><br>
+<a href="Key_Terms.htm#function_profile">Function Profile</a></p>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+Intel(R) Fortran OpenGL Samples
+
+License Information Follows
+---------------------------
+* AnimateGL\*.*
+* Puzzle\*.*
+* Rings\*.*
+* build.bat, readme.html
+
+Copyright 2016 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement

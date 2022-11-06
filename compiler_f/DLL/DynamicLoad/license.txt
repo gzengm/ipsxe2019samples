@@ -1,0 +1,10 @@
+Intel(R) Fortran sample - DynamicLoad
+
+License Information Follows
+---------------------------
+* src\DynamicLoad.f90, src\USERFUNC.f90
+* build.bat, readme.html
+
+Copyright 2019 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement

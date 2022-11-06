@@ -1,0 +1,11 @@
+Point-to-point C sample for the Intel(R) Trace Analyzer and Collector
+
+License Information Follows
+---------------------------
+Original source code: src\allpairc.c, src\testutil.h
+Mpich license: http://www-unix.mcs.anl.gov/mpi/mpich2/index.htm
+
+readme.htm, Makefile, build.bat
+Copyright 2018 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/  

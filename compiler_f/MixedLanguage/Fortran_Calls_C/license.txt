@@ -1,0 +1,10 @@
+Fortran_Calls_C Mixed Language sample
+
+License Information Follows
+---------------------------
+* Csub.cpp, Fmain.f90
+* readme.html, Build.bat, Fortran_Calls_C.sln
+
+Copyright 2019 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/  

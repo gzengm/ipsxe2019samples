@@ -1,0 +1,10 @@
+Fortran Optimize Sample
+
+License Information Follows
+---------------------------
+* int_sin.f90 
+* makefile, build.bat, readme.html
+
+Copyright 2019 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/ 

@@ -1,0 +1,10 @@
+Buffer overlap sample for the Intel(R) Trace Analyzer and Collector
+
+License Information Follows
+---------------------------
+* src/MPI_Isend.c 
+* readme.htm, Makefile, build.bat
+
+Copyright 2018 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/  

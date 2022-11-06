@@ -1,0 +1,56 @@
+
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+ <meta name="generator" content="Adobe RoboHelp 2015">
+<title>Collective Operations</title>
+<link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+ <link rel="StyleSheet" href="intel_css_styles.css" type="text/css">
+</head>
+<script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+<script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+<body>
+
+ <div style="width: 100%; position: relative;" id="header">
+	<p style="font-style: italic;">Tutorial: 
+	 Reducing Trace File Size for Intel® Trace Analyzer and Collector</p>
+</div>
+
+<h1>Get Trace Data on Collective Operations</h1>
+<p><img src="Tutorial_files/itac_icon.png" alt="" border="0">&#160;To collect information about the Collective operations in the <samp class="codeph">poisson</samp> application, run the application using the commands below.</p>
+<p><b>Linux* OS:</b></p>
+<pre>
+$ mpirun –trace –trace-collectives –n 4 ./poisson
+</pre>
+<p><b>Windows* OS:</b></p>
+<pre>
+&gt; mpiexec –trace-collectives –n 4 poisson.exe
+</pre>
+<p>Check your work:</p>
+<ol>
+<li>
+<p>Open the resulting trace file <samp class="codeph">poisson.stf</samp> in Intel® Trace Analyzer.</p>
+</li>
+<li>
+<p>In the Function Profile, right-click <b>Group MPI</b> and select <b>Ungroup Group MPI</b> from the context menu.</p>
+</li>
+<li>
+<p>Go to the <b>Load Balance</b> tab of the Function Profile to see how the <samp class="codeph">MPI_Bcast</samp> and <samp class="codeph">MPI_Allreduce</samp> collectives are distributed among the four processes.</p>
+</li>
+<li>
+<p>Go to <b>Charts &gt; Event Timeline</b> to see the activities in each of the four processes individually.</p>
+</li>
+</ol>
+<p>You can see that the trace data was collected only for the Collective operations that are presented by two functions: <samp class="codeph">MPI_Bcast</samp> and <samp class="codeph">MPI_Allreduce</samp>:</p>
+<p><img src="Tutorial_files/image01.png" alt="" border="0"></p>
+<h2>Key Terms</h2>
+<p class="seealsoitem"><a href="Key_Terms.htm#config_file">Configuration File</a><br>
+<a href="Key_Terms.htm#event_timeline">Event Timeline</a><br>
+<a href="Key_Terms.htm#function_profile">Function Profile</a></p>
+
+</body>
+</html>

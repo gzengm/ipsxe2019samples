@@ -1,0 +1,10 @@
+Intel® Fortran AutoDice Sample
+
+License Information Follows
+---------------------------
+* ADOobjs.f90, AutoDice.f90, EXCEL.f90
+* readme.html, build.bat
+
+Copyright 2016 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/

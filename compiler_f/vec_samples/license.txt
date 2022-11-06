@@ -1,0 +1,10 @@
+Vectorization Sample
+
+License Information Follows
+---------------------------
+* src\driver.f90, src\matvec.f90
+* readme.html, Makefile, build.bat
+
+Copyright 2017 Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/  

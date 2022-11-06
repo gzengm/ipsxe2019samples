@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xml:lang="ja-jp" lang="ja-jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="データのアライメントによりパフォーマンスを向上する"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9AD30AA8-98FF-4D12-AC12-7AB9888AF2CF.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-242A8980-1567-4E58-9368-8296023C18FB"/>
+<meta name="DC.Language" content="ja-JP"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>データのアライメントによりパフォーマンスを向上する</title>
+<script src="resources/prism/prism.js"><!----></script>
+<link href="resources/prism/prism.css" rel="stylesheet"/>
+</head>
+<body id="GUID-242A8980-1567-4E58-9368-8296023C18FB">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+
+
+<h1 class="topictitle1">データのアライメントによりパフォーマンスを向上する</h1>
+<div><div class="section" id="GUID-B4538FB5-8B3D-404E-9EF9-F45079972D18"><p>ベクトル化はアライメントされたデータで実行する場合、より高速なコードを生成することができます。ここでは、<span class="filepath">driver.f90</span> の 配列 <samp class="codeph">a</samp>、<samp class="codeph">b</samp>、<samp class="codeph">c</samp> を 16 バイト境界にアライメントすることによりベクトル化のパフォーマンスを向上させます。このアライメントによって、ベクトル化はすべての配列に速度の遅いアライメントされていないロード命令ではなく、アライメント済みロード命令を使用して、アライメントのランタイムテストを回避することできます。<samp class="codeph">ALIGNED</samp> マクロを使用すると、<span class="filepath">driver.f90</span> の <samp class="codeph">a</samp>、<samp class="codeph">b</samp>、<samp class="codeph">c</samp> にアライメント・ディレクティブを挿入します。構文は次のとおりです。</p>
+<p><samp class="codeph">!dir$attributes align : 16 :: a,b,c</samp></p>
+<p>この命令は、16 バイト境界でアライメントされた配列を作成するようコンパイラーに指示します。SSE アライメント済みロード命令が使用されるようになります。</p>
+<p>さらに、行列 a の列の高さが 16 バイトの倍数になるようにパディングする必要があります。<samp class="codeph">a</samp> の各列は同じ 16 バイトのアライメントになります。実際、列間の一定のアライメントは、配列の開始をアライメントするよりも非常に重要です。</p>
+<p>また、このアライメントによる利点を最大限に活かすには、次のディレクティブを使用して、<span class="filepath">matvec.f90</span> の配列がアライメントされていると安全に仮定できることをベクトル化機能に知らせる必要があります。</p>
+<p><samp class="codeph">!dir$ vector aligned</samp></p>
+<div class="Note"><h3 class="NoteTipHead">注</h3> <p><samp class="codeph">!dir$ vector aligned</samp> を使用する場合、ループのすべての配列またはサブ配列が確実に 16 バイトにアライメントされていなければなりません。そうでない場合、ランタイムエラーが発生することがあります。<samp class="codeph">!dir$ vector aligned</samp> を使用していなくても、データのアライメントによりパフォーマンスの利点は得られます。<span class="filepath">matvec.f90</span> の <samp class="codeph">ALIGNED</samp> マクロによるコードを参照してください。</p>
+<p>インテル&reg; AVX 命令セット向けにコンパイルする場合は、データを 32 バイト境界にアライメントしてください。パフォーマンスが向上することがあります。この場合、<samp class="codeph">!dir$ vector aligned</samp> は、コンパイラーにデータを 32 バイト境界にアライメントするよう指示します。</p>
+</div>
+<p>データを確実に一貫したアライメントにするには、<samp class="codeph">ALIGNED</samp> プリプロセッサー定義を追加した後、プログラムをリビルドしてください。</p>
+<p><b class="uicontrol">[Fortran] &gt; [Preprocessor (プリプロセッサー)] &gt; [Preprocessor Definitions (プリプロセッサーの定義)]</b></p>
+<p>プロジェクトをリビルドします。レポートにアラインされたアクセスが表示されます。</p>
+</div>
+<p><a href="GUID-AF6A1A2C-41AE-4051-A147-41053698CB84.html"><img class="border(0)" style="border-style: none" src="GUID-7F3B04BE-CA31-4F1C-B7C4-88C93723B324-low.jpg" alt="次へ: プロシージャー間の最適化を使用してパフォーマンスを向上する"/></a></p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>親トピック:</strong> <a href="GUID-9AD30AA8-98FF-4D12-AC12-7AB9888AF2CF.html">チュートリアル: Windows* 版</a></div>
+</div>
+<div/>
+</body>
+</html>

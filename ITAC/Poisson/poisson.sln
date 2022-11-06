@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "poisson_icomm", "msvs\poisson_icomm.vfproj", "{3227C1B0-26E3-4247-A8FC-FF368BEE7054}"
+EndProject
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "poisson_sendrecv", "msvs\poisson_sendrecv.vfproj", "{40AE2E10-D96F-4D66-897C-A110BE382B19}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3227C1B0-26E3-4247-A8FC-FF368BEE7054}.Debug|x64.ActiveCfg = Debug|x64
+		{3227C1B0-26E3-4247-A8FC-FF368BEE7054}.Debug|x64.Build.0 = Debug|x64
+		{3227C1B0-26E3-4247-A8FC-FF368BEE7054}.Release|x64.ActiveCfg = Release|x64
+		{3227C1B0-26E3-4247-A8FC-FF368BEE7054}.Release|x64.Build.0 = Release|x64
+		{40AE2E10-D96F-4D66-897C-A110BE382B19}.Debug|x64.ActiveCfg = Debug|x64
+		{40AE2E10-D96F-4D66-897C-A110BE382B19}.Debug|x64.Build.0 = Debug|x64
+		{40AE2E10-D96F-4D66-897C-A110BE382B19}.Release|x64.ActiveCfg = Release|x64
+		{40AE2E10-D96F-4D66-897C-A110BE382B19}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

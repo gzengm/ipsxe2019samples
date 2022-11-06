@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "QWPaint", "QWPaint.vfproj", "{DF92F22B-8CDB-45B2-ADED-BD6BDFBEFE8A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF92F22B-8CDB-45B2-ADED-BD6BDFBEFE8A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DF92F22B-8CDB-45B2-ADED-BD6BDFBEFE8A}.Debug|Win32.Build.0 = Debug|Win32
+		{DF92F22B-8CDB-45B2-ADED-BD6BDFBEFE8A}.Debug|x64.ActiveCfg = Debug|x64
+		{DF92F22B-8CDB-45B2-ADED-BD6BDFBEFE8A}.Debug|x64.Build.0 = Debug|x64
+		{DF92F22B-8CDB-45B2-ADED-BD6BDFBEFE8A}.Release|Win32.ActiveCfg = Release|Win32
+		{DF92F22B-8CDB-45B2-ADED-BD6BDFBEFE8A}.Release|Win32.Build.0 = Release|Win32
+		{DF92F22B-8CDB-45B2-ADED-BD6BDFBEFE8A}.Release|x64.ActiveCfg = Release|x64
+		{DF92F22B-8CDB-45B2-ADED-BD6BDFBEFE8A}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,30 @@
+!
+! ..\src\whizzy.fd generated from ..\src\whizzy.h
+!
+      integer, parameter :: IDD_WHIZZY = 101
+      integer, parameter :: IDC_BOX_LANGUAGE = 1013
+      integer, parameter :: IDC_EDIT_CELSIUS = 1003
+      integer, parameter :: IDC_TEXT_FAHRENHEIT = 1011
+      integer, parameter :: IDC_BUTTONRIGHT = 1018
+      integer, parameter :: IDC_STATIC_CREATURE = 1015
+      integer, parameter :: IDC_BOX_CREATURE = 1014
+      integer, parameter :: IDC_RADIO_ENGLISH = 1004
+      integer, parameter :: IDC_BUTTON_ENABLE = 1000
+      integer, parameter :: IDC_TEXT_UNAVAILABLE = 1025
+      integer, parameter :: IDC_CHECK_BIG = 1008
+      integer, parameter :: IDC_BUTTONLEFT = 1019
+      integer, parameter :: IDC_RADIO_SPANISH = 1006
+      integer, parameter :: IDC_BUTTON_DEJAVU = 1026
+      integer, parameter :: IDC_SCROLLBAR_TEMPERATURE = 1001
+      integer, parameter :: IDC_LIST1 = 1016
+      integer, parameter :: IDC_LIST2 = 1017
+      integer, parameter :: IDC_TEXT_AVAILABLE = 1024
+      integer, parameter :: IDC_BOX_EMPLOYEES = 1022
+      integer, parameter :: IDC_EDIT_FAHRENHEIT = 1002
+      integer, parameter :: IDC_TEXT_CELSIUS = 1012
+      integer, parameter :: IDC_BOX_SURVEY = 1023
+      integer, parameter :: IDC_STATIC_WISDOM = 1021
+      integer, parameter :: IDC_CHECK_GREEN = 1009
+      integer, parameter :: IDC_RADIO_FRENCH = 1005
+      integer, parameter :: IDC_BOX_TEMPERATURE = 1010
+      integer, parameter :: IDC_COMBO1 = 1020

@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Improving Performance by Aligning Data"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9AD30AA8-98FF-4D12-AC12-7AB9888AF2CF.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-242A8980-1567-4E58-9368-8296023C18FB"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Improving Performance by Aligning Data</title>
+<script src="resources/prism/prism.js"><!----></script>
+<link href="resources/prism/prism.css" rel="stylesheet"/>
+</head>
+<body id="GUID-242A8980-1567-4E58-9368-8296023C18FB">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+
+
+<h1 class="topictitle1">Improving Performance by Aligning Data</h1>
+<div><div class="section" id="GUID-6B2F5190-9F96-408C-9031-968AA542A6AB"><p>The vectorizer can generate faster code when operating on aligned data. In this activity you will improve performance by aligning the arrays 
+        <samp class="codeph">a</samp>, 
+        <samp class="codeph">b</samp>, and 
+        <samp class="codeph">x</samp> in 
+        <span class="filepath">Driver.c</span> on a 16-byte boundary so that the vectorizer can use aligned load instructions for all arrays rather than the slower unaligned load instructions and can avoid runtime tests of alignment. Using the 
+        <samp class="codeph">ALIGNED</samp> macro will modify the declarations of 
+        <samp class="codeph">a</samp>, 
+        <samp class="codeph">b</samp>, and 
+        <samp class="codeph">x</samp> in 
+        <span class="filepath">Driver.c</span> using 
+        <samp class="codeph">__align declspec</samp>, which has the following syntax: 
+      </p>
+<p><samp class="codeph">__declspec(align(16)) float array[30];</samp></p>
+<p>This instructs the compiler to create an array that it is aligned on a "base"-byte boundary with an "offset" (Default=0) in bytes from that boundary. Example: 
+      </p>
+<p><samp class="codeph">__declspec(align(16)) FTYPE a[ROW][COLWIDTH];</samp></p>
+<p>In addition, the row length of the matrix, 
+        <samp class="codeph">a</samp>, needs to be padded out to be a multiple of 16 bytes, so that each individual row of 
+        <samp class="codeph">a</samp> is 16-byte aligned. To derive the maximum benefit from this alignment, we also need to tell the vectorizer it can safely assume that the arrays in 
+        <span class="filepath">Multiply.c</span> are aligned by using 
+        <samp class="codeph">#pragma vector aligned</samp>. 
+      </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>If you use 
+          <samp class="codeph">#pragma vector aligned</samp>, you must be sure that all the arrays or subarrays in the loop are 16-byte aligned. Otherwise, you may get a runtime error. Aligning data may still give a performance benefit even if 
+          <samp class="codeph">#pragma vector aligned</samp> is not used. See the code under the 
+          <samp class="codeph">ALIGNED</samp> macro in 
+          <span class="filepath">Multiply.c</span></p>
+<p>If your compilation targets the Intel&reg; AVX instruction set, you should try to align data on a 32-byte boundary. This may result in improved performance. In this case, 
+          <samp class="codeph">#pragma vector aligned</samp> advises the compiler that the data is 32-byte aligned. 
+        </p>
+</div>
+<p> Use 
+      <span class="option">/Qopt-report:4</span> to see the report reflect the updated references (in your project's property pages select 
+      <b class="uicontrol">Configuration Properties</b> &gt; <b class="uicontrol">C/C++</b> &gt; <b class="uicontrol"> Diagnostics [Intel C++]</b> and for 
+      <b class="uicontrol">Optimization Diagnostics Level</b>, select 
+      <b class="uicontrol">Level 4 (/Qopt-report:4)</b>). Rebuild the program after adding the 
+      <samp class="codeph">ALIGNED</samp> preprocessor definition to ensure consistently aligned data. 
+      </p>
+<p>Multiply.optrpt before using #pragma vector aligned: 
+      </p>
+<pre class="msgblock">
+LOOP BEGIN at Multiply.c(49,9)
+Peeled loop for vectorization
+LOOP END
+
+LOOP BEGIN at Multiply.c(49,9)
+Multiply.c(50,13):remark #15388: vectorization support: reference a[i][j] has aligned access
+Multiply.c(50,13):remark #15388: vectorization support: reference x[j] has aligned access
+Multiply.c(49,9):remark #15305: vectorization support: vector length 2
+Multiply.c(49,9):remark #15399: vectorization support: unroll factor set to 4
+Multiply.c(49,9):remark #15309: vectorization support: normalized vectorization overhead 1.031
+Multiply.c(49,9):remark #15300: LOOP WAS VECTORIZED
+Multiply.c(49,9):remark #15442: entire loop may be executed in remainder
+Multiply.c(49,9):remark #15448: unmasked aligned unit stride loads: 2 
+Multiply.c(49,9):remark #15475: --- begin vector cost summary ---
+Multiply.c(49,9):remark #15476: scalar cost: 10 
+Multiply.c(49,9):remark #15477: vector cost: 4.000 
+Multiply.c(49,9):remark #15478: estimated potential speedup: 2.380 
+Multiply.c(49,9):remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at Multiply.c(49,9)
+Alternate Alignment Vectorized Loop
+LOOP END
+
+LOOP BEGIN at Multiply.c(49,9)
+Remainder loop for vectorization
+LOOP END</pre>
+<p>Multiply.optrpt after adding 
+        <samp class="codeph">ALIGNED</samp> to the preprocessor definitions: 
+      </p>
+<pre class="msgblock">
+LOOP BEGIN Multiply.c(49,9)
+Multiply.c(50,13):remark #15388: vectorization support: reference a[i][j] has aligned access
+Multiply.c(50,13):remark #15388: vectorization support: reference x[j] has aligned access
+Multiply.c(49,9):remark #15305: vectorization support: vector length 2
+Multiply.c(49,9):remark #15399: vectorization support: unroll factor set to 4
+Multiply.c(49,9):remark #15309: vectorization support: normalized vectorization overhead 0.594
+Multiply.c(49,9):remark #15300: LOOP WAS VECTORIZED
+Multiply.c(49,9):remark #15448: unmasked aligned unit stride loads: 2 
+Multiply.c(49,9):remark #15475: --- begin vector cost summary ---
+Multiply.c(49,9):remark #15476: scalar cost: 10 
+Multiply.c(49,9):remark #15477: vector cost: 4.000 
+Multiply.c(49,9):remark #15478: estimated potential speedup: 2.410 
+Multiply.c(49,9):remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at Multiply.c(49,9)
+Remainder loop for vectorization
+Multiply.c(50,13):remark #15388: vectorization support: reference a[i][j] has aligned access
+Multiply.c(50,13):remark #15388: vectorization support: reference x[j] has aligned access
+Multiply.c(49,9):remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or /Qvec-threshold0 to override
+Multiply.c(49,9):remark #15305: vectorization support: vector length 2
+Multiply.c(49,9):remark #15309: vectorization support: normalized vectorization overhead 2.417
+LOOP END</pre>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3> Your line and column numbers may be different. 
+        </div>
+</p>
+<p>Now, run the executable and record the execution time. 
+      </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-9AD30AA8-98FF-4D12-AC12-7AB9888AF2CF.html">Tutorial: Windows* Version</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xml:lang="ja-jp" lang="ja-jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="イメージ数を制御する"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-08A02E1B-9BA2-4127-A95B-1C0E1F0B127B.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-D950EFC8-74C5-4A06-8603-5113C6305F78"/>
+<meta name="DC.Language" content="ja-JP"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>イメージ数を制御する</title>
+<script src="resources/prism/prism.js"><!----></script>
+<link href="resources/prism/prism.css" rel="stylesheet"/>
+</head>
+<body id="GUID-D950EFC8-74C5-4A06-8603-5113C6305F78">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+
+
+<h1 class="topictitle1">イメージ数を制御する</h1>
+<div><p>このステップでは、Co-Array Fortran アプリケーションで作成されるイメージの数を制御します。</p>
+<div class="section" id="GUID-B94820B5-7076-49B2-9740-86B31C985818"><p>イメージの数を制御する方法は 2 つあります。1 つ目は、<span class="option">-coarray-num-images=N</span> コンパイラー・オプションを使用してアプリケーションをコンパイルする方法です (<samp class="codeph">N</samp> はイメージ数)。このオプションは、実行時にアプリケーションで作成されるイメージの数を設定します。例えば、<span class="option">-coarray-num-images=2</span> オプションは <span class="filepath">hello_image.f90</span> プログラムのイメージを 2 つに限定します。</p>
+<p><samp class="codeph">ifort -coarray -coarray-num-images=2 hello_image.f90 -o hello_image</samp></p>
+<pre class="msgblock">
+Hello from image     2 out of    2  total images
+Hello from image     1 out of    2  total images
+</pre>
+<p>2 つ目は、環境変数 <samp class="codeph">FOR_COARRAY_NUM_IMAGES</samp> にスポーンするイメージの数を設定する方法です。
+      </p>
+<p>例えば、<samp class="codeph">hello_image.f90</samp> を <span class="option">-coarray-num-images</span> オプションなしで再コンパイルします。実行ファイル <samp class="codeph">hello_image</samp> を実行する前に、環境変数 <samp class="codeph">FOR_COARRAY_NUM_IMAGES</samp> に、プログラムの実行時に作成するイメージの数を設定します。</p>
+<p>bash シェルでの環境変数設定コマンド: <samp class="codeph">export FOR_COARRAY_NUM_IMAGES=4</samp></p>
+<p>csh/tcsh シェルでの環境変数設定コマンド: <samp class="codeph">setenv FOR_COARRAY_NUM_IMAGES 4</samp></p>
+<p>bash シェルを使用する例は以下のとおりです。</p>
+<p><samp class="codeph">ifort -coarray hello_image.f90 -o hello_image</samp></p>
+<p><samp class="codeph">export FOR_COARRAY_NUM_IMAGES=4</samp></p>
+<pre class="msgblock">
+Hello from image     1 out of      4  total images
+Hello from image     3 out of      4  total images
+Hello from image     2 out of      4  total images
+Hello from image     4 out of      4  total images
+</pre>
+<p><samp class="codeph">export FOR_COARRAY_NUM_IMAGES=3</samp><pre class="msgblock">
+Hello from image     3 out of      3  total images
+Hello from image     2 out of      3  total images
+Hello from image     1 out of      3  total images
+</pre>
+</p>
+<div class="Note"><h3 class="NoteTipHead">注</h3> <p><samp class="codeph">FOR_COARRAY_NUM_IMAGES=N</samp> を設定すると、<span class="option">-coarray_num_images</span> コンパイラー・オプションよりも優先されます。</p>
+</div>
+</div>
+<p>これで、このチュートリアルは終了です。</p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>親トピック:</strong> <a href="GUID-08A02E1B-9BA2-4127-A95B-1C0E1F0B127B.html">チュートリアル: Linux* 版</a></div>
+</div>
+<div/>
+</body>
+</html>

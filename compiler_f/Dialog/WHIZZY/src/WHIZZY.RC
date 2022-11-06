@@ -1,0 +1,112 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "whizzy.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_WHIZZY DIALOG DISCARDABLE  10, 10, 281, 265
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Whizzy Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Button1",IDC_BUTTON_ENABLE,107,10,66,19
+    GROUPBOX        "&Temperature",IDC_BOX_TEMPERATURE,7,47,96,79
+    LTEXT           "Fahrenheit:",IDC_TEXT_FAHRENHEIT,13,65,38,8
+    EDITTEXT        IDC_EDIT_FAHRENHEIT,53,64,39,12,ES_AUTOHSCROLL
+    LTEXT           "Celsius:",IDC_TEXT_CELSIUS,13,81,27,8
+    EDITTEXT        IDC_EDIT_CELSIUS,53,80,39,12,ES_AUTOHSCROLL
+    SCROLLBAR       IDC_SCROLLBAR_TEMPERATURE,13,100,79,14
+    GROUPBOX        "Language",IDC_BOX_LANGUAGE,116,47,65,79
+    CONTROL         "English",IDC_RADIO_ENGLISH,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,120,60,52,13
+    CONTROL         "French",IDC_RADIO_FRENCH,"Button",BS_AUTORADIOBUTTON,
+                    120,74,52,13
+    CONTROL         "Spanish",IDC_RADIO_SPANISH,"Button",BS_AUTORADIOBUTTON,
+                    120,88,52,13
+    GROUPBOX        "Creature",IDC_BOX_CREATURE,193,47,77,79
+    CONTROL         "Big",IDC_CHECK_BIG,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,199,63,64,12
+    CONTROL         "Green",IDC_CHECK_GREEN,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,199,76,64,12
+    LTEXT           "Answer",IDC_STATIC_CREATURE,198,97,67,15
+    GROUPBOX        "Employees",IDC_BOX_EMPLOYEES,8,138,153,91
+    LTEXT           "Available",IDC_TEXT_AVAILABLE,17,153,43,9
+    LTEXT           "Unavailable",IDC_TEXT_UNAVAILABLE,105,151,43,9
+    LISTBOX         IDC_LIST1,17,169,45,51,LBS_SORT | LBS_MULTIPLESEL | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&>>",IDC_BUTTONRIGHT,73,170,22,18
+    PUSHBUTTON      "&<<",IDC_BUTTONLEFT,73,193,22,18
+    LISTBOX         IDC_LIST2,105,169,45,51,LBS_SORT | LBS_MULTIPLESEL | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Survey",IDC_BOX_SURVEY,171,138,99,65
+    COMBOBOX        IDC_COMBO1,194,152,62,63,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Static",IDC_STATIC_WISDOM,175,172,89,26
+    DEFPUSHBUTTON   "OK",IDOK,79,242,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,142,242,50,14
+    PUSHBUTTON      "Déjà Vu",IDC_BUTTON_DEJAVU,193,212,50,14
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "whizzy.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,15 @@
+NQueens Sample
+
+License Information Follows
+---------------------------
+* src\common\nq.h, src\common\nq_main.h, src\common\nq-Dlg.h, src\common\nq-serial.h
+* src\common\resource.h, src\common\stdafx.h, src\common\nq-Dlg.cpp 
+* src\common\nq-main.cpp, src\common\nq-serial.cpp, src\common\stdafx.cpp
+* src\nq-tbb-intel\nq-tbb-intel.h, src\nq-tbb-lambda\nq-tbb-lambda.h
+* src\nq-tbb-intel\nq-tbb-intel.cpp, src\nq-tbb-lambda\nq-tbb-lambda.cpp
+* src\nq-win32api\nq-win32api.h, src\nq-win32api\nq-win32api.cpp
+* readme.html, Build.bat, src\README_FIRST\README_FIRST.txt
+
+Copyright Intel Corporation
+
+* license: http://software.intel.com/en-us/articles/intel-sample-source-code-license-agreement/ 

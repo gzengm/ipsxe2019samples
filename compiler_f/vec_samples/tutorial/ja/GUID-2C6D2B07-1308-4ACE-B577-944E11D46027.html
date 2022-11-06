@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xml:lang="ja-jp" lang="ja-jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="ベクトル化レポートを生成する"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9AD30AA8-98FF-4D12-AC12-7AB9888AF2CF.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-2C6D2B07-1308-4ACE-B577-944E11D46027"/>
+<meta name="DC.Language" content="ja-JP"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>ベクトル化レポートを生成する</title>
+<script src="resources/prism/prism.js"><!----></script>
+<link href="resources/prism/prism.css" rel="stylesheet"/>
+</head>
+<body id="GUID-2C6D2B07-1308-4ACE-B577-944E11D46027">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+
+
+<h1 class="topictitle1">ベクトル化レポートを生成する</h1>
+<div><p>ベクトル化レポートは、コード中のベクトル化されたループおよびされなかったループとその理由を示します。ベクトル化レポートを生成するには、<span class="option">Qopt-report</span> または <span class="option">Qopt-report-phase:vec</span> コンパイラー・オプションを使用します。</p>
+<p><span class="option">Qopt-report-phase:vec</span> とともに指定すると、<span class="option">Qopt-report:1</span> オプションはコード中のベクトル化されたループを示すレポートを生成し、<span class="option">Qopt-report:2</span> オプションはコード中のベクトル化されたループおよびされなかったループとその理由を示すレポートを生成します。</p>
+<p>これらのオプションを使用するには、次の操作を行います。</p>
+<ol id="GUID-0C141845-48D4-4438-A83C-01D00390D53F"><li><p>プロジェクトのプロパティー・ページで、<b class="uicontrol">[構成プロパティ]</b> &gt; <b class="uicontrol">[Fortran]</b> &gt; <b class="uicontrol">[Diagnostics (診断)]</b> を選択します。</p>
+</li>
+<li><p><b class="uicontrol">[Optimization Diagnostic Level (最適化診断レベル)]</b> を <b class="uicontrol">[Level 1 (レベル 1) (/Qopt-report:1)]</b> に設定します。</p>
+</li>
+<li><p><b class="uicontrol">[Optimization Diagnostics Phase (最適化診断フェーズ)]</b> を <b class="uicontrol">[Vectorization (ベクトル化) (/Qopt-report-phase:vec)]</b> に設定します。</p>
+</li>
+</ol>
+<p><span class="option">O1</span> オプションを指定するとベクトル化が無効になるため、コンパイラーはベクトル化レポートを生成しません。ベクトル化レポートを生成するには、<span class="option">O2</span> オプションを指定してプロジェクトをビルドしてください。</p>
+<p><span class="option">O2</span> オプションを設定するには、次の操作を行います。</p>
+<ol id="GUID-4B2FC15A-0E14-4210-BBCA-9BFA18640598"><li><p>プロジェクトのプロパティー・ページで、<b class="uicontrol">[構成プロパティ]</b> &gt; <b class="uicontrol">[Fortran]</b> &gt; <b class="uicontrol">[Optimization (最適化)] </b>を選択します。</p>
+</li>
+<li><p><b class="uicontrol">[Optimization (最適化)]</b> を <b class="uicontrol">[Maximize Speed (実行速度)]</b> に設定します。</p>
+</li>
+</ol>
+<p>レポートを表示するため、プリプロセッサー・マクロ <samp class="codeph">NOFUNCCALL</samp> を定義して、<span class="filepath">driver.f90</span> にある <samp class="codeph">matvec()</samp> の呼び出しを同等の Fortran コードに置き換えます。プロジェクトのプロパティー・ページで、<b class="uicontrol">[構成プロパティ]</b> &gt; <b class="uicontrol">[Fortran]</b> &gt; <b class="uicontrol">[Preprocessor (プリプロセッサー)]</b> &gt; <b class="uicontrol">[Preprocessor Definitions (プリプロセッサーの定義)]</b> のユーザー定義マクロのリストに <samp class="codeph">NOFUNCCALL</samp> を追加します (リストに複数のマクロを含める場合はカンマで区切ってください)。</p>
+<p>プロジェクトをリビルドし、実行ファイルを開始します (<b class="uicontrol">[デバッグ] &gt; [デバッグなしで開始]</b>)。新しい実行時間を記録します。<b class="uicontrol">[Compiler Optimization Report (コンパイラーによる最適化レポート)]</b> ウィンドウまたはオブジェクト・ディレクトリーの <span class="filepath">*.optrpt</span> ファイルに示されるように、短縮された時間は主に、<span class="filepath">matvec.f90</span> の行 32 の内部ループの自動ベクトル化によるものです。</p>
+<p>例えば、<span class="filepath">matvec.optrpt</span> と <span class="filepath">driver.optrpt</span> には以下のメッセージが出力されます。
+    <pre class="msgblock">
+Matvec.f90(32,3): リマーク #15300: ループがベクトル化されました。
+</pre>
+</p>
+<p><div class="Note"><h3 class="NoteTipHead">注</h3> 行番号および列番号は異なる場合があります。
+    </div>
+</p>
+<p><span class="option">Qopt-report2</span> オプションにより生成されるリストには、ベクトル化されなかったループとその理由も含まれます。<span class="option">Qopt-report:1</span> と同様の操作で、[Optimization Diagnostic Level (最適化診断レベル)] を <b class="uicontrol">[Level 2 (レベル 2) (/Qopt-report:2)]</b> に設定して <span class="option">Qopt-report:2</span> オプションを指定します。</p>
+<p>プロジェクトをリビルドします。</p>
+<p>ベクトル化レポートは、<span class="filepath">matvec.f90</span> の行番号 33 のループは、ループの入れ子の最内ループではないためにベクトル化されなかったことを示しています。</p>
+<div class="Note"><h3 class="NoteTipHead">注</h3> <ul id="GUID-96F67F49-0658-4E1F-A4D4-6E9A3C18C3A6"><li><p>行番号および列番号は異なる場合があります。</p>
+</li>
+<li><p><span class="option">Qopt-report</span> および <span class="option">Qopt-report-phase</span> コンパイラー・オプションの詳細については、『デベロッパー・ガイドおよびリファレンス』の「コンパイラー・オプション」を参照してください。</p>
+</li>
+</ul>
+</div>
+<p><a href="GUID-242A8980-1567-4E58-9368-8296023C18FB.html"><img class="border(0)" style="border-style: none" src="GUID-7F3B04BE-CA31-4F1C-B7C4-88C93723B324-low.jpg" alt="次へ: データのアライメントによりパフォーマンスを向上する"/></a></p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>親トピック:</strong> <a href="GUID-9AD30AA8-98FF-4D12-AC12-7AB9888AF2CF.html">チュートリアル: Windows* 版</a></div>
+</div>
+<div/>
+</body>
+</html>

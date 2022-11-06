@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Modifying the Program to Use Coarrays"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-47F3A864-0145-403B-A45E-5D813BFB4EBA.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-886EF7AE-1E42-4098-A58F-6911D8D996F3"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Modifying the Program to Use Coarrays</title>
+<script src="resources/prism/prism.js"><!----></script>
+<link href="resources/prism/prism.css" rel="stylesheet"/>
+</head>
+<body id="GUID-886EF7AE-1E42-4098-A58F-6911D8D996F3">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+
+
+<h1 class="topictitle1">Modifying the Program to Use Coarrays</h1>
+<div><p> Coarrays are used to split the trials across multiple copies of the program. They are called images. Each image has its own local variables, plus a portion of any coarrays shared variables. A coarray can be a scalar. A coarray can be thought of as having extra dimensions, referred to as codimensions. To declare a coarray, either add the 
+      <samp class="codeph">CODIMENSION</samp> attribute, or specify the cobounds alongside the variable name. The cobounds are always enclosed in square brackets. Some examples: 
+      <pre>real, dimension(100), codimension[*] :: A
+integer :: B[3,*]</pre></p>
+<p> When specifying cobounds in a declaration, the last cobound must be an asterisk. This indicates that it depends on the number of images in the application. According to the Fortran standard, you can have up to 15 cobounds (a corank of 15), but the sum of the number of cobounds and array bounds must not exceed 31. As with array bounds, it is possible to have a lower cobound that is not 1, though this is not common. 
+    </p>
+<p> Since the work is being split across the images, a coarray is needed to keep track of each image's subtotal of points within the circle. At the end the subtotals are added to create a grand total, which is divided as it is in the sequential version. The variable total is reused, but make it a coarray. Delete the existing declaration of total and insert into the declaration section of the program: 
+      <pre>! Declare scalar coarray that will exist on each image
+integer(K_BIGINT) :: total[*] ! Per-image subtotal</pre></p>
+<p> The important aspect of coarrays is that there is a local part that resides on an individual image, but you can access the part on other images. To read the value of total on image 3, use the syntax total[3]. To reference the local copy, the coindex in brackets is omitted. For best performance, minimize touching the storage of other images. 
+    </p>
+<p> In a coarray application, each image has its own set of I/O units. The standard input is preconnected only on image 1. The standard output is preconnected on all images. The standard encourages the implementations to merge output, but the order is unpredictable. Intel&reg; Fortran supports this merging. 
+    </p>
+<p> It is typical to have image 1 do any setup and terminal I/O. Change the initial display to show how many images are doing the work, and verify that the number of trials is evenly divisible by the number of images (by default, this is the number of cores times threads-per-core). Image 1 does all the timing. 
+    </p>
+<p> Open the file 
+      <samp class="codeph">mcpi_sequential.f90</samp> and save it as 
+      <samp class="codeph">mcpi_coarray.f90</samp>. 
+    </p>
+<p> Replace: 
+      <pre>print '(A,I0,A)', "Computing pi using ",num_trials," trials sequentially"
+! Start timing
+call SYSTEM_CLOCK(clock_start)
+</pre>With: 
+      <pre>! Image 1 initialization
+if (THIS_IMAGE() == 1) then
+    ! Make sure that num_trials is divisible by the number of images
+    if (MOD(num_trials,INT(NUM_IMAGES(),K_BIGINT)) /= 0_K_BIGINT) &amp;
+        error stop "num_trials not evenly divisible by number of images!"
+    print '(A,I0,A,I0,A)', "Computing pi using ",num_trials," trials across ",NUM_IMAGES()," images"
+    call SYSTEM_CLOCK(clock_start)
+end if
+</pre></p>
+<p>Use the following steps: 
+    <ol id="GUID-2812D3A7-62AA-42F8-825D-E4654D530DAB"><li> Make the test using the intrinsic function 
+        <samp class="codeph">THIS_IMAGE</samp>. When it is called without arguments, it returns the index of the invoking image. The code should execute only on image 1. 
+      </li>
+<li>Ensure that the number of trials is evenly divisible by the number of images. The intrinsic function 
+        <samp class="codeph">NUM_IMAGES</samp> returns this value. 
+        <samp class="codeph">error_stop</samp> is similar to stop except that it forces all images in a coarray application to exit. 
+      </li>
+<li> Print the number of trials and the number of images. 
+      </li>
+<li>Start the timing. 
+      </li>
+</ol>
+</p>
+<p> Images other than 1 skip this code and proceed to what comes next. In more complex applications you might want other images to wait until the initialization is done. When that is desired, insert a sync all statement. The execution does not continue until all images have reached that statement. 
+    </p>
+<p>The initialization of total does not need to be changed. This is done on each image's local version. 
+    </p>
+<p> The main compute loop needs to be changed to split the work. Replace: 
+      <pre>do bigi=1_K_BIGINT,num_trials</pre>With: 
+      <pre>do bigi=1_K_BIGINT,num_trials/int(NUM_IMAGES(),K_BIGINT)</pre></p>
+<p> After the 
+      <samp class="codeph">DO</samp> loop, insert: 
+      <pre>! Wait for everyone
+sync all
+</pre></p>
+<p>Sum the image-specific totals, compute, and display the result. Again, this is done only on image 1. Replace: 
+      <pre>! total/num_trials is an approximation of pi/4
+computed_pi = 4.0_K_DOUBLE*(REAL(total,K_DOUBLE)/REAL(num_trials,K_DOUBLE))
+print '(A,G0.8,A,G0.3)', "Computed value of pi is ", computed_pi, &amp;
+    ", Relative Error: ",ABS((computed_pi-actual_pi)/actual_pi)! Show elapsed time
+call SYSTEM_CLOCK(clock_end,clock_rate)
+print '(A,G0.3,A)', "Elapsed time is ", &amp;
+  REAL(clock_end-clock_start)/REAL(clock_rate)," seconds"
+</pre>With: 
+      <pre>! Image 1 end processing
+if (this_image() == 1) then
+    ! Sum all of the images' subtotals
+    do i=2,num_images()
+        total = total + total[i]
+    end do
+    ! total/num_trials is an approximation of pi/4
+    computed_pi = 4.0_K_DOUBLE* (REAL(total,K_DOUBLE)/REAL(num_trials,K_DOUBLE))
+    print '(A,G0.8,A,G0.3)', "Computed value of pi is ", computed_pi, &amp;
+        ", Relative Error: ",ABS((computed_pi-actual_pi)/actual_pi)
+    ! Show elapsed time
+    call SYSTEM_CLOCK(clock_end,clock_rate)
+    print '(A,G0.3,A)', "Elapsed time is ", &amp;
+        REAL(clock_end-clock_start)/REAL(clock_rate)," seconds"
+end if
+</pre></p>
+<p> Use the following steps on the new code: 
+    <ol id="GUID-1F4AB0B1-47C1-410C-88DD-4C783D277990"><li> Execute this code only on image 1. 
+      </li>
+<li>The 
+        <samp class="codeph">total</samp> (without a coindex) already has the count from image 1, now add in the values from the other images. Note the [i] coindex. 
+      </li>
+<li>Ensure that the rest of the code is the same as the sequential version. 
+      </li>
+</ol>
+</p>
+<p> All of the images exit. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-47F3A864-0145-403B-A45E-5D813BFB4EBA.html">Tutorial: Using Coarray Fortran</a></div>
+</div>
+<div/>
+</body>
+</html>

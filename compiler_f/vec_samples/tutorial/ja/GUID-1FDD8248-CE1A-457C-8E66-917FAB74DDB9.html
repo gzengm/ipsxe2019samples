@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xml:lang="ja-jp" lang="ja-jp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="追加の演習"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-45D22AF6-DFF5-4D33-BF83-B74D625C092D.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-1FDD8248-CE1A-457C-8E66-917FAB74DDB9"/>
+<meta name="DC.Language" content="ja-JP"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>追加の演習</title>
+<script src="resources/prism/prism.js"><!----></script>
+<link href="resources/prism/prism.css" rel="stylesheet"/>
+</head>
+<body id="GUID-1FDD8248-CE1A-457C-8E66-917FAB74DDB9">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+
+
+<h1 class="topictitle1">追加の演習</h1>
+<div><div class="section" id="GUID-302C90D6-325A-4534-8FF7-2C0F969E2B41"><p>前のサンプルでは倍精度の配列を使用しましたが、コマンドライン・オプション <span class="option">-real-size 64</span> を <span class="option">-real-size 32</span> に変更することにより、代わりに単精度配列でビルドすることもできます。ループのベクトル化されていないバージョンは倍精度のバージョンよりわずかに高速になりますが、ベクトル化されたバージョンは大幅に高速になります。これは、16 バイト・ベクトル・レジスターで実行するパックド SIMD 命令は、2 つの倍精度データ要素の代わりに 4 つの単精度データ要素を一度に実行するためです。</p>
+<div class="Note"><h3 class="NoteTipHead">注</h3> <p>データのアライメントのサンプルでは、<samp class="codeph">ROWBUF=3</samp> を設定して、行列 <samp class="codeph">a</samp> の各行が 16 バイトでアライメントされるようにする必要があります。この設定を行わない場合、ディレクティブ <samp class="codeph">!dir$ vector aligned</samp> によりプログラムは失敗します。</p>
+</div>
+</div>
+<p>このチュートリアルでは、さまざまな手法によるパフォーマンスの最適化について見てきました。以上で、このチュートリアルは終了です。</p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>親トピック:</strong> <a href="GUID-45D22AF6-DFF5-4D33-BF83-B74D625C092D.html">チュートリアル: 自動ベクトル化の使用</a></div>
+</div>
+<div/>
+</body>
+</html>

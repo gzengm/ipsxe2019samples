@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioProject ProjectCreator="Intel Fortran" Keyword="Console Application" Version="11.0" ProjectIdGuid="{40AE2E10-D96F-4D66-897C-A110BE382B19}">
+	<Platforms>
+		<Platform Name="x64"/></Platforms>
+	<Configurations>
+		<Configuration Name="Debug|x64" OutputDirectory="$(SolutionDir)\$(Platform)\$(ProjectName)\$(Configuration)\" IntermediateDirectory="$(SolutionDir)\$(Platform)\$(ProjectName)\$(Configuration)\">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="$(I_MPI_ROOT)\intel64\include" WarnInterfaces="true" Traceback="true" BoundsCheck="true" StackFrameCheck="true" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
+				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" AdditionalLibraryDirectories="$(VT_ROOT)\dll;$(I_MPI_ROOT)\intel64\lib" GenerateDebugInformation="true" SubSystem="subSystemConsole" AdditionalDependencies="VT.lib impi.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TargetEnvironment="midlTargetAMD64"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/>
+				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
+		<Configuration Name="Release|x64" OutputDirectory="$(SolutionDir)\$(Platform)\$(ProjectName)\$(Configuration)\" IntermediateDirectory="$(SolutionDir)\$(Platform)\$(ProjectName)\$(Configuration)\">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" AdditionalIncludeDirectories="$(I_MPI_ROOT)\intel64\include" RuntimeLibrary="rtMultiThreadedDLL"/>
+				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" AdditionalLibraryDirectories="$(VT_ROOT)\dll;$(I_MPI_ROOT)\intel64\lib" SubSystem="subSystemConsole" AdditionalDependencies="VT.lib impi.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TargetEnvironment="midlTargetAMD64"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/>
+				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration></Configurations>
+	<Files>
+		<Filter Name="Header Files" Filter="fi;fd;h;inc"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath="..\src\boundary_functions.f90"/>
+		<File RelativePath="..\src\ErrHnd.f90"/>
+		<File RelativePath="..\src\output.f90"/>
+		<File RelativePath="..\src\pardat_sendrecv.f90"/>
+		<File RelativePath="..\src\red_black.f90"/>
+		<File RelativePath="..\src\types.f90"/></Filter></Files>
+	<Globals/></VisualStudioProject>

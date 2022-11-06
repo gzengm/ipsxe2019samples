@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta name="DC.Type" content="topic" />
+<meta name="DC.Title" content="Generating a Vectorization Report" />
+<meta name="DC.Relation" scheme="URI" content="GUID-5802FE1F-A872-4B07-9816-EA3D42046146.html" />
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback" />
+<meta name="DC.Format" content="XHTML" />
+<meta name="DC.Identifier" content="GUID-92680CAC-9375-4AE9-9B30-BDDB73792AF8" />
+<meta name="DC.Language" content="en-US" />
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css" />
+<title>Generating a Vectorization Report</title>
+<script src="resources/prism/prism.js"><!----></script>
+<link href="resources/prism/prism.css" rel="stylesheet" />
+</head>
+<body id="GUID-92680CAC-9375-4AE9-9B30-BDDB73792AF8">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+
+
+<h1 class="topictitle1">Generating a Vectorization Report</h1>
+<div><p>A vectorization report shows what loops in your code were vectorized and explains why other loops were not vectorized. To generate a vectorization report, use the 
+  <span class="option">qopt-report-phase=vec</span> compiler options together with 
+  <span class="option">qopt-report=1</span> or 
+  <span class="option">qopt-report=2</span>. 
+  </p>
+<p>Together with 
+  <span class="option">qopt-report-phase=vec</span>, 
+  <span class="option">qopt-report=1</span> generates a report with the loops in your code that were vectorized while 
+  <span class="option">qopt-report-phase=vec</span> with 
+  <span class="option">qopt-report=2</span> generates a report with both the loops in your code that were vectorized and the reason that other loops were not vectorized. 
+  </p>
+<p>Because vectorization is turned off with the 
+  <span class="option">O1</span> option, the compiler does not generate a vectorization report. To generate a vectorization report, compile your project with the 
+  <span class="option">O2</span>, 
+  <span class="option">qopt-report-phase=vec</span>, 
+  <span class="option">qopt-report=1</span> options: 
+  </p>
+<p><samp class="codeph">ifort -real-size 64 -O2 -qopt-report=1 -qopt-report-phase=vec matvec.f90 driver.f90 -o MatVector</samp></p>
+<p>Recompile the program and then execute 
+    <span class="filepath">MatVector</span>. Record the new execution time. The reduction in time is mostly due to auto-vectorization of the inner loop at line 
+    <span>32</span> noted in the vectorization report 
+    <samp class="codeph">matvec.optrpt</samp>: 
+  </p>
+<p><pre class="msgblock">
+Begin optimization report for: matvec_
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at matvec.f90(26,3)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at matvec.f90(26,3)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at matvec.f90(26,3)
+   &lt;Remainder loop for vectorization&gt;
+  LOOP END
+LOOP END
+
+LOOP BEGIN at matvec.f90(27,3)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at matvec.f90(32,6)
+   &lt;Peeled loop for vectorization&gt;
+   LOOP END
+
+   LOOP BEGIN at matvec.f90(32,6)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at matvec.f90(32,6)
+   &lt;Alternate Alignment Vectorized Loop&gt;
+   LOOP END
+
+   LOOP BEGIN at matvec.f90(32,6)
+   &lt;Remainder loop for vectorization&gt;
+   LOOP END
+LOOP END</pre>
+</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Your line and column numbers may be different. 
+    </p>
+</div>
+<p><span class="option">qopt-report=2</span> with 
+  <span class="option">qopt-report-phase=vec,loop</span> returns a list that also includes loops that were not vectorized or multi-versioned, along with the reason that the compiler did not vectorize them or multi-version the loop. 
+  </p>
+<p>Recompile your project with the 
+  <span class="option">qopt-report=2</span> and 
+  <span class="option">qopt-report-phase=vec,loop</span> options. 
+  </p>
+<p><samp class="codeph">ifort -real-size 64 -O2 -qopt-report-phase=vec -qopt-report=2 matvec.f90 driver.f90 -o MatVector</samp></p>
+<p>The vectorization report 
+    <samp class="codeph">matvec.optrpt</samp> indicates that the loop at line 
+    <span>33 in 
+      <span class="filepath">matvec.f90</span> did not vectorize because it is not the innermost loop of the loop nest.</span></p>
+<p><pre class="msgblock">
+LOOP BEGIN at matvec.f90(27,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at matvec.f90(32,6)
+   &lt;Peeled loop for vectorization&gt;
+  LOOP END
+
+   LOOP BEGIN at matvec.f90(32,6)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at matvec.f90(32,6)
+   &lt;Alternate Alignment Vectorized Loop&gt;
+   LOOP END
+
+   LOOP BEGIN at matvec.f90(32,6)
+   &lt;Remainder loop for vectorization&gt;
+      remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   LOOP END
+LOOP END</pre>
+</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <ul id="GUID-96F67F49-0658-4E1F-A4D4-6E9A3C18C3A6"><li><p>Your line and column numbers may be different. 
+        </p>
+</li>
+<li><p>For more information on the 
+    <span class="option">qopt-report</span> and 
+    <span class="option">qopt-report-phase</span> compiler options, see the 
+    <em>Compiler Options</em> section in the 
+    <em>Intel&reg; 
+      <span>Fortran 
+      </span>Compiler Developer Guide and Reference</em>. 
+    </p>
+</li>
+</ul>
+</div>
+<p><a href="GUID-C5CD5699-DC12-475B-B265-A7F2B56288BC.html#GUID-C5CD5699-DC12-475B-B265-A7F2B56288BC"><img class="border(0)" style="border-style: none" src="GUID-7F3B04BE-CA31-4F1C-B7C4-88C93723B324-low.jpg" alt="Next: Improving Performance by Aligning Data" /></a></p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-5802FE1F-A872-4B07-9816-EA3D42046146.html">Tutorial: Linux* and macOS* Version</a></div>
+</div>
+<div></div>
+</body>
+</html>
